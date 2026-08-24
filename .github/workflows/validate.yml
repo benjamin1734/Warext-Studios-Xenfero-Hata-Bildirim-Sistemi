@@ -92,3 +92,9 @@ jobs:
           if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
+      - name: Upload validated package
+        uses: actions/upload-artifact@v4
+        with:
+          name: xenforo-addon-1.0.5
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip
+          if-no-files-found: error
