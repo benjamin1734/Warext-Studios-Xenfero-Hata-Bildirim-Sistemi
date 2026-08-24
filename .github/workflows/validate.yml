@@ -33,6 +33,9 @@ jobs:
           for file in files:
               ET.parse(file)
 
+          if (data / 'admin_templates').exists():
+              raise SystemExit('Admin template dosyalari ayri admin_templates klasorunde tutulamaz; templates.xml icinde type=admin olmali.')
+
           cron = ET.parse(data / 'cron.xml').getroot()
           for entry in cron.findall('entry'):
               entry_id = entry.attrib.get('entry_id', '')
@@ -40,6 +43,12 @@ jobs:
                   raise SystemExit(f'Cron entry_id 25 karakteri asiyor: {entry_id} ({len(entry_id)})')
 
           templates = ET.parse(data / 'templates.xml').getroot()
+          admin_titles = {t.attrib.get('title') for t in templates.findall('template') if t.attrib.get('type') == 'admin'}
+          required_admin = {'wrxt_hata_admin_list', 'wrxt_hata_admin_view', 'wrxt_hata_admin_analytics'}
+          missing_admin = required_admin - admin_titles
+          if missing_admin:
+              raise SystemExit('Eksik admin template: ' + ', '.join(sorted(missing_admin)))
+
           for template in templates.findall('template'):
               body = template.text or ''
               title = template.attrib.get('title', '')
@@ -49,6 +58,10 @@ jobs:
                   stripped = main.strip()
                   if stripped and not re.match(r'<xf:(label|hint|explain)\b', stripped):
                       raise SystemExit(f'xf:main beklenmeyen dogrudan child iceriyor: {title}')
+
+          mods = (data / 'template_modifications.xml').read_text(encoding='utf-8')
+          if '<xf:fa icon="fa-bug" />' not in mods or '>Hata Bildir<' not in mods:
+              raise SystemExit('Belirgin Hata Bildir butonu template modification icinde bulunamadi.')
 
           print(f'{len(files)} XML dosyası ve XenForo veri/template sınırları doğrulandı.')
           PY
@@ -68,12 +81,12 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.3.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.3.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.3.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.3.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.3.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.3.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
