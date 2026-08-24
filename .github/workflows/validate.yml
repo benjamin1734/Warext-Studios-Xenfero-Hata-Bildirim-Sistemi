@@ -25,17 +25,32 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           import xml.etree.ElementTree as ET
+
           data = Path('upload/src/addons/Warext/HataBildirimi/_data')
           files = list(data.rglob('*.xml'))
           for file in files:
               ET.parse(file)
+
           cron = ET.parse(data / 'cron.xml').getroot()
           for entry in cron.findall('entry'):
               entry_id = entry.attrib.get('entry_id', '')
               if len(entry_id) > 25:
                   raise SystemExit(f'Cron entry_id 25 karakteri asiyor: {entry_id} ({len(entry_id)})')
-          print(f'{len(files)} XML dosyası ve XenForo veri sınırları doğrulandı.')
+
+          templates = ET.parse(data / 'templates.xml').getroot()
+          for template in templates.findall('template'):
+              body = template.text or ''
+              title = template.attrib.get('title', '')
+              if 'responsive-data-list' in body:
+                  raise SystemExit(f'Yanlis responsive datalist init: {title}')
+              for main in re.findall(r'<xf:main\b[^>]*>(.*?)</xf:main>', body, flags=re.S):
+                  stripped = main.strip()
+                  if stripped and not re.match(r'<xf:(label|hint|explain)\b', stripped):
+                      raise SystemExit(f'xf:main beklenmeyen dogrudan child iceriyor: {title}')
+
+          print(f'{len(files)} XML dosyası ve XenForo veri/template sınırları doğrulandı.')
           PY
       - name: JavaScript syntax
         run: node --check upload/js/warext/hata-bildirimi/diagnostics.js
@@ -48,12 +63,12 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.2.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.2.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.2.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.2.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.2.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.2.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
