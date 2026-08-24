@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+  <permission permission_group_id="wrxtHata" permission_id="submit" permission_type="flag" interface_group_id="generalPermissions" display_order="900"/>
+  <permission permission_group_id="wrxtHata" permission_id="viewOwn" permission_type="flag" interface_group_id="generalPermissions" display_order="910"/>
+  <permission permission_group_id="wrxtHata" permission_id="attach" permission_type="flag" interface_group_id="generalPermissions" display_order="920"/>
+  <permission permission_group_id="wrxtHata" permission_id="manage" permission_type="flag" interface_group_id="generalPermissions" display_order="930"/>
+</permissions>

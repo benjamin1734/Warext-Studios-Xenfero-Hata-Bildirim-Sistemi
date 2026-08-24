@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+  <template type="public" title="wrxt_hata_report_form" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[<xf:title>Hata Bildir</xf:title>
+
+<xf:form action="{{ link('hata-bildir/submit') }}" ajax="true" class="block" data-wrxt-hata-form="1">
+    <div class="block-container">
+        <h2 class="block-header">Hata Bildir</h2>
+        <div class="block-body">
+            <xf:selectrow name="category" value="other" label="Sorun türü">
+                <xf:option value="page">Sayfa çalışmıyor</xf:option>
+                <xf:option value="visual">Görsel / tasarım hatası</xf:option>
+                <xf:option value="feature">Buton / özellik çalışmıyor</xf:option>
+                <xf:option value="mobile">Mobil uyumluluk</xf:option>
+                <xf:option value="performance">Performans problemi</xf:option>
+                <xf:option value="permission">Yetki problemi</xf:option>
+                <xf:option value="other">Diğer</xf:option>
+            </xf:selectrow>
+
+            <xf:textarearow name="description" maxlength="5000" rows="6" autosize="true" label="Sorunu açıklayın" explain="Sorunun ne zaman ve hangi işlem sırasında oluştuğunu kısaca anlatın." />
+
+            <xf:if is="$attachmentData">
+                <xf:formrow label="Ekran görüntüsü / dosya" explain="Sorunu göstermeye yardımcı olacak ekran görüntüsü veya desteklenen bir dosya ekleyebilirsiniz.">
+                    <xf:macro template="public:helper_attach_upload" name="upload_block" arg-attachmentData="{$attachmentData}" />
+                </xf:formrow>
+            </xf:if>
+
+            <div class="formRow">
+                <div class="formRow-labelWrapper"><label class="formRow-label">Otomatik teknik bilgiler</label></div>
+                <div class="formRow-main">
+                    <div class="formRow-explain">Bulunduğunuz URL, tarayıcı, cihaz, ekran, tema ve içerik bağlamı otomatik eklenir. Son 15 dakikadaki en fazla 8 JavaScript hatası ile başarısız ağ isteğinin yalnızca yöntem, durum ve sorgu parametresiz adres bilgisi eklenebilir. Form içerikleri, istek gövdeleri, şifreler ve yetkilendirme verileri kaydedilmez.</div>
+                </div>
+            </div>
+
+            <input type="hidden" name="current_url" value="{$currentUrl}" />
+            <input type="hidden" name="screen_width" value="0" />
+            <input type="hidden" name="screen_height" value="0" />
+            <input type="hidden" name="viewport_width" value="0" />
+            <input type="hidden" name="viewport_height" value="0" />
+            <input type="hidden" name="pixel_ratio" value="1" />
+            <input type="hidden" name="timezone" value="" />
+            <input type="hidden" name="user_agent" value="" />
+            <input type="hidden" name="js_enabled" value="0" />
+            <input type="hidden" name="client_errors_json" value="" />
+            <input type="hidden" name="network_errors_json" value="" />
+        </div>
+        <xf:submitrow submit="Hata Bildirimini Gönder" />
+    </div>
+</xf:form>
+
+<xf:js>
+(() => {
+    const form = document.querySelector('[data-wrxt-hata-form="1"]')
+    if (!form) return
+    const set = (name, value) => {
+        const input = form.querySelector('[name="' + name + '"]')
+        if (input) input.value = value ?? ''
+    }
+    const populate = () => {
+        set('current_url', window.location.href)
+        set('screen_width', window.screen?.width || 0)
+        set('screen_height', window.screen?.height || 0)
+        set('viewport_width', window.innerWidth || 0)
+        set('viewport_height', window.innerHeight || 0)
+        set('pixel_ratio', window.devicePixelRatio || 1)
+        set('timezone', Intl.DateTimeFormat().resolvedOptions().timeZone || '')
+        set('user_agent', navigator.userAgent || '')
+        set('js_enabled', 1)
+        if (window.WrxtHataDiagnostics) window.WrxtHataDiagnostics.populate(form)
+    }
+    populate()
+    form.addEventListener('submit', populate)
+})()
+</xf:js>]]></template>
+
+  <template type="public" title="wrxt_hata_report_mine" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[<xf:title>Hata Bildirimlerim</xf:title>
+<div class="block"><div class="block-container"><h2 class="block-header">Hata Bildirimlerim</h2><div class="block-body">
+<xf:if is="$reports"><xf:datalist data-xf-init="responsive-data-list"><xf:foreach loop="$reports" value="$report"><xf:datarow rowclass="dataList-row--noHover"><xf:main href="{{ link('hata-bildirimlerim/view', null, {'report_id': $report.report_id}) }}"><strong>{$report.report_key}</strong><xf:explain>{$report.description|snippet(100)} · <xf:date time="$report.created_date" /></xf:explain></xf:main><xf:cell><xf:if is="$report.status == 'new'">Yeni<xf:elseif is="$report.status == 'investigating'" />İnceleniyor<xf:elseif is="$report.status == 'confirmed'" />Onaylandı<xf:elseif is="$report.status == 'in_progress'" />Çözülüyor<xf:elseif is="$report.status == 'resolved'" />Çözüldü<xf:elseif is="$report.status == 'cannot_reproduce'" />Tekrar üretilemedi<xf:elseif is="$report.status == 'invalid'" />Geçersiz<xf:elseif is="$report.status == 'duplicate'" />Yinelenen<xf:else />Arşivlendi</xf:if></xf:cell></xf:datarow></xf:foreach></xf:datalist><xf:else /><div class="block-row">Henüz hata bildiriminiz bulunmuyor.</div></xf:if>
+</div><xf:pagenav page="{$page}" perpage="{$perPage}" total="{$total}" link="hata-bildirimlerim" wrapperclass="block-outer block-outer--after" /></div></div>]]></template>
+
+  <template type="public" title="wrxt_hata_report_view" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[<xf:title>{$report.report_key}</xf:title>
+<div class="block"><div class="block-container"><h2 class="block-header">{$report.report_key}</h2><div class="block-body"><div class="block-row"><dl class="pairs pairs--columns pairs--fixedSmall"><dt>Durum</dt><dd><xf:if is="$report.status == 'new'">Yeni<xf:elseif is="$report.status == 'investigating'" />İnceleniyor<xf:elseif is="$report.status == 'confirmed'" />Onaylandı<xf:elseif is="$report.status == 'in_progress'" />Çözülüyor<xf:elseif is="$report.status == 'resolved'" />Çözüldü<xf:elseif is="$report.status == 'cannot_reproduce'" />Tekrar üretilemedi<xf:elseif is="$report.status == 'invalid'" />Geçersiz<xf:elseif is="$report.status == 'duplicate'" />Yinelenen<xf:else />Arşivlendi</xf:if></dd><dt>Bildirim zamanı</dt><dd><xf:date time="$report.created_date" /></dd><dt>Sayfa</dt><dd><a href="{$report.current_url}" target="_blank" rel="noopener noreferrer">{$report.current_url}</a></dd><dt>Tarayıcı</dt><dd>{$report.browser_name} {$report.browser_version}</dd><dt>İşletim sistemi</dt><dd>{$report.os_name}</dd><dt>Cihaz</dt><dd>{$report.device_type}</dd><dt>Ekran</dt><dd>{$report.screen_width} × {$report.screen_height}</dd><dt>Görüntü alanı</dt><dd>{$report.viewport_width} × {$report.viewport_height}</dd><xf:if is="$report.content_type"><dt>İçerik bağlamı</dt><dd>{$report.content_type} #{$report.content_id}</dd></xf:if><dt>Tanılama</dt><dd>{$report.js_error_count} JavaScript · {$report.network_error_count} ağ hatası</dd></dl></div><div class="block-row block-row--separated"><h3 class="block-minorHeader">Açıklama</h3><div class="bbWrapper">{$report.description|nl2br}</div></div>
+<xf:if is="$report.Attachments is not empty"><div class="block-row block-row--separated"><h3 class="block-minorHeader">Ek dosyalar</h3><ul class="listInline listInline--bullet"><xf:foreach loop="$report.Attachments" value="$attachment"><li><a href="{{ link('attachments', $attachment) }}" target="_blank" rel="noopener">{$attachment.Data.filename}</a> <span class="u-muted">{{ file_size($attachment.Data.file_size) }}</span></li></xf:foreach></ul></div></xf:if>
+<xf:if is="$report.status == 'duplicate'"><div class="block-row block-row--separated"><div class="blockMessage blockMessage--important">Bu bildirim aynı teknik soruna ait başka bir ana raporla birleştirildi. Takibiniz bu kayıt üzerinden korunmaya devam eder.</div></div></xf:if></div></div></div>
+<div class="block"><div class="block-container"><h2 class="block-header">Görüşme</h2><div class="block-body"><xf:if is="$messages is not empty"><xf:foreach loop="$messages" value="$item"><div class="block-row block-row--separated"><strong>{$item.username}</strong><xf:if is="$item.message_type == 'staff'"><span class="label label--blue">Yetkili</span></xf:if><div class="u-muted"><xf:date time="$item.created_date" /></div><div class="bbWrapper">{$item.message|nl2br}</div></div></xf:foreach><xf:else /><div class="block-row">Henüz ek mesaj bulunmuyor.</div></xf:if></div></div></div>
+<xf:if is="$canReply"><xf:form action="{{ link('hata-bildirimlerim/reply') }}" class="block"><div class="block-container"><h2 class="block-header">Cevap yaz</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:textarearow name="message" rows="5" maxlength="10000" autosize="true" label="Mesajınız" /></div><xf:submitrow submit="Cevabı gönder" /></div></xf:form></xf:if>]]></template>
+
+  <template type="public" title="alert_wrxt_bug_report_staff_reply" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[<a href="{{ link('hata-bildirimlerim/view', null, {'report_id': $content.report_id}) }}"><strong>{$content.report_key}</strong></a> hata bildiriminize yetkili yanıt verdi.]]></template>
+  <template type="public" title="alert_wrxt_bug_report_status" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[<a href="{{ link('hata-bildirimlerim/view', null, {'report_id': $content.report_id}) }}"><strong>{$content.report_key}</strong></a> hata bildiriminizin durumu güncellendi.]]></template>
+  <template type="public" title="push_wrxt_bug_report_staff_reply" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[{$content.report_key} hata bildiriminize yetkili yanıt verdi.]]></template>
+  <template type="public" title="push_wrxt_bug_report_status" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[{$content.report_key} hata bildiriminizin durumu güncellendi.]]></template>
+  <template type="public" title="wrxt_hata.less" version_id="1000040" version_string="1.0.0 Alpha 4"><![CDATA[.wrxtHata-floatingButton { position: fixed; right: 18px; bottom: 18px; z-index: @zIndex-4; } .wrxtHata-diagnosticItem { padding: @xf-paddingMedium 0; border-bottom: 1px solid @xf-borderColorLight; } .wrxtHata-diagnosticItem:last-child { border-bottom: 0; } @media (max-width: @xf-responsiveMedium) { .wrxtHata-floatingButton { right: 10px; bottom: 10px; } }]]></template>
+</templates>

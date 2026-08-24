@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<options>
+  <option option_id="wrxtHataEnabled" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="10"/></option>
+  <option option_id="wrxtHataButtonPosition" edit_format="select" data_type="string" advanced="0"><default_value>floating</default_value><edit_format_params>floating=Sağ alt sabit
+footer=Footer içinde</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="15"/></option>
+  <option option_id="wrxtHataMaxReports10Min" edit_format="spinbox" data_type="integer" advanced="0"><default_value>3</default_value><edit_format_params>min=1
+max=50</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="20"/></option>
+  <option option_id="wrxtHataMaxReportsIp10Min" edit_format="spinbox" data_type="integer" advanced="0"><default_value>20</default_value><edit_format_params>min=0
+max=500</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="25"/></option>
+  <option option_id="wrxtHataClientDiagnostics" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="30"/></option>
+  <option option_id="wrxtHataServerCorrelation" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="40"/></option>
+  <option option_id="wrxtHataServerWindow" edit_format="spinbox" data_type="integer" advanced="0"><default_value>300</default_value><edit_format_params>min=30
+max=1800</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="50"/></option>
+  <option option_id="wrxtHataDuplicateDetection" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="60"/></option>
+  <option option_id="wrxtHataHotspotMin" edit_format="spinbox" data_type="integer" advanced="0"><default_value>3</default_value><edit_format_params>min=2
+max=25</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="70"/></option>
+  <option option_id="wrxtHataAttachments" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="80"/></option>
+  <option option_id="wrxtHataBoardUrlsOnly" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="90"/></option>
+  <option option_id="wrxtHataDiagnosticRetentionDays" edit_format="spinbox" data_type="integer" advanced="0"><default_value>90</default_value><edit_format_params>min=0
+max=3650</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="100"/></option>
+</options>

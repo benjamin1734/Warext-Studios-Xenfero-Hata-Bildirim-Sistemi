@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phrases>
+  <phrase title="admin_navigation.wrxtHataReports" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildirimleri]]></phrase>
+  <phrase title="admin_permission.wrxtHataManage" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirim sistemini yönet]]></phrase>
+  <phrase title="permission_group_wrxtHata" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildirim Sistemi]]></phrase>
+  <phrase title="permission_wrxtHata_submit" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimi oluşturabilir]]></phrase>
+  <phrase title="permission_wrxtHata_viewOwn" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Kendi hata bildirimlerini görüntüleyebilir]]></phrase>
+  <phrase title="permission_wrxtHata_attach" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimine dosya ekleyebilir]]></phrase>
+  <phrase title="permission_wrxtHata_manage" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimlerini yönetebilir]]></phrase>
+  <phrase title="wrxt_hata_no_permission" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimi oluşturma izniniz bulunmuyor.]]></phrase>
+  <phrase title="wrxt_hata_rate_limit" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Çok kısa sürede çok fazla hata bildirimi gönderdiniz. Lütfen daha sonra tekrar deneyin.]]></phrase>
+  <phrase title="wrxt_hata_description_short" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata açıklaması en az 10 karakter olmalıdır.]]></phrase>
+  <phrase title="wrxt_hata_report_created" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildiriminiz oluşturuldu. Takip numarası: {key}]]></phrase>
+  <phrase title="alert_opt_out.wrxt_bug_report_staff_reply" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimlerime verilen yetkili cevaplarını al]]></phrase>
+  <phrase title="alert_opt_out.wrxt_bug_report_status" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimlerimdeki durum değişikliklerini al]]></phrase>
+  <phrase title="option_group_wrxtHataSettings" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Warext Hata Bildirim Sistemi]]></phrase>
+  <phrase title="option_group_wrxtHataSettings_description" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirim, tanılama, korelasyon, yinelenen tespiti, güvenlik ve dosya ayarları.]]></phrase>
+  <phrase title="option_wrxtHataEnabled" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirim sistemini etkinleştir]]></phrase>
+  <phrase title="option_wrxtHataEnabled_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Kullanıcıların yeni hata bildirimi oluşturabilmesini kontrol eder.]]></phrase>
+  <phrase title="option_wrxtHataButtonPosition" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildir butonunun konumu]]></phrase>
+  <phrase title="option_wrxtHataButtonPosition_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildir butonunu sağ altta sabit veya footer alanında gösterebilirsiniz.]]></phrase>
+  <phrase title="option_wrxtHataMaxReports10Min" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[10 dakikadaki maksimum bildirim]]></phrase>
+  <phrase title="option_wrxtHataMaxReports10Min_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Bir kullanıcının 10 dakika içinde oluşturabileceği maksimum hata bildirimi sayısı.]]></phrase>
+  <phrase title="option_wrxtHataMaxReportsIp10Min" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[IP başına 10 dakikadaki maksimum bildirim]]></phrase>
+  <phrase title="option_wrxtHataMaxReportsIp10Min_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Aynı bağlantı adresinden 10 dakika içinde oluşturulabilecek toplam hata bildirimi sayısı. Ham IP adresi saklanmaz; yalnızca forumun global salt değeriyle HMAC-SHA256 özeti kısa süreli sayaç olarak tutulur. 0 girilirse IP kotası devre dışı bırakılır.]]></phrase>
+  <phrase title="option_wrxtHataClientDiagnostics" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Tarayıcı tanılamasını kaydet]]></phrase>
+  <phrase title="option_wrxtHataClientDiagnostics_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Son JavaScript ve başarısız ağ isteği sinyallerini güvenli ve sınırlı biçimde rapora ekler.]]></phrase>
+  <phrase title="option_wrxtHataServerCorrelation" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Sunucu hata korelasyonunu etkinleştir]]></phrase>
+  <phrase title="option_wrxtHataServerCorrelation_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[XenForo sunucu hata günlüğündeki yakın kayıtları kullanıcı raporuyla eşleştirir. Hassas anahtarlar maskelenir; POST içeriği veya IP rapora kopyalanmaz.]]></phrase>
+  <phrase title="option_wrxtHataServerWindow" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Sunucu hata eşleştirme penceresi]]></phrase>
+  <phrase title="option_wrxtHataServerWindow_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildiriminden geriye doğru taranacak saniye miktarı.]]></phrase>
+  <phrase title="option_wrxtHataDuplicateDetection" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Yinelenen hata adaylarını tespit et]]></phrase>
+  <phrase title="option_wrxtHataDuplicateDetection_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Aynı veya benzer sorunları yetkili onayına sunmak için otomatik aday oluşturur.]]></phrase>
+  <phrase title="option_wrxtHataHotspotMin" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Yoğun hata eşiği]]></phrase>
+  <phrase title="option_wrxtHataHotspotMin_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Son 30 dakikada aynı sayfanın yoğun hata sinyali sayılması için gereken minimum rapor sayısı.]]></phrase>
+  <phrase title="option_wrxtHataAttachments" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Ek dosya kullanımını etkinleştir]]></phrase>
+  <phrase title="option_wrxtHataAttachments_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[XenForo yerleşik attachment sistemi üzerinden ekran görüntüsü ve dosya eklenmesini sağlar.]]></phrase>
+  <phrase title="option_wrxtHataBoardUrlsOnly" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Yalnızca forum adreslerini rapora kabul et]]></phrase>
+  <phrase title="option_wrxtHataBoardUrlsOnly_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Kullanıcı tarafından değiştirilen form verisinin harici bir alan adını hata sayfası gibi kaydetmesini engeller. Önerilen ayar: açık.]]></phrase>
+  <phrase title="option_wrxtHataDiagnosticRetentionDays" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Tanılama verisi saklama süresi]]></phrase>
+  <phrase title="option_wrxtHataDiagnosticRetentionDays_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[JavaScript, ağ ve sunucu hata özetlerinin kaç gün saklanacağını belirler. 0 girilirse otomatik temizlik kapatılır; kullanıcı açıklaması ve rapor geçmişi silinmez.]]></phrase>
+</phrases>

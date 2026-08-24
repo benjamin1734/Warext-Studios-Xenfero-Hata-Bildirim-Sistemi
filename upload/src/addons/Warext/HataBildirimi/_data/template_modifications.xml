@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<template_modifications>
+  <modification type="public" template="PAGE_CONTAINER" modification_key="wrxt_hata_diagnostics" description="Hata tanılama istemcisini yükler" execution_order="5" enabled="1" action="str_replace">
+    <find>&lt;head&gt;</find>
+    <replace><![CDATA[$0
+<xf:if is="$xf.options.wrxtHataEnabled AND $xf.options.wrxtHataClientDiagnostics AND $xf.visitor.user_id AND $xf.visitor.hasPermission('wrxtHata', 'submit')">
+    <xf:js src="warext/hata-bildirimi/diagnostics.js" />
+</xf:if>]]></replace>
+  </modification>
+  <modification type="public" template="PAGE_CONTAINER" modification_key="wrxt_hata_footer_button" description="Hata bildir düğmesini sayfalara ekler" execution_order="10" enabled="1" action="str_replace">
+    <find>&lt;!--[XF:footer:before]--&gt;</find>
+    <replace><![CDATA[$0
+<xf:if is="$xf.options.wrxtHataEnabled AND $xf.visitor.user_id AND $xf.visitor.hasPermission('wrxtHata', 'submit')">
+    <xf:if is="$xf.options.wrxtHataButtonPosition == 'footer'">
+        <div class="block-outer block-outer--after u-textAlignCenter">
+            <a href="{{ link('hata-bildir') }}" class="button button--icon button--icon--alert" data-xf-click="overlay">Hata Bildir</a>
+        </div>
+    <xf:else />
+        <div class="wrxtHata-floatingButton">
+            <a href="{{ link('hata-bildir') }}" class="button button--icon button--icon--alert" data-xf-click="overlay">Hata Bildir</a>
+        </div>
+    </xf:if>
+</xf:if>
+<xf:css src="wrxt_hata.less" />]]></replace>
+  </modification>
+  <modification type="public" template="wrxt_hata_report_form" modification_key="wrxt_hata_referrer_field" description="Gerçek yönlendiren sayfa alanını hata formuna ekler" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<input type="hidden" name="current_url" value="{$currentUrl}" />]]></find>
+    <replace><![CDATA[$0
+            <input type="hidden" name="referrer_url" value="" />]]></replace>
+  </modification>
+  <modification type="public" template="wrxt_hata_report_form" modification_key="wrxt_hata_referrer_capture" description="Tarayıcı yönlendiren sayfa bilgisini hata formuna aktarır" execution_order="20" enabled="1" action="str_replace">
+    <find><![CDATA[set('current_url', window.location.href)]]></find>
+    <replace><![CDATA[$0
+        set('referrer_url', document.referrer || '')]]></replace>
+  </modification>
+  <modification type="public" template="wrxt_hata_report_view" modification_key="wrxt_hata_resolution_info" description="Çözüm sürümü ve notunu kullanıcı raporunda gösterir" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<dt>Tanılama</dt><dd>{$report.js_error_count} JavaScript · {$report.network_error_count} ağ hatası</dd>]]></find>
+    <replace><![CDATA[$0
+<xf:if is="$report.fixed_in_version"><dt>Çözülen sürüm</dt><dd>{$report.fixed_in_version}</dd></xf:if>]]></replace>
+  </modification>
+  <modification type="public" template="wrxt_hata_report_view" modification_key="wrxt_hata_resolution_note" description="Çözüm notunu kullanıcı raporunda gösterir" execution_order="20" enabled="1" action="str_replace">
+    <find><![CDATA[<div class="block-row block-row--separated"><h3 class="block-minorHeader">Açıklama</h3><div class="bbWrapper">{$report.description|nl2br}</div></div>]]></find>
+    <replace><![CDATA[$0
+<xf:if is="$report.resolution_note"><div class="block-row block-row--separated"><h3 class="block-minorHeader">Çözüm notu</h3><div class="bbWrapper">{$report.resolution_note|nl2br}</div></div></xf:if>]]></replace>
+  </modification>
+</template_modifications>

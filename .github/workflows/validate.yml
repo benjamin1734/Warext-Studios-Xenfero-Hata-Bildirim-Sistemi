@@ -1,0 +1,53 @@
+name: XenForo Add-on Validation
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - name: PHP syntax
+        run: find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
+      - name: JSON syntax
+        run: php -r 'json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR);'
+      - name: XML syntax
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+          files = list(Path('upload/src/addons/Warext/HataBildirimi/_data').rglob('*.xml'))
+          for file in files:
+              ET.parse(file)
+          print(f'{len(files)} XML dosyası doğrulandı.')
+          PY
+      - name: JavaScript syntax
+        run: node --check upload/js/warext/hata-bildirimi/diagnostics.js
+      - name: Validate XenForo archive layout
+        run: |
+          rm -rf .release .ci-dist
+          mkdir -p .release .ci-dist
+          cp -a upload .release/upload
+          cp README.md .release/README.md
+          rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
+          (
+            cd .release
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip upload README.md
+          )
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+            exit 1
+          fi

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<admin_navigation>
+  <admin_navigation_entry navigation_id="wrxtHataReports" parent_navigation_id="content" display_order="940" link="wrxt-hata-bildirimleri" icon="fa-bug" admin_permission_id="wrxtHataManage" debug_only="0" development_only="0" hide_no_children="0"/>
+</admin_navigation>

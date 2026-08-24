@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<content_type_fields>
+  <field content_type="wrxt_bug_report" field_name="entity">Warext\HataBildirimi\Entity\Report</field>
+  <field content_type="wrxt_bug_report" field_name="attachment_handler_class">Warext\HataBildirimi\Attachment\Report</field>
+  <field content_type="wrxt_bug_report" field_name="alert_handler_class">Warext\HataBildirimi\Alert\Report</field>
+</content_type_fields>
