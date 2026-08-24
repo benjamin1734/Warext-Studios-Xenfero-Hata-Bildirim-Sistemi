@@ -54,6 +54,8 @@ jobs:
               title = template.attrib.get('title', '')
               if 'responsive-data-list' in body:
                   raise SystemExit(f'Yanlis responsive datalist init: {title}')
+              if re.search(r'\{\$[^{}\n]*\?:[^{}\n]*\}', body):
+                  raise SystemExit(f'XenForo degisken etiketi icinde gecersiz kisa ternary: {title}')
               for main in re.findall(r'<xf:main\b[^>]*>(.*?)</xf:main>', body, flags=re.S):
                   stripped = main.strip()
                   if stripped and not re.match(r'<xf:(label|hint|explain)\b', stripped):
@@ -63,7 +65,7 @@ jobs:
           if '<xf:fa icon="fa-bug" />' not in mods or '>Hata Bildir<' not in mods:
               raise SystemExit('Belirgin Hata Bildir butonu template modification icinde bulunamadi.')
 
-          print(f'{len(files)} XML dosyası ve XenForo veri/template sınırları doğrulandı.')
+          print(f'{len(files)} XML dosyasi ve XenForo veri/template sinirlari dogrulandi.')
           PY
       - name: Default permission sanity
         run: |
@@ -81,12 +83,12 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.5.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
