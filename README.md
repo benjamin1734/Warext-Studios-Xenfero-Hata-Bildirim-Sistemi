@@ -4,11 +4,9 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.0.0 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.0.zip)
+[XenForo'ya doğrudan yüklenebilir 1.0.1 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.1.zip)
 
-Yalnızca yukarıdaki ZIP dosyasını kullanın. GitHub üzerindeki **Code > Download ZIP** seçeneği kaynak kod arşividir ve XenForo'nun **Install/upgrade from archive** alanına doğrudan yüklenmemelidir.
-
-Hazır ZIP dosyasını açmadan XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına yükleyin. FTP ile klasör çıkarmanız gerekmez.
+Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
 ## Özellikler
 
@@ -44,7 +42,7 @@ Hazır ZIP dosyasını açmadan XenForo Admin CP içerisinde **Add-ons > Install
 - Yeniden açılan raporlarda eski çözüm bilgisinin otomatik temizlenmesi
 - Kaldırma sırasında hata raporu attachment, alert ve IP flood sayaçlarının temizlenmesi
 - Her push için PHP 8.4, XML, JSON ve JavaScript sözdizimi doğrulaması
-- CI sırasında XenForo kurulum ZIP yapısının doğrulanması; workflow Git commit geçmişine müdahale etmez
+- XenForo cron kimliği uzunluk sınırı dahil kurulum verisi kontrolleri
 
 ## Gereksinimler
 
@@ -57,4 +55,4 @@ Hazır ZIP dosyasını açmadan XenForo Admin CP içerisinde **Add-ons > Install
 
 ## Sürüm
 
-`1.0.0`
+`1.0.1`
