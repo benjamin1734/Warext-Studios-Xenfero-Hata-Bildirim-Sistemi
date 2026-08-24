@@ -8,6 +8,7 @@ use XF\AddOn\StepRunnerUninstallTrait;
 use XF\AddOn\StepRunnerUpgradeTrait;
 use XF\Db\Schema\Alter;
 use XF\Db\Schema\Create;
+use XF\Job\PermissionRebuild;
 
 class Setup extends AbstractSetup
 {
@@ -181,7 +182,7 @@ class Setup extends AbstractSetup
 
     public function postUpgrade($previousVersion, array &$stateChanges): void
     {
-        if ((int)$previousVersion < 1000070)
+        if ((int)$previousVersion < 1000110)
         {
             $this->applyDefaultPermissions();
         }
@@ -189,18 +190,97 @@ class Setup extends AbstractSetup
 
     protected function applyDefaultPermissions(): void
     {
-        $hasConfiguredPermissions = (bool)$this->app->db()->fetchOne(
-            "SELECT 1 FROM xf_permission_entry WHERE permission_group_id = 'wrxtHata' LIMIT 1"
-        );
-        if ($hasConfiguredPermissions)
+        $this->applyMissingGroupPermissions(2, ['submit', 'viewOwn', 'attach']);
+        $this->applyMissingGroupPermissions(3, ['submit', 'viewOwn', 'attach', 'manage']);
+        $this->applyAdminAccountPermissions();
+    }
+
+    protected function applyMissingGroupPermissions(int $userGroupId, array $permissionIds): void
+    {
+        $userGroup = \XF::em()->find('XF:UserGroup', $userGroupId);
+        if (!$userGroup)
         {
             return;
         }
 
-        foreach (['submit', 'viewOwn', 'attach'] as $permissionId)
+        $permissionRepo = \XF::repository('XF:PermissionEntry');
+        $existing = $permissionRepo->getGlobalUserGroupPermissionEntries($userGroupId);
+        $configured = $existing['wrxtHata'] ?? [];
+        $values = [];
+
+        foreach ($permissionIds as $permissionId)
         {
-            $this->applyGlobalPermission('wrxtHata', $permissionId, 'general', 'view');
+            if (!array_key_exists($permissionId, $configured))
+            {
+                $values[$permissionId] = 'allow';
+            }
         }
+
+        if (!$values)
+        {
+            return;
+        }
+
+        $service = \XF::service('XF:UpdatePermissions');
+        $service->setUserGroup($userGroup);
+        $service->setGlobal();
+        $service->updatePermissions(['wrxtHata' => $values]);
+    }
+
+    protected function applyAdminAccountPermissions(): void
+    {
+        $db = $this->app->db();
+        $adminUserIds = array_map('intval', $db->fetchAllColumn('SELECT user_id FROM xf_admin'));
+        $permissionRepo = \XF::repository('XF:PermissionEntry');
+
+        foreach ($adminUserIds as $userId)
+        {
+            $user = \XF::em()->find('XF:User', $userId);
+            if (!$user)
+            {
+                continue;
+            }
+
+            $existing = $permissionRepo->getGlobalUserPermissionEntries($userId);
+            $configured = $existing['wrxtHata'] ?? [];
+            $values = [];
+
+            foreach (['submit', 'viewOwn', 'attach', 'manage'] as $permissionId)
+            {
+                if (!array_key_exists($permissionId, $configured))
+                {
+                    $values[$permissionId] = 'allow';
+                }
+            }
+
+            if ($values)
+            {
+                $service = \XF::service('XF:UpdatePermissions');
+                $service->setUser($user);
+                $service->setGlobal();
+                $service->updatePermissions(['wrxtHata' => $values]);
+            }
+        }
+
+        $db->query("INSERT IGNORE INTO xf_admin_permission_entry (user_id, admin_permission_id)
+            SELECT user_id, 'wrxtHataManage' FROM xf_admin");
+
+        \XF::repository('XF:AdminPermission')->rebuildAdminPermissionCache();
+    }
+
+    protected function removeInstalledPermissions(): void
+    {
+        $db = $this->app->db();
+        $db->delete('xf_permission_entry', 'permission_group_id = ?', 'wrxtHata');
+        $db->delete('xf_admin_permission_entry', 'admin_permission_id = ?', 'wrxtHataManage');
+
+        if ($this->app->container()->isCached('permission.builder'))
+        {
+            $this->app->permissionBuilder()->refreshData();
+        }
+
+        $this->app->jobManager()->enqueueUnique('permissionRebuild', PermissionRebuild::class);
+        \XF::repository('XF:AdminPermission')->rebuildAdminPermissionCache();
     }
 
     public function uninstallStep1(): void
@@ -247,6 +327,11 @@ class Setup extends AbstractSetup
     }
 
     public function uninstallStep2(): void
+    {
+        $this->removeInstalledPermissions();
+    }
+
+    public function uninstallStep3(): void
     {
         $this->schemaManager()->dropTable('xf_wrxt_bug_ip_rate');
         $this->schemaManager()->dropTable('xf_wrxt_bug_report_log');
