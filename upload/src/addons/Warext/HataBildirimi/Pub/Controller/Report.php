@@ -82,8 +82,8 @@ class Report extends AbstractController
             return $this->error($e->getMessage());
         }
 
-        return $this->message(
-            'Hata bildirimin alındı',
+        return $this->redirect(
+            $this->buildLink('hata-bildirimlerim/view', null, ['report_id' => $report->report_id]),
             \XF::phrase('wrxt_hata_report_created', ['key' => $report->report_key])
         );
     }

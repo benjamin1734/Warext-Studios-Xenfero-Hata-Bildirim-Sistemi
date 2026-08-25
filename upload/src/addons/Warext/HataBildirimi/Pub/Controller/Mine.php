@@ -38,7 +38,7 @@ class Mine extends AbstractController
 
     public function actionView()
     {
-        $report = $this->assertOwnedReport(['Attachments']);
+        $report = $this->assertOwnedReport();
         $messages = $this->finder('Warext\HataBildirimi:ReportMessage')
             ->where('report_id', $report->report_id)
             ->where('message_type', '<>', 'note')

@@ -270,7 +270,7 @@ class Report extends AbstractController
     protected function assertReportExists(): \Warext\HataBildirimi\Entity\Report
     {
         $reportId = $this->filter('report_id', 'uint');
-        $report = $this->em()->find('Warext\\HataBildirimi:Report', $reportId, ['User', 'Assignee', 'PossibleDuplicate', 'DuplicateReport', 'Attachments']);
+        $report = $this->em()->find('Warext\\HataBildirimi:Report', $reportId, ['User', 'Assignee', 'PossibleDuplicate', 'DuplicateReport']);
         if (!$report)
         {
             throw $this->exception($this->notFound('Hata bildirimi bulunamadı.'));

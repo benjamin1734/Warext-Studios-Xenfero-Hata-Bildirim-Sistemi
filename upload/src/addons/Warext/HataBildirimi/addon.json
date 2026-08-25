@@ -1,8 +1,8 @@
 {
     "title": "Warext Studios | Xenfero Hata Bildirim Sistemi",
     "description": "XenForo forumlarında kullanıcıların teknik verilerle birlikte hata bildirimleri oluşturmasını ve yönetim ekibinin bu bildirimleri takip etmesini sağlar.",
-    "version_id": 1000140,
-    "version_string": "1.0.6",
+    "version_id": 1000150,
+    "version_string": "1.0.7",
     "dev": "Warext Studios",
     "require": {
         "XF": [2030000, "XenForo 2.3.0+"],

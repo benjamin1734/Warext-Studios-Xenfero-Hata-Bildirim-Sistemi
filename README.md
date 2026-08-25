@@ -4,7 +4,7 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.0.6 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.6.zip)
+[XenForo'ya doğrudan yüklenebilir 1.0.7 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
@@ -17,7 +17,7 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 ## Özellikler
 
 - XenForo uyumlu **Hata Bildir** arayüzü
-- Gönderim sonrası takip numarasını gösteren açık başarı ekranı
+- Gönderim sonrası rapor detayına yönlendirme ve takip numaralı başarı bildirimi
 - Sağ altta sabit, ikonlu ve belirgin Hata Bildir düğmesi
 - Hata Bildir düğmesini footer içinde gösterebilme
 - Benzersiz `BUG-XXXXXXXX` takip numarası
@@ -48,6 +48,7 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 - PHP 8.4 uyumlu XenForo 2.3 attachment/alert handler imzaları
 - XFRM ve XFMG bağlamının yalnızca ilgili eklenti ve içerik gerçekten mevcutsa kabul edilmesi
 - Admin ve public template'lerin XenForo 2.3 veri formatında tek `_data/templates.xml` dosyasında tutulması
+- TO_MANY entity relation'larının XenForo finder join mekanizmasına zorla verilmemesi
 - Her push için PHP 8.4, XML, JSON ve JavaScript sözdizimi doğrulaması
 - XenForo cron kimliği uzunluk sınırı ve kritik template veri yapısı kontrolleri
 
@@ -62,4 +63,4 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 
 ## Sürüm
 
-`1.0.6`
+`1.0.7`
