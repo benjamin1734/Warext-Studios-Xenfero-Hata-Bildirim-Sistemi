@@ -4,7 +4,7 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.0.4 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.4.zip)
+[XenForo'ya doğrudan yüklenebilir 1.0.6 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.6.zip)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
@@ -17,6 +17,7 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 ## Özellikler
 
 - XenForo uyumlu **Hata Bildir** arayüzü
+- Gönderim sonrası takip numarasını gösteren açık başarı ekranı
 - Sağ altta sabit, ikonlu ve belirgin Hata Bildir düğmesi
 - Hata Bildir düğmesini footer içinde gösterebilme
 - Benzersiz `BUG-XXXXXXXX` takip numarası
@@ -61,4 +62,4 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 
 ## Sürüm
 
-`1.0.4`
+`1.0.6`
