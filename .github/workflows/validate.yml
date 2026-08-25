@@ -44,7 +44,7 @@ jobs:
 
           templates = ET.parse(data / 'templates.xml').getroot()
           admin_titles = {t.attrib.get('title') for t in templates.findall('template') if t.attrib.get('type') == 'admin'}
-          required_admin = {'wrxt_hata_admin_list', 'wrxt_hata_admin_view', 'wrxt_hata_admin_analytics'}
+          required_admin = {'wrxt_hata_admin_list', 'wrxt_hata_admin_view', 'wrxt_hata_admin_analytics', 'wrxt_hata_admin.less'}
           missing_admin = required_admin - admin_titles
           if missing_admin:
               raise SystemExit('Eksik admin template: ' + ', '.join(sorted(missing_admin)))
@@ -91,6 +91,11 @@ jobs:
           grep -q "applyMissingGroupPermissions(2, \['submit', 'viewOwn', 'attach'\])" upload/src/addons/Warext/HataBildirimi/Setup.php
           grep -q "applyMissingGroupPermissions(3, \['submit', 'viewOwn', 'attach', 'manage'\])" upload/src/addons/Warext/HataBildirimi/Setup.php
           grep -q "wrxtHataManage" upload/src/addons/Warext/HataBildirimi/Setup.php
+      - name: Admin layout sanity
+        run: |
+          grep -q 'wrxtHata-techGrid' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
+          grep -q 'wrxtHata-tableScroll' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
+          grep -q 'wrxtHata-code' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
       - name: JavaScript syntax
         run: node --check upload/js/warext/hata-bildirimi/diagnostics.js
       - name: Validate XenForo archive layout
@@ -102,18 +107,18 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.0.7
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.7.zip
+          name: xenforo-addon-1.0.8
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip
           if-no-files-found: error
