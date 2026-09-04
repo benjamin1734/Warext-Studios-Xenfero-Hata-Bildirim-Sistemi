@@ -27,6 +27,10 @@
 <xf:css src="wrxt_hata.less" />
 $0]]></replace>
   </modification>
+  <modification type="public" template="wrxt_hata_report_form" modification_key="wrxt_hata_inline_attachment_manager" description="Dosya yüklemeyi hata bildirim formu içinde çalıştırır" execution_order="5" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:form action="{{ link('hata-bildir/submit') }}" ajax="true" class="block" data-wrxt-hata-form="1">]]></find>
+    <replace><![CDATA[<xf:form action="{{ link('hata-bildir/submit') }}" ajax="true" class="block" data-wrxt-hata-form="1" data-xf-init="attachment-manager">]]></replace>
+  </modification>
   <modification type="public" template="wrxt_hata_report_form" modification_key="wrxt_hata_referrer_field" description="Gerçek yönlendiren sayfa alanını hata formuna ekler" execution_order="10" enabled="1" action="str_replace">
     <find><![CDATA[<input type="hidden" name="current_url" value="{$currentUrl}" />]]></find>
     <replace><![CDATA[$0
