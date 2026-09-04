@@ -17,7 +17,7 @@
             </a>
         </div>
     <xf:else />
-        <div class="wrxtHata-floatingButton">
+        <div class="wrxtHata-floatingButton" style="left: clamp(12px, 1.5vw, 22px); right: auto;">
             <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir">
                 <xf:fa icon="fa-bug" /> <span>Hata Bildir</span>
             </a>
