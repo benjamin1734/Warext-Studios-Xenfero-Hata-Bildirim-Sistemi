@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   validate:
@@ -122,3 +122,17 @@ jobs:
           name: xenforo-addon-1.0.8
           path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip
           if-no-files-found: error
+      - name: Sync validated package to repository
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip'
+          cp ".ci-dist/$PACKAGE" "$PACKAGE"
+          if git diff --quiet -- "$PACKAGE"; then
+            echo 'Repository package is already current.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$PACKAGE"
+          git commit -m '1.0.8'
+          git push
