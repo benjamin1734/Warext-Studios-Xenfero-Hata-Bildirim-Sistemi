@@ -62,8 +62,10 @@ jobs:
                       raise SystemExit(f'xf:main beklenmeyen dogrudan child iceriyor: {title}')
 
           mods = (data / 'template_modifications.xml').read_text(encoding='utf-8')
-          if '<xf:fa icon="fa-bug" />' not in mods or '>Hata Bildir<' not in mods:
-              raise SystemExit('Belirgin Hata Bildir butonu template modification icinde bulunamadi.')
+          if 'icon="fa-bug"' not in mods or 'u-srOnly">Hata Bildir</span>' not in mods:
+              raise SystemExit('Hata Bildir ikon butonu template modification icinde bulunamadi.')
+          if '<span>Hata Bildir</span>' in mods:
+              raise SystemExit('Hata Bildir butonunda gorunur metin bulunuyor; yalnizca ikon olmali.')
 
           print(f'{len(files)} XML dosyasi ve XenForo veri/template sinirlari dogrulandi.')
           PY
