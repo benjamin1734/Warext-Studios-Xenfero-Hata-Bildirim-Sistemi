@@ -27,6 +27,13 @@
 <xf:css src="wrxt_hata.less" />
 $0]]></replace>
   </modification>
+  <modification type="public" template="account_visitor_menu" modification_key="wrxt_hata_my_reports_account_menu" description="Hata Bildirimlerim bağlantısını kullanıcı hesap menüsüne ekler" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<!--[XF:content_links:bottom]-->]]></find>
+    <replace><![CDATA[<xf:if is="$xf.options.wrxtHataEnabled AND $xf.visitor.user_id AND $xf.visitor.hasPermission('wrxtHata', 'viewOwn')">
+    <li><a href="{{ link('hata-bildirimlerim') }}" class="menu-linkRow">Hata Bildirimlerim</a></li>
+</xf:if>
+$0]]></replace>
+  </modification>
   <modification type="public" template="wrxt_hata_report_form" modification_key="wrxt_hata_inline_attachment_manager" description="Dosya yüklemeyi hata bildirim formu içinde çalıştırır" execution_order="5" enabled="1" action="str_replace">
     <find><![CDATA[<xf:form action="{{ link('hata-bildir/submit') }}" ajax="true" class="block" data-wrxt-hata-form="1">]]></find>
     <replace><![CDATA[<xf:form action="{{ link('hata-bildir/submit') }}" ajax="true" class="block" data-wrxt-hata-form="1" data-xf-init="attachment-manager">]]></replace>
