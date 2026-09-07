@@ -1,0 +1,31 @@
+name: Publish XenForo Release
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish 1.0.8 release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG='v1.0.8'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip'
+
+          test -s "$PACKAGE"
+
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$PACKAGE" --clobber
+          else
+            gh release create "$TAG" "$PACKAGE" \
+              --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.0.8' \
+              --notes 'XenForo için Warext Studios Hata Bildirim Sistemi 1.0.8 kurulum paketi. Bu sürüm; ikon tabanlı Hata Bildir düğmesi, form içinde dosya yükleme ve kullanıcı hesap menüsünden Hata Bildirimlerim erişimini içerir.'
+          fi
