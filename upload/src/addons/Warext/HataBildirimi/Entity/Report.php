@@ -120,8 +120,7 @@ class Report extends Entity
             'created_date' => ['type' => self::UINT, 'default' => \XF::$time],
             'updated_date' => ['type' => self::UINT, 'default' => 0],
             'last_message_date' => ['type' => self::UINT, 'default' => 0],
-            'resolved_date' => ['type' => self::UINT, 'default' => 0],
-            'staff_viewed_date' => ['type' => self::UINT, 'default' => 0]
+            'resolved_date' => ['type' => self::UINT, 'default' => 0]
         ];
         $structure->relations = [
             'User' => ['entity' => 'XF:User', 'type' => self::TO_ONE, 'conditions' => [['user_id', '=', '$user_id']], 'primary' => true],
