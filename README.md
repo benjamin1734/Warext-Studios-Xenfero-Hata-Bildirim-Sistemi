@@ -4,7 +4,7 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.0.8 ZIP paketini indir](Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip)
+[XenForo'ya doğrudan yüklenebilir 1.0.9 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.0.9/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
@@ -12,7 +12,9 @@ Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/u
 
 Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimlerini görebilir ve dosya ekleyebilir. Forum sayfalarının sağ alt köşesinde böcek ikonlu, belirgin **Hata Bildir** düğmesi görünür. Düğmeye basıldığında XenForo overlay formu açılır. Düğme ACP ayarlarından footer içinde gösterilecek şekilde de değiştirilebilir.
 
-ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtreler, atama, durum, teknik tanılama, kullanıcı cevapları, iç notlar ve istatistiklere erişilir.
+ACP tarafında artık başka bir yönetim kategorisinin altında değil, bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **İstatistikler** ve **Ayarlar** alanları yer alır.
+
+Bir hata bildirimi ilk kez yetkili personele atanırsa, ayar açık olduğu sürece `Yeni` durumundaki rapor otomatik olarak `İnceleniyor` durumuna alınır. Durum bildirimleri açıksa raporu oluşturan kullanıcı XenForo bildirimi alır. Durum değişiklikleri ve yetkili cevap bildirimleri ACP üzerinden ayrı ayrı kapatılabilir; kullanıcının XenForo bildirim tercihi ayrıca korunur. Bildirimdeki hata raporu bağlantısı doğrudan kullanıcının ilgili hata raporu sayfasına gider.
 
 ## Özellikler
 
@@ -22,6 +24,13 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 - Hata Bildir düğmesini footer içinde gösterebilme
 - Benzersiz `BUG-XXXXXXXX` takip numarası
 - Kullanıcının kendi hata bildirimlerini ve yetkili cevaplarını takip edebilmesi
+- ACP'de bağımsız **Hata Bildirim Sistemi** yönetim bölümü
+- Hata Bildirimleri / İstatistikler / Ayarlar alt yönetim alanları
+- İlk personel atamasında isteğe bağlı otomatik **İnceleniyor** iş akışı
+- Durum değişikliği bildirimlerini ACP'den açma / kapatma
+- Yetkili cevap bildirimlerini ACP'den açma / kapatma
+- Kullanıcıya XenForo bildirimi ile yetkili cevapları ve durum değişiklikleri
+- Bildirimden ilgili hata raporuna doğrudan erişim
 - URL, gerçek tarayıcı referrer bilgisi, tarayıcı, işletim sistemi, cihaz, ekran, viewport, tema ve dil bilgilerinin otomatik kaydı
 - Güvenli ve sınırlı JavaScript hata kaydı
 - Başarısız fetch/XHR isteklerinin güvenli teknik özeti
@@ -30,7 +39,6 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 - Ekran görüntüsü ve dosya ekleri için XenForo attachment sistemi
 - ACP hata merkezi, filtreleme, atama, durum ve iç not yönetimi
 - Responsive ACP teknik bilgi kartları, kontrollü URL/stack taşma yönetimi ve okunabilir işlem geçmişi
-- Kullanıcıya XenForo bildirimi ile yetkili cevapları ve durum değişiklikleri
 - Yinelenen hata adayı tespiti ve yetkili onaylı birleştirme
 - Yoğun hata sinyali tespiti
 - Toplu durum, atama, çözüm ve arşiv işlemleri
@@ -64,4 +72,4 @@ ACP tarafında **Content > Hata Bildirimleri** üzerinden rapor listesi, filtrel
 
 ## Sürüm
 
-`1.0.8`
+`1.0.9`
