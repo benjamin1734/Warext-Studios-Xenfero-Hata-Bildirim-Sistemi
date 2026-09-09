@@ -74,10 +74,16 @@ jobs:
               '<xf:optgroup label=',
               '<xf:editorrow name="message"',
               "bb_code($item.message, 'wrxt_bug_report'",
-              '$log.Actor.username'
+              '$log.Actor.username',
+              'data-wrxt-prepared-reply-form="1"',
+              'form.submit()',
+              'contentRow-extra',
+              'wrxt_hata_alert_staff_action_text',
+              "extra.event == 'assignee'",
+              "extra.event == 'resolution'"
           ):
               if required not in mods:
-                  raise SystemExit('Hazir cevap/kategori/BBCode template baglantisi eksik: ' + required)
+                  raise SystemExit('Hazir cevap/kategori/bildirim template baglantisi eksik: ' + required)
 
           navigation = ET.parse(data / 'admin_navigation.xml').getroot()
           entries = {e.attrib.get('navigation_id'): e for e in navigation.findall('admin_navigation_entry')}
@@ -132,10 +138,18 @@ jobs:
           grep -q "wrxtHataManage" upload/src/addons/Warext/HataBildirimi/Setup.php
       - name: Workflow notification sanity
         run: |
-          grep -q 'wrxtHataAutoInvestigatingOnAssign' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
-          grep -q "changeStatus(\$actor, \$report, 'investigating')" upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
-          grep -q 'wrxtHataNotifyStatus' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
-          grep -q 'wrxtHataNotifyStaffReply' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
+          MANAGER='upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php'
+          grep -q 'wrxtHataAutoInvestigatingOnAssign' "$MANAGER"
+          grep -q "changeStatus(\$actor, \$report, 'investigating')" "$MANAGER"
+          grep -q 'wrxtHataNotifyStatus' "$MANAGER"
+          grep -q 'wrxtHataNotifyStaffReply' "$MANAGER"
+          grep -q "'event' => 'assignee'" "$MANAGER"
+          grep -q "'event' => 'resolution'" "$MANAGER"
+          grep -q "'dependsOnAddOnId' => 'Warext/HataBildirimi'" "$MANAGER"
+          if grep -Eq 'owner->user_id[^\n]*actor->user_id' "$MANAGER"; then
+            echo 'Rapor sahibi ile yetkili ayni hesap oldugunda bildirim engellenmemeli.'
+            exit 1
+          fi
           grep -q "link('hata-bildirimlerim/view'" upload/src/addons/Warext/HataBildirimi/_data/templates.xml
       - name: Prepared reply sanity
         run: |
@@ -168,28 +182,28 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReply.php'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReplyCategory.php'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReply.php'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReplyCategory.php'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.1.0
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip
+          name: xenforo-addon-1.1.1
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -198,5 +212,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.1.0'
+          git commit -m '1.1.1'
           git push
