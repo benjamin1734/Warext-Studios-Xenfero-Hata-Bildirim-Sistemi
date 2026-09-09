@@ -4,7 +4,7 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.0.9 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.0.9/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip)
+[XenForo'ya doğrudan yüklenebilir 1.0.10 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.0.10/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
@@ -12,9 +12,13 @@ Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/u
 
 Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimlerini görebilir ve dosya ekleyebilir. Forum sayfalarının sağ alt köşesinde böcek ikonlu, belirgin **Hata Bildir** düğmesi görünür. Düğmeye basıldığında XenForo overlay formu açılır. Düğme ACP ayarlarından footer içinde gösterilecek şekilde de değiştirilebilir.
 
-ACP tarafında artık başka bir yönetim kategorisinin altında değil, bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **İstatistikler** ve **Ayarlar** alanları yer alır.
+ACP tarafında başka bir yönetim kategorisinin altında değil, bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **Hazır Cevaplar**, **İstatistikler** ve **Ayarlar** alanları yer alır.
 
 Bir hata bildirimi ilk kez yetkili personele atanırsa, ayar açık olduğu sürece `Yeni` durumundaki rapor otomatik olarak `İnceleniyor` durumuna alınır. Durum bildirimleri açıksa raporu oluşturan kullanıcı XenForo bildirimi alır. Durum değişiklikleri ve yetkili cevap bildirimleri ACP üzerinden ayrı ayrı kapatılabilir; kullanıcının XenForo bildirim tercihi ayrıca korunur. Bildirimdeki hata raporu bağlantısı doğrudan kullanıcının ilgili hata raporu sayfasına gider.
+
+Hazır cevaplar ACP üzerinden sınırsız şekilde oluşturulabilir, düzenlenebilir, aktif/pasif yapılabilir ve sıralanabilir. Hazır cevap içeriği XenForo'nun varsayılan WYSIWYG/BBCode editörüyle hazırlanır. Yetkili bir hata raporunu incelerken hazır cevabı seçip cevap editörüne yükleyebilir; göndermeden önce metni serbestçe değiştirebilir. Kullanıcı ve yetkili mesajları BBCode biçimlendirmesiyle görüntülenir.
+
+Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile güvenli biçimde yapılmaya devam eder; ancak ACP arayüzünde ID yerine yetkililerin kullanıcı adları gösterilir. İşlem geçmişindeki yetkili alanı da kullanıcı adıyla gösterilir.
 
 ## Özellikler
 
@@ -25,7 +29,13 @@ Bir hata bildirimi ilk kez yetkili personele atanırsa, ayar açık olduğu sür
 - Benzersiz `BUG-XXXXXXXX` takip numarası
 - Kullanıcının kendi hata bildirimlerini ve yetkili cevaplarını takip edebilmesi
 - ACP'de bağımsız **Hata Bildirim Sistemi** yönetim bölümü
-- Hata Bildirimleri / İstatistikler / Ayarlar alt yönetim alanları
+- Hata Bildirimleri / Hazır Cevaplar / İstatistikler / Ayarlar alt yönetim alanları
+- Özelleştirilebilir ve sıralanabilir hazır cevap sistemi
+- Hazır cevaplarda XenForo varsayılan WYSIWYG/BBCode editörü
+- Hazır cevabı rapor cevap editörüne yükleyip göndermeden önce düzenleyebilme
+- Kullanıcı ve yetkili cevaplarında BBCode render desteği
+- Atama alanlarında yetkili ID yerine kullanıcı adı gösterimi
+- İşlem geçmişinde yetkili ID yerine kullanıcı adı gösterimi
 - İlk personel atamasında isteğe bağlı otomatik **İnceleniyor** iş akışı
 - Durum değişikliği bildirimlerini ACP'den açma / kapatma
 - Yetkili cevap bildirimlerini ACP'den açma / kapatma
@@ -72,4 +82,4 @@ Bir hata bildirimi ilk kez yetkili personele atanırsa, ayar açık olduğu sür
 
 ## Sürüm
 
-`1.0.9`
+`1.0.10`

@@ -19,6 +19,8 @@ class Report extends AbstractController
         $category = trim($this->filter('category', 'str'));
         $search = trim($this->filter('q', 'str'));
         $assigneeUserId = $this->filter('assignee_user_id', 'uint');
+        $showPreparedReplies = (bool)$this->filter('prepared_replies', 'bool');
+        $preparedReplyEditId = $this->filter('prepared_reply_edit_id', 'uint');
         $perPage = 30;
 
         $finder = $this->finder('Warext\\HataBildirimi:Report')
@@ -56,11 +58,30 @@ class Report extends AbstractController
         $hotspotMin = isset($options->wrxtHataHotspotMin) ? (int)$options->wrxtHataHotspotMin : 3;
         $hotspotMin = max(2, min(25, $hotspotMin));
 
+        $preparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+            ->order('display_order')
+            ->order('title')
+            ->fetch();
+        $preparedReplyEdit = null;
+        if ($preparedReplyEditId)
+        {
+            $preparedReplyEdit = $this->em()->find('Warext\\HataBildirimi:PreparedReply', $preparedReplyEditId);
+        }
+        if (!$preparedReplyEdit)
+        {
+            $preparedReplyEdit = $this->em()->create('Warext\\HataBildirimi:PreparedReply');
+            $preparedReplyEdit->active = true;
+            $preparedReplyEdit->display_order = 10;
+        }
+
         return $this->view('Warext\\HataBildirimi:ReportList', 'wrxt_hata_admin_list', [
             'reports' => $reports,
             'stats' => $stats,
             'hotspots' => $this->repository('Warext\\HataBildirimi:Report')->getHotspots(\XF::$time - 1800, $hotspotMin, 10),
             'staff' => $this->getAssignableStaff(),
+            'preparedReplies' => $preparedReplies,
+            'preparedReplyEdit' => $preparedReplyEdit,
+            'showPreparedReplies' => $showPreparedReplies,
             'page' => $page,
             'perPage' => $perPage,
             'total' => $total,
@@ -86,16 +107,35 @@ class Report extends AbstractController
     {
         $report = $this->assertReportExists();
         $messages = $this->finder('Warext\\HataBildirimi:ReportMessage')->where('report_id', $report->report_id)->with('User')->order('created_date')->fetch();
-        $logs = $this->finder('Warext\\HataBildirimi:ReportLog')->where('report_id', $report->report_id)->order('created_date', 'DESC')->fetch();
+        $logs = $this->finder('Warext\\HataBildirimi:ReportLog')->where('report_id', $report->report_id)->with('Actor')->order('created_date', 'DESC')->fetch();
         $style = $report->style_id ? $this->em()->find('XF:Style', (int)$report->style_id) : null;
         $styleParent = $style && $style->parent_id ? $this->em()->find('XF:Style', (int)$style->parent_id) : null;
         $language = $report->language_id ? $this->em()->find('XF:Language', (int)$report->language_id) : null;
+
+        $preparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+            ->where('active', 1)
+            ->order('display_order')
+            ->order('title')
+            ->fetch();
+        $preparedReplyId = $this->filter('prepared_reply_id', 'uint');
+        $preparedReplyMessage = '';
+        if ($preparedReplyId)
+        {
+            $preparedReply = $preparedReplies[$preparedReplyId] ?? null;
+            if ($preparedReply)
+            {
+                $preparedReplyMessage = (string)$preparedReply->message;
+            }
+        }
 
         return $this->view('Warext\\HataBildirimi:ReportView', 'wrxt_hata_admin_view', [
             'report' => $report,
             'messages' => $messages,
             'logs' => $logs,
             'staff' => $this->getAssignableStaff(),
+            'preparedReplies' => $preparedReplies,
+            'preparedReplyId' => $preparedReplyId,
+            'preparedReplyMessage' => $preparedReplyMessage,
             'duplicateChildren' => $this->repository('Warext\\HataBildirimi:Report')->getDuplicateChildren((int)$report->report_id),
             'clientErrors' => $report->getClientErrors(),
             'networkErrors' => $report->getNetworkErrors(),

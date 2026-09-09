@@ -2,6 +2,7 @@
 <admin_navigation>
   <admin_navigation_entry navigation_id="wrxtHataSystem" display_order="3500" link="wrxt-hata-bildirimleri" icon="fa-bug" debug_only="0" development_only="0" hide_no_children="1"/>
   <admin_navigation_entry navigation_id="wrxtHataReports" parent_navigation_id="wrxtHataSystem" display_order="100" link="wrxt-hata-bildirimleri" admin_permission_id="wrxtHataManage" debug_only="0" development_only="0" hide_no_children="0"/>
+  <admin_navigation_entry navigation_id="wrxtHataPreparedReplies" parent_navigation_id="wrxtHataSystem" display_order="150" link="wrxt-hata-hazir-cevaplar" admin_permission_id="wrxtHataManage" debug_only="0" development_only="0" hide_no_children="0"/>
   <admin_navigation_entry navigation_id="wrxtHataAnalytics" parent_navigation_id="wrxtHataSystem" display_order="200" link="wrxt-hata-bildirimleri/analytics" admin_permission_id="wrxtHataManage" debug_only="0" development_only="0" hide_no_children="0"/>
   <admin_navigation_entry navigation_id="wrxtHataSettings" parent_navigation_id="wrxtHataSystem" display_order="300" link="options/groups/wrxtHataSettings/" admin_permission_id="option" debug_only="0" development_only="0" hide_no_children="0"/>
 </admin_navigation>

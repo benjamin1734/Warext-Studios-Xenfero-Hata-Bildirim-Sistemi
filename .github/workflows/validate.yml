@@ -66,15 +66,28 @@ jobs:
               raise SystemExit('Hata Bildir ikon butonu template modification icinde bulunamadi.')
           if '<span>Hata Bildir</span>' in mods:
               raise SystemExit('Hata Bildir butonunda gorunur metin bulunuyor; yalnizca ikon olmali.')
+          for required in (
+              'wrxt_hata_prepared_reply_manager',
+              '<xf:editorrow name="message"',
+              "bb_code($item.message, 'wrxt_bug_report'",
+              '$log.Actor.username'
+          ):
+              if required not in mods:
+                  raise SystemExit('Hazir cevap/BBCode template baglantisi eksik: ' + required)
 
           navigation = ET.parse(data / 'admin_navigation.xml').getroot()
           entries = {e.attrib.get('navigation_id'): e for e in navigation.findall('admin_navigation_entry')}
           root = entries.get('wrxtHataSystem')
           if root is None or root.attrib.get('parent_navigation_id'):
               raise SystemExit('Hata Bildirim Sistemi ACP icinde bagimsiz ust seviye bolum olmali.')
-          for child in ('wrxtHataReports', 'wrxtHataAnalytics', 'wrxtHataSettings'):
+          for child in ('wrxtHataReports', 'wrxtHataPreparedReplies', 'wrxtHataAnalytics', 'wrxtHataSettings'):
               if child not in entries or entries[child].attrib.get('parent_navigation_id') != 'wrxtHataSystem':
                   raise SystemExit(f'ACP alt navigasyonu eksik veya yanlis: {child}')
+
+          routes = ET.parse(data / 'routes.xml').getroot()
+          route_prefixes = {r.attrib.get('route_prefix') for r in routes.findall('route')}
+          if 'wrxt-hata-hazir-cevaplar' not in route_prefixes:
+              raise SystemExit('Hazir cevap ACP rotasi eksik.')
 
           options = ET.parse(data / 'options.xml').getroot()
           option_ids = {o.attrib.get('option_id') for o in options.findall('option')}
@@ -120,6 +133,16 @@ jobs:
           grep -q 'wrxtHataNotifyStatus' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
           grep -q 'wrxtHataNotifyStaffReply' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
           grep -q "link('hata-bildirimlerim/view'" upload/src/addons/Warext/HataBildirimi/_data/templates.xml
+      - name: Prepared reply sanity
+        run: |
+          test -s upload/src/addons/Warext/HataBildirimi/Entity/PreparedReply.php
+          test -s upload/src/addons/Warext/HataBildirimi/Admin/Controller/PreparedReply.php
+          test -s upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php
+          grep -q 'use PreparedReplySetupTrait' upload/src/addons/Warext/HataBildirimi/Setup.php
+          grep -q 'createPreparedReplyTable' upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php
+          grep -q "PreparedReply'" upload/src/addons/Warext/HataBildirimi/Admin/Controller/Report.php
+          grep -q "with('Actor')" upload/src/addons/Warext/HataBildirimi/Admin/Controller/Report.php
+          grep -q "'Actor'" upload/src/addons/Warext/HataBildirimi/Entity/ReportLog.php
       - name: Admin layout sanity
         run: |
           grep -q 'wrxtHata-techGrid' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
@@ -136,25 +159,27 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReply.php'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.0.9
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip
+          name: xenforo-addon-1.0.10
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.10.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -163,5 +188,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.0.9'
+          git commit -m '1.0.10'
           git push

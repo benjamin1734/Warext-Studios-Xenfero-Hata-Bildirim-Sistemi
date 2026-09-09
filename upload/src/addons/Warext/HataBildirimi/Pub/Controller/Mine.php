@@ -42,6 +42,7 @@ class Mine extends AbstractController
         $messages = $this->finder('Warext\HataBildirimi:ReportMessage')
             ->where('report_id', $report->report_id)
             ->where('message_type', '<>', 'note')
+            ->with('User')
             ->order('created_date')
             ->fetch();
 
