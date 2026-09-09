@@ -21,6 +21,13 @@ class ReportLog extends Entity
             'new_value' => ['type' => self::STR, 'maxLength' => 255, 'default' => ''],
             'created_date' => ['type' => self::UINT, 'default' => \XF::$time]
         ];
+        $structure->relations = [
+            'Actor' => [
+                'entity' => 'XF:User',
+                'type' => self::TO_ONE,
+                'conditions' => [['user_id', '=', '$actor_user_id']]
+            ]
+        ];
 
         return $structure;
     }
