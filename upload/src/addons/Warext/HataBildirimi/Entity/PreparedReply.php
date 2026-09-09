@@ -14,12 +14,21 @@ class PreparedReply extends Entity
         $structure->primaryKey = 'prepared_reply_id';
         $structure->columns = [
             'prepared_reply_id' => ['type' => self::UINT, 'autoIncrement' => true],
+            'prepared_reply_category_id' => ['type' => self::UINT, 'default' => 0],
             'title' => ['type' => self::STR, 'maxLength' => 100, 'required' => true],
             'message' => ['type' => self::STR, 'required' => true],
             'display_order' => ['type' => self::UINT, 'default' => 10],
             'active' => ['type' => self::BOOL, 'default' => true],
             'created_date' => ['type' => self::UINT, 'default' => \XF::$time],
             'updated_date' => ['type' => self::UINT, 'default' => \XF::$time]
+        ];
+        $structure->relations = [
+            'Category' => [
+                'entity' => 'Warext\HataBildirimi:PreparedReplyCategory',
+                'type' => self::TO_ONE,
+                'conditions' => 'prepared_reply_category_id',
+                'primary' => true
+            ]
         ];
 
         return $structure;
