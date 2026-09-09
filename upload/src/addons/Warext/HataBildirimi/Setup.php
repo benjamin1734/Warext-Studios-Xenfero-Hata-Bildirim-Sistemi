@@ -15,6 +15,7 @@ class Setup extends AbstractSetup
     use StepRunnerInstallTrait;
     use StepRunnerUpgradeTrait;
     use StepRunnerUninstallTrait;
+    use PreparedReplySetupTrait;
 
     public function installStep1(): void
     {
