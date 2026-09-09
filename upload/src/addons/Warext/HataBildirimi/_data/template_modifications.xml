@@ -86,6 +86,38 @@ $0]]></replace>
 <xf:pageaction><xf:button href="{{ link('options/groups/wrxtHataSettings') }}" icon="cog">Ayarlar</xf:button><xf:button href="{{ link('wrxt-hata-hazir-cevaplar') }}" icon="reply">Hazır Cevaplar</xf:button><xf:button href="{{ link('wrxt-hata-bildirimleri/analytics') }}">İstatistikler</xf:button></xf:pageaction>
 </xf:if>]]></replace>
   </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_list_header" description="Hata listesine yeni rapor etiketi sütunu ekler" execution_order="11" enabled="1" action="str_replace">
+    <find><![CDATA[<thead><tr><th></th><th>Rapor</th><th>Kullanıcı</th><th>Bağlam</th><th>Durum</th><th>Tanılama</th><th>Atanan</th><th>Tarih</th></tr></thead>]]></find>
+    <replace><![CDATA[<thead><tr><th class="wrxtHata-reportFlag">Takip</th><th></th><th>Rapor</th><th>Kullanıcı</th><th>Kategori / Bağlam</th><th>Durum</th><th>Tanılama</th><th>Atanan</th><th>Tarih</th></tr></thead>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_list_new_flag" description="Yeni hata raporlarını listede belirginleştirir" execution_order="12" enabled="1" action="str_replace">
+    <find><![CDATA[<tr><td><input type="checkbox" name="report_ids[]" value="{$report.report_id}" /></td><td>]]></find>
+    <replace><![CDATA[<tr class="wrxtHata-reportRow"><td class="wrxtHata-reportFlag"><xf:if is="$report.status == 'new'"><span class="label label--orange">Yeni</span><xf:else />—</xf:if></td><td><input type="checkbox" name="report_ids[]" value="{$report.report_id}" /></td><td>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_list_category" description="Hata kategorilerini Türkçe etiketlerle ayrıştırır" execution_order="13" enabled="1" action="str_replace">
+    <find><![CDATA[<td><xf:if is="$report.content_type">{$report.content_type} #{$report.content_id}<xf:else />{$report.category}</xf:if></td>]]></find>
+    <replace><![CDATA[<td class="wrxtHata-categoryCell"><xf:if is="$report.category == 'page'"><span class="label label--blue">Sayfa</span><xf:elseif is="$report.category == 'visual'" /><span class="label label--purple">Görsel / tasarım</span><xf:elseif is="$report.category == 'feature'" /><span class="label label--green">Özellik</span><xf:elseif is="$report.category == 'mobile'" /><span class="label label--blue">Mobil</span><xf:elseif is="$report.category == 'performance'" /><span class="label label--orange">Performans</span><xf:elseif is="$report.category == 'permission'" /><span class="label label--red">Yetki</span><xf:else /><span class="label">Diğer</span></xf:if><xf:if is="$report.content_type"><div class="u-muted wrxtHata-reportContext">{$report.content_type} #{$report.content_id}</div></xf:if></td>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_list_status" description="Hata durumlarını Türkçe tema etiketleriyle gösterir" execution_order="14" enabled="1" action="str_replace">
+    <find><![CDATA[<td>{$report.status}</td>]]></find>
+    <replace><![CDATA[<td><xf:if is="$report.status == 'new'"><span class="label label--orange">Yeni</span><xf:elseif is="$report.status == 'investigating'" /><span class="label label--blue">İnceleniyor</span><xf:elseif is="$report.status == 'confirmed'" /><span class="label label--green">Onaylandı</span><xf:elseif is="$report.status == 'in_progress'" /><span class="label label--blue">Çözülüyor</span><xf:elseif is="$report.status == 'resolved'" /><span class="label label--green">Çözüldü</span><xf:elseif is="$report.status == 'cannot_reproduce'" /><span class="label">Tekrar üretilemedi</span><xf:elseif is="$report.status == 'invalid'" /><span class="label label--red">Geçersiz</span><xf:elseif is="$report.status == 'duplicate'" /><span class="label label--orange">Yinelenen</span><xf:else /><span class="label">Arşivlendi</span></xf:if></td>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin.less" modification_key="wrxt_hata_report_list_styles" description="Rapor listesi ve hazır cevap seçicisi için tema uyumlu düzen" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[/* Warext Studios - ACP hata bildirim arayuzu */]]></find>
+    <replace><![CDATA[$0
+.wrxtHata-reportFlag { width: 72px; text-align: center; white-space: nowrap; }
+.wrxtHata-categoryCell { min-width: 130px; }
+.wrxtHata-categoryCell .label { display: inline-block; min-width: 72px; text-align: center; }
+.wrxtHata-reportContext { margin-top: 4px; }
+.wrxtHata-preparedReplyPicker { padding: @xf-paddingMedium; border-top: 1px solid @xf-borderColorLight; }
+.wrxtHata-preparedReplyPicker .inputGroup { max-width: 720px; }
+.wrxtHata-preparedReplyPicker .formRow-explain { margin-top: 5px; }
+.wrxtHata-preparedReplyData { display: none !important; }
+@media (max-width: @xf-responsiveMedium) {
+    .wrxtHata-reportFlag { width: auto; }
+    .wrxtHata-preparedReplyPicker .inputGroup { max-width: none; }
+}]]></replace>
+  </modification>
   <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_prepared_reply_manager" description="Hazır cevapları kategori başlıkları altında tema uyumlu kartlarla yönetir" execution_order="20" enabled="1" action="str_replace">
     <find><![CDATA[<div class="block"><div class="block-container"><h2 class="block-header">Genel durum</h2>]]></find>
     <replace><![CDATA[<xf:if is="$showPreparedReplies">
@@ -122,20 +154,12 @@ $0]]></replace>
     <find><![CDATA[<div class="bbWrapper">{$item.message|nl2br}</div>]]></find>
     <replace><![CDATA[<div class="bbWrapper">{{ bb_code($item.message, 'wrxt_bug_report', $item.User) }}</div>]]></replace>
   </modification>
-  <modification type="admin" template="wrxt_hata_admin_view" modification_key="wrxt_hata_admin_reply_editor" description="Hazır cevap seçildiğinde otomatik olarak XenForo editörüne yükler" execution_order="20" enabled="1" action="str_replace">
+  <modification type="admin" template="wrxt_hata_admin_view" modification_key="wrxt_hata_admin_reply_editor" description="Hazır cevapları cevap formunun altında sayfa yenilemeden editöre yükler" execution_order="20" enabled="1" action="str_replace">
     <find><![CDATA[<xf:form action="{{ link('wrxt-hata-bildirimleri/reply') }}" class="block"><div class="block-container"><h2 class="block-header">Kullanıcıya cevap yaz</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:textarearow name="message" rows="5" maxlength="10000" autosize="true" label="Cevap" /></div><xf:submitrow submit="Cevabı gönder" /></div></xf:form>]]></find>
-    <replace><![CDATA[<xf:if is="$preparedReplyGroups is not empty OR $uncategorizedPreparedReplies is not empty"><xf:form action="{{ link('wrxt-hata-bildirimleri/view') }}#wrxt-hata-reply-editor" method="get" class="block" data-wrxt-prepared-reply-form="1"><div class="block-container"><h2 class="block-header">Hazır cevap kullan</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:selectrow name="prepared_reply_id" value="{$preparedReplyId}" label="Hazır cevap" explain="Bir hazır cevap seçtiğiniz anda içerik otomatik olarak aşağıdaki cevap editörüne yüklenir."><xf:option value="0">Hazır cevap seçin</xf:option><xf:foreach loop="$preparedReplyGroups" value="$group"><xf:optgroup label="{$group.category.title}"><xf:foreach loop="$group.replies" value="$preparedReply"><xf:option value="{$preparedReply.prepared_reply_id}">{$preparedReply.title}</xf:option></xf:foreach></xf:optgroup></xf:foreach><xf:if is="$uncategorizedPreparedReplies is not empty"><xf:optgroup label="Kategorisiz"><xf:foreach loop="$uncategorizedPreparedReplies" value="$preparedReply"><xf:option value="{$preparedReply.prepared_reply_id}">{$preparedReply.title}</xf:option></xf:foreach></xf:optgroup></xf:if></xf:selectrow></div></div></xf:form><xf:js>
-(() => {
-    const form = document.querySelector('[data-wrxt-prepared-reply-form="1"]')
-    if (!form) return
-    const select = form.querySelector('select[name="prepared_reply_id"]')
-    if (!select) return
-    select.addEventListener('change', () => {
-        if (select.value !== '0') form.submit()
-    })
-})()
-</xf:js></xf:if>
-<xf:form id="wrxt-hata-reply-editor" action="{{ link('wrxt-hata-bildirimleri/reply') }}" class="block"><div class="block-container"><h2 class="block-header">Kullanıcıya cevap yaz</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:editorrow name="message" value="{$preparedReplyMessage}" maxlength="10000" data-min-height="160" label="Cevap" explain="Hazır cevap seçildikten sonra içeriği değiştirebilir; XenForo BBCode ve biçimlendirme araçlarını kullanabilirsiniz." /></div><xf:submitrow submit="Cevabı gönder" /></div></xf:form>]]></replace>
+    <replace><![CDATA[<xf:form id="wrxt-hata-reply-editor" action="{{ link('wrxt-hata-bildirimleri/reply') }}" class="block js-wrxtPreparedReplyComposer"><div class="block-container"><h2 class="block-header">Kullanıcıya cevap yaz</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:editorrow name="message" maxlength="10000" data-min-height="160" label="Cevap" explain="Cevabı doğrudan yazabilir veya gönder butonunun altındaki hazır cevap listesinden bir şablon seçebilirsiniz." /></div><xf:submitrow submit="Cevabı gönder" />
+<xf:if is="$preparedReplyGroups is not empty OR $uncategorizedPreparedReplies is not empty"><div class="block-footer wrxtHata-preparedReplyPicker"><div class="inputGroup"><span class="inputGroup-text"><xf:fa icon="fa-reply" /> Hazır cevap</span><select class="input js-wrxtPreparedReplySelect"><option value="0">Hazır cevap kullan...</option><xf:foreach loop="$preparedReplyGroups" value="$group"><optgroup label="{$group.category.title}"><xf:foreach loop="$group.replies" value="$preparedReply"><option value="{$preparedReply.prepared_reply_id}">{$preparedReply.title}</option></xf:foreach></optgroup></xf:foreach><xf:if is="$uncategorizedPreparedReplies is not empty"><optgroup label="Kategorisiz"><xf:foreach loop="$uncategorizedPreparedReplies" value="$preparedReply"><option value="{$preparedReply.prepared_reply_id}">{$preparedReply.title}</option></xf:foreach></optgroup></xf:if></select></div><div class="formRow-explain">Seçtiğiniz hazır cevap sayfa yenilenmeden mevcut editöre aktarılır; göndermeden önce değiştirebilirsiniz.</div></div>
+<div class="wrxtHata-preparedReplyData" aria-hidden="true"><xf:foreach loop="$preparedReplyGroups" value="$group"><xf:foreach loop="$group.replies" value="$preparedReply"><div data-wrxt-prepared-reply-id="{$preparedReply.prepared_reply_id}"><div class="js-wrxtPreparedReplyHtml">{{ bb_code($preparedReply.message, 'wrxt_bug_report', $xf.visitor) }}</div><textarea class="js-wrxtPreparedReplyBbCode">{$preparedReply.message}</textarea></div></xf:foreach></xf:foreach><xf:foreach loop="$uncategorizedPreparedReplies" value="$preparedReply"><div data-wrxt-prepared-reply-id="{$preparedReply.prepared_reply_id}"><div class="js-wrxtPreparedReplyHtml">{{ bb_code($preparedReply.message, 'wrxt_bug_report', $xf.visitor) }}</div><textarea class="js-wrxtPreparedReplyBbCode">{$preparedReply.message}</textarea></div></xf:foreach></div><xf:js src="warext/hata-bildirimi/prepared-replies.js" /></xf:if>
+</div></xf:form>]]></replace>
   </modification>
   <modification type="admin" template="wrxt_hata_admin_view" modification_key="wrxt_hata_log_actor_username" description="İşlem geçmişinde yetkili ID yerine kullanıcı adı gösterir" execution_order="30" enabled="1" action="str_replace">
     <find><![CDATA[<xf:if is="$log.actor_user_id">#{$log.actor_user_id}<xf:else />Sistem</xf:if>]]></find>
