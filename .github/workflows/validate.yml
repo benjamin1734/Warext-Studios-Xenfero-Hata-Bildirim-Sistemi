@@ -21,7 +21,7 @@ jobs:
         run: find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: JSON syntax and version
         run: |
-          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010030 || ($d["version_string"] ?? "") !== "1.1.3") { fwrite(STDERR, "Beklenen surum 1.1.3 degil.\n"); exit(1); }'
+          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010040 || ($d["version_string"] ?? "") !== "1.1.4") { fwrite(STDERR, "Beklenen surum 1.1.4 degil.\n"); exit(1); }'
       - name: XML and XenForo data constraints
         run: |
           python3 - <<'PY'
@@ -99,7 +99,7 @@ jobs:
           )
           for required in required_mods:
               if required not in mods:
-                  raise SystemExit('1.1.3 template baglantisi eksik: ' + required)
+                  raise SystemExit('1.1.4 template baglantisi eksik: ' + required)
 
           for category in ('account', 'content', 'notification', 'upload', 'search', 'navigation'):
               if f'value="{category}"' not in mods:
@@ -126,7 +126,8 @@ jobs:
               raise SystemExit('Hazir cevap ACP rotasi eksik.')
 
           options = ET.parse(data / 'options.xml').getroot()
-          option_ids = {o.attrib.get('option_id') for o in options.findall('option')}
+          option_nodes = {o.attrib.get('option_id'): o for o in options.findall('option')}
+          option_ids = set(option_nodes)
           required_options = {
               'wrxtHataAutoInvestigatingOnAssign',
               'wrxtHataNotifyStatus',
@@ -136,15 +137,41 @@ jobs:
           if missing_options:
               raise SystemExit('Eksik hata bildirim ayari: ' + ', '.join(sorted(missing_options)))
 
+          button_option = option_nodes.get('wrxtHataButtonPosition')
+          if button_option is None:
+              raise SystemExit('Hata Bildir buton konumu ayari eksik.')
+          params = button_option.findtext('edit_format_params') or ''
+          positions = {'floating', 'bottom_left', 'top_right', 'top_left', 'middle_right', 'middle_left', 'footer', 'footer_left', 'footer_right'}
+          for position in positions:
+              if not re.search(rf'(?m)^{re.escape(position)}=', params):
+                  raise SystemExit('Buton konum secenegi eksik: ' + position)
+              if position not in mods:
+                  raise SystemExit('Buton konumu PAGE_CONTAINER template baglantisinda eksik: ' + position)
+
           phrases = ET.parse(data / 'phrases.xml').getroot()
           phrase_map = {p.attrib.get('title'): p for p in phrases.findall('phrase')}
-          required_phrase = phrase_map.get('option_group_wrxtHataSettings_description')
-          if required_phrase is None or required_phrase.attrib.get('version_string') != '1.1.3':
-              raise SystemExit('Ayar sayfasi aciklamalari 1.1.3 icin yenilenmemis.')
+          required_group_phrases = {
+              'option_group.wrxtHataSettings',
+              'option_group_description.wrxtHataSettings'
+          }
+          for title in required_group_phrases:
+              phrase = phrase_map.get(title)
+              if phrase is None or phrase.attrib.get('version_string') != '1.1.4':
+                  raise SystemExit('XenForo 2.3 option group phrase eksik veya eski: ' + title)
+
           for option_id in option_ids:
-              title = f'option_{option_id}_explain'
-              if title not in phrase_map:
-                  raise SystemExit('Ayar aciklamasi eksik: ' + title)
+              for title in (f'option.{option_id}', f'option_explain.{option_id}'):
+                  phrase = phrase_map.get(title)
+                  if phrase is None:
+                      raise SystemExit('XenForo option phrase eksik: ' + title)
+
+          forbidden_phrase_prefixes = (
+              'option_wrxtHata',
+              'option_group_wrxtHataSettings'
+          )
+          for title in phrase_map:
+              if title.startswith(forbidden_phrase_prefixes):
+                  raise SystemExit('Eski/yanlis option phrase anahtari bulundu: ' + title)
 
           print(f'{len(files)} XML dosyasi ve XenForo veri/template sinirlari dogrulandi.')
           PY
@@ -224,7 +251,7 @@ jobs:
           node --check upload/js/warext/hata-bildirimi/prepared-replies.js
       - name: Validate XenForo archive layout
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip'
           rm -rf .release .ci-dist
           mkdir -p .release .ci-dist
           cp -a upload .release/upload
@@ -248,13 +275,13 @@ jobs:
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.1.3
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip
+          name: xenforo-addon-1.1.4
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -263,5 +290,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.1.3'
+          git commit -m '1.1.4'
           git push
