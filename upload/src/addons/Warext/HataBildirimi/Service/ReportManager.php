@@ -54,7 +54,10 @@ class ReportManager extends AbstractService
         {
             $this->log($report, $actor, 'resolution_cleared', $oldResolution, '');
         }
-        $this->alertOwner($report, $actor, 'status', ['status' => $status]);
+        $this->alertOwner($report, $actor, 'status', [
+            'event' => 'status',
+            'status' => $status
+        ]);
     }
 
     public function setResolution(User $actor, Report $report, string $fixedInVersion, string $resolutionNote): void
@@ -80,6 +83,7 @@ class ReportManager extends AbstractService
         $report->save();
 
         $this->log($report, $actor, 'resolution', $oldVersion, $fixedInVersion);
+        $this->alertOwner($report, $actor, 'status', ['event' => 'resolution']);
     }
 
     public function assign(User $actor, Report $report, int $assigneeUserId): void
@@ -108,6 +112,7 @@ class ReportManager extends AbstractService
         $options = \XF::options();
         $autoInvestigating = !isset($options->wrxtHataAutoInvestigatingOnAssign)
             || (bool)$options->wrxtHataAutoInvestigatingOnAssign;
+        $statusChanged = false;
 
         if (
             $autoInvestigating
@@ -117,6 +122,15 @@ class ReportManager extends AbstractService
         )
         {
             $this->changeStatus($actor, $report, 'investigating');
+            $statusChanged = true;
+        }
+
+        if (!$statusChanged)
+        {
+            $this->alertOwner($report, $actor, 'status', [
+                'event' => 'assignee',
+                'assignee_user_id' => $assigneeUserId
+            ]);
         }
     }
 
@@ -172,7 +186,10 @@ class ReportManager extends AbstractService
         {
             $this->log($report, $actor, 'resolution_cleared', $oldVersion, '');
         }
-        $this->alertOwner($report, $actor, 'status', ['status' => 'duplicate']);
+        $this->alertOwner($report, $actor, 'status', [
+            'event' => 'status',
+            'status' => 'duplicate'
+        ]);
 
         return $master;
     }
@@ -256,21 +273,21 @@ class ReportManager extends AbstractService
         }
 
         $owner = $report->User ?: $this->app->em()->find('XF:User', (int)$report->user_id);
-        if (!$owner || !(int)$owner->user_id || (int)$owner->user_id === (int)$actor->user_id)
+        if (!$owner || !(int)$owner->user_id)
         {
             return;
         }
 
         try
         {
-            $extra['depends_on_addon_id'] = 'Warext/HataBildirimi';
             $this->app->repository('XF:UserAlert')->alertFromUser(
                 $owner,
                 $actor,
                 'wrxt_bug_report',
                 (int)$report->report_id,
                 $action,
-                $extra
+                $extra,
+                ['dependsOnAddOnId' => 'Warext/HataBildirimi']
             );
         }
         catch (\Throwable $e)
