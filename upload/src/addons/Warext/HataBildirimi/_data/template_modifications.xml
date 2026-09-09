@@ -58,4 +58,39 @@ $0]]></replace>
     <replace><![CDATA[$0
 <xf:if is="$report.resolution_note"><div class="block-row block-row--separated"><h3 class="block-minorHeader">Çözüm notu</h3><div class="bbWrapper">{$report.resolution_note|nl2br}</div></div></xf:if>]]></replace>
   </modification>
+  <modification type="public" template="wrxt_hata_report_view" modification_key="wrxt_hata_public_bbcode_messages" description="Hata raporu mesajlarını BBCode ile gösterir" execution_order="30" enabled="1" action="str_replace">
+    <find><![CDATA[<div class="bbWrapper">{$item.message|nl2br}</div>]]></find>
+    <replace><![CDATA[<div class="bbWrapper">{{ bb_code($item.message, 'wrxt_bug_report', $item.User) }}</div>]]></replace>
+  </modification>
+  <modification type="public" template="wrxt_hata_report_view" modification_key="wrxt_hata_public_reply_editor" description="Kullanıcı cevap alanında XenForo editörünü kullanır" execution_order="40" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:textarearow name="message" rows="5" maxlength="10000" autosize="true" label="Mesajınız" />]]></find>
+    <replace><![CDATA[<xf:editorrow name="message" maxlength="10000" data-min-height="120" label="Mesajınız" />]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_prepared_reply_button" description="Hazır cevap yönetimi bağlantısını hata merkezine ekler" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:pageaction><xf:button href="{{ link('options/groups/wrxtHataSettings') }}" icon="cog">Ayarlar</xf:button><xf:button href="{{ link('wrxt-hata-bildirimleri/analytics') }}">İstatistikler</xf:button></xf:pageaction>]]></find>
+    <replace><![CDATA[<xf:pageaction><xf:button href="{{ link('options/groups/wrxtHataSettings') }}" icon="cog">Ayarlar</xf:button><xf:button href="{{ link('wrxt-hata-bildirimleri', null, {'prepared_replies': 1}) }}" icon="reply">Hazır Cevaplar</xf:button><xf:button href="{{ link('wrxt-hata-bildirimleri/analytics') }}">İstatistikler</xf:button></xf:pageaction>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_prepared_reply_manager" description="Hazır cevap liste ve XenForo editörünü hata merkezine ekler" execution_order="20" enabled="1" action="str_replace">
+    <find><![CDATA[<div class="block"><div class="block-container"><h2 class="block-header">Genel durum</h2>]]></find>
+    <replace><![CDATA[<xf:if is="$showPreparedReplies">
+<div class="block" id="prepared-replies"><div class="block-container"><h2 class="block-header">Hazır Cevaplar</h2><div class="block-body">
+<xf:if is="$preparedReplies is not empty"><div class="wrxtHata-tableScroll"><table class="dataList-table"><thead><tr><th>Başlık</th><th>Durum</th><th>Sıra</th><th>İşlem</th></tr></thead><tbody><xf:foreach loop="$preparedReplies" value="$preparedReply"><tr><td><strong>{$preparedReply.title}</strong><div class="u-muted">{$preparedReply.message|snippet(100)}</div></td><td><xf:if is="$preparedReply.active"><span class="label label--green">Aktif</span><xf:else /><span class="label">Pasif</span></xf:if></td><td>{$preparedReply.display_order}</td><td><a class="button button--link" href="{{ link('wrxt-hata-bildirimleri', null, {'prepared_replies': 1, 'prepared_reply_edit_id': $preparedReply.prepared_reply_id}) }}">Düzenle</a> <xf:form action="{{ link('wrxt-hata-hazir-cevaplar/delete') }}" class="u-inline"><xf:hiddenval name="prepared_reply_id" value="{$preparedReply.prepared_reply_id}" /><xf:button type="submit" class="button--link" icon="delete">Sil</xf:button></xf:form></td></tr></xf:foreach></tbody></table></div><xf:else /><div class="block-row">Henüz hazır cevap oluşturulmadı.</div></xf:if>
+</div></div></div>
+<xf:form action="{{ link('wrxt-hata-hazir-cevaplar/save') }}" class="block"><div class="block-container"><h2 class="block-header"><xf:if is="$preparedReplyEdit.prepared_reply_id">Hazır Cevabı Düzenle<xf:else />Yeni Hazır Cevap</xf:if></h2><div class="block-body"><xf:hiddenval name="prepared_reply_id" value="{$preparedReplyEdit.prepared_reply_id}" /><xf:textboxrow name="title" value="{$preparedReplyEdit.title}" maxlength="100" label="Başlık" required="required" /><xf:editorrow name="message" value="{$preparedReplyEdit.message}" data-min-height="160" label="Cevap içeriği" explain="XenForo BBCode ve varsayılan yazı biçimlendirme editörünü kullanabilirsiniz." /><xf:numberboxrow name="display_order" value="{$preparedReplyEdit.display_order}" min="0" label="Gösterim sırası" /><xf:checkboxrow><xf:option name="active" value="1" selected="$preparedReplyEdit.active">Aktif</xf:option></xf:checkboxrow></div><xf:submitrow submit="Hazır cevabı kaydet" /></div></xf:form>
+</xf:if>
+<div class="block"><div class="block-container"><h2 class="block-header">Genel durum</h2>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_view" modification_key="wrxt_hata_admin_bbcode_messages" description="Yetkili ekranında mesajları BBCode ile gösterir" execution_order="10" enabled="1" action="str_replace">
+    <find><![CDATA[<div class="bbWrapper">{$item.message|nl2br}</div>]]></find>
+    <replace><![CDATA[<div class="bbWrapper">{{ bb_code($item.message, 'wrxt_bug_report', $item.User) }}</div>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_view" modification_key="wrxt_hata_admin_reply_editor" description="Yetkili cevap alanına hazır cevap seçimi ve XenForo editörü ekler" execution_order="20" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:form action="{{ link('wrxt-hata-bildirimleri/reply') }}" class="block"><div class="block-container"><h2 class="block-header">Kullanıcıya cevap yaz</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:textarearow name="message" rows="5" maxlength="10000" autosize="true" label="Cevap" /></div><xf:submitrow submit="Cevabı gönder" /></div></xf:form>]]></find>
+    <replace><![CDATA[<xf:if is="$preparedReplies is not empty"><xf:form action="{{ link('wrxt-hata-bildirimleri/view') }}" method="get" class="block"><div class="block-container"><h2 class="block-header">Hazır cevap kullan</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:selectrow name="prepared_reply_id" value="{$preparedReplyId}" label="Hazır cevap"><xf:option value="0">Hazır cevap seçin</xf:option><xf:foreach loop="$preparedReplies" value="$preparedReply"><xf:option value="{$preparedReply.prepared_reply_id}">{$preparedReply.title}</xf:option></xf:foreach></xf:selectrow></div><xf:submitrow submit="Editöre yükle" /></div></xf:form></xf:if>
+<xf:form action="{{ link('wrxt-hata-bildirimleri/reply') }}" class="block"><div class="block-container"><h2 class="block-header">Kullanıcıya cevap yaz</h2><div class="block-body"><xf:hiddenval name="report_id" value="{$report.report_id}" /><xf:editorrow name="message" value="{$preparedReplyMessage}" maxlength="10000" data-min-height="160" label="Cevap" explain="Hazır cevap yüklendikten sonra içeriği değiştirebilir; XenForo BBCode ve biçimlendirme araçlarını kullanabilirsiniz." /></div><xf:submitrow submit="Cevabı gönder" /></div></xf:form>]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin_view" modification_key="wrxt_hata_log_actor_username" description="İşlem geçmişinde yetkili ID yerine kullanıcı adı gösterir" execution_order="30" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:if is="$log.actor_user_id">#{$log.actor_user_id}<xf:else />Sistem</xf:if>]]></find>
+    <replace><![CDATA[<xf:if is="$log.Actor">{$log.Actor.username}<xf:elseif is="$log.actor_user_id" />Silinmiş kullanıcı<xf:else />Sistem</xf:if>]]></replace>
+  </modification>
 </template_modifications>
