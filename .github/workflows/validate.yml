@@ -19,8 +19,9 @@ jobs:
           php-version: '8.4'
       - name: PHP syntax
         run: find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
-      - name: JSON syntax
-        run: php -r 'json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR);'
+      - name: JSON syntax and version
+        run: |
+          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010020 || ($d["version_string"] ?? "") !== "1.1.2") { fwrite(STDERR, "Beklenen surum 1.1.2 degil.\n"); exit(1); }'
       - name: XML and XenForo data constraints
         run: |
           python3 - <<'PY'
@@ -35,6 +36,13 @@ jobs:
 
           if (data / 'admin_templates').exists():
               raise SystemExit('Admin template dosyalari ayri admin_templates klasorunde tutulamaz; templates.xml icinde type=admin olmali.')
+
+          option_groups = ET.parse(data / 'option_groups.xml').getroot()
+          groups = {g.attrib.get('group_id'): g for g in option_groups.findall('group')}
+          if 'wrxtHataSettings' not in groups:
+              raise SystemExit('wrxtHataSettings option group XenForo 2.3 <group> formatiyla tanimli degil.')
+          if option_groups.findall('option_group'):
+              raise SystemExit('option_groups.xml icinde gecersiz <option_group> etiketi kullanilamaz; XenForo <group> bekler.')
 
           cron = ET.parse(data / 'cron.xml').getroot()
           for entry in cron.findall('entry'):
@@ -66,24 +74,34 @@ jobs:
               raise SystemExit('Hata Bildir ikon butonu template modification icinde bulunamadi.')
           if '<span>Hata Bildir</span>' in mods:
               raise SystemExit('Hata Bildir butonunda gorunur metin bulunuyor; yalnizca ikon olmali.')
-          for required in (
+
+          required_mods = (
               'wrxt_hata_prepared_reply_manager',
               'wrxt_hata_prepared_reply_mode_close',
               'wrxt-hata-hazir-cevaplar/category-add',
               'prepared_reply_category_id',
-              '<xf:optgroup label=',
               '<xf:editorrow name="message"',
               "bb_code($item.message, 'wrxt_bug_report'",
               '$log.Actor.username',
-              'data-wrxt-prepared-reply-form="1"',
-              'form.submit()',
               'contentRow-extra',
               'wrxt_hata_alert_staff_action_text',
               "extra.event == 'assignee'",
-              "extra.event == 'resolution'"
-          ):
+              "extra.event == 'resolution'",
+              'wrxt_hata_report_list_new_flag',
+              'wrxt_hata_report_list_category',
+              'wrxt_hata_report_list_status',
+              'js-wrxtPreparedReplyComposer',
+              'js-wrxtPreparedReplySelect',
+              'warext/hata-bildirimi/prepared-replies.js',
+              'wrxtHata-preparedReplyPicker'
+          )
+          for required in required_mods:
               if required not in mods:
-                  raise SystemExit('Hazir cevap/kategori/bildirim template baglantisi eksik: ' + required)
+                  raise SystemExit('1.1.2 template baglantisi eksik: ' + required)
+
+          for forbidden in ('data-wrxt-prepared-reply-form="1"', 'form.submit()'):
+              if forbidden in mods:
+                  raise SystemExit('Hazir cevap secimi sayfa yenilememeli; eski yapi bulundu: ' + forbidden)
 
           navigation = ET.parse(data / 'admin_navigation.xml').getroot()
           entries = {e.attrib.get('navigation_id'): e for e in navigation.findall('admin_navigation_entry')}
@@ -93,6 +111,8 @@ jobs:
           for child in ('wrxtHataReports', 'wrxtHataPreparedReplies', 'wrxtHataAnalytics', 'wrxtHataSettings'):
               if child not in entries or entries[child].attrib.get('parent_navigation_id') != 'wrxtHataSystem':
                   raise SystemExit(f'ACP alt navigasyonu eksik veya yanlis: {child}')
+          if entries['wrxtHataSettings'].attrib.get('link', '').rstrip('/') != 'options/groups/wrxtHataSettings':
+              raise SystemExit('Ayarlar navigasyonu wrxtHataSettings option group rotasina gitmeli.')
 
           routes = ET.parse(data / 'routes.xml').getroot()
           route_prefixes = {r.attrib.get('route_prefix') for r in routes.findall('route')}
@@ -157,6 +177,7 @@ jobs:
           test -s upload/src/addons/Warext/HataBildirimi/Entity/PreparedReplyCategory.php
           test -s upload/src/addons/Warext/HataBildirimi/Admin/Controller/PreparedReply.php
           test -s upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php
+          test -s upload/js/warext/hata-bildirimi/prepared-replies.js
           grep -q 'use PreparedReplySetupTrait' upload/src/addons/Warext/HataBildirimi/Setup.php
           grep -q 'createPreparedReplyCategoryTable' upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php
           grep -q 'upgrade1010000Step2' upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php
@@ -166,15 +187,20 @@ jobs:
           grep -q "PreparedReplyCategory'" upload/src/addons/Warext/HataBildirimi/Admin/Controller/Report.php
           grep -q "with('Actor')" upload/src/addons/Warext/HataBildirimi/Admin/Controller/Report.php
           grep -q "'Actor'" upload/src/addons/Warext/HataBildirimi/Entity/ReportLog.php
+          grep -q "getHandler(textarea, 'editor')" upload/js/warext/hata-bildirimi/prepared-replies.js
+          grep -q 'replaceContent(html, bbCode)' upload/js/warext/hata-bildirimi/prepared-replies.js
       - name: Admin layout sanity
         run: |
           grep -q 'wrxtHata-techGrid' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
           grep -q 'wrxtHata-tableScroll' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
           grep -q 'wrxtHata-code' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
       - name: JavaScript syntax
-        run: node --check upload/js/warext/hata-bildirimi/diagnostics.js
+        run: |
+          node --check upload/js/warext/hata-bildirimi/diagnostics.js
+          node --check upload/js/warext/hata-bildirimi/prepared-replies.js
       - name: Validate XenForo archive layout
         run: |
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip'
           rm -rf .release .ci-dist
           mkdir -p .release .ci-dist
           cp -a upload .release/upload
@@ -182,28 +208,29 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip upload README.md
+            zip -q -r "../.ci-dist/$PACKAGE" upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReply.php'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReplyCategory.php'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s ".ci-dist/$PACKAGE"
+          test "$(unzip -Z1 ".ci-dist/$PACKAGE" | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReply.php'
+          unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/src/addons/Warext/HataBildirimi/Entity/PreparedReplyCategory.php'
+          unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/src/addons/Warext/HataBildirimi/PreparedReplySetupTrait.php'
+          unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/js/warext/hata-bildirimi/prepared-replies.js'
+          if unzip -Z1 ".ci-dist/$PACKAGE" | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.1.1
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip
+          name: xenforo-addon-1.1.2
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -212,5 +239,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.1.1'
+          git commit -m '1.1.2'
           git push
