@@ -67,7 +67,7 @@ class Mine extends AbstractController
             return $this->error('Arşivlenmiş hata bildirimlerine yeni cevap gönderilemez.');
         }
 
-        $message = $this->filter('message', 'str');
+        $message = $this->plugin('XF:Editor')->fromInput('message');
         $manager = $this->service('Warext\HataBildirimi:ReportManager');
 
         try
