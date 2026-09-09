@@ -67,6 +67,26 @@ jobs:
           if '<span>Hata Bildir</span>' in mods:
               raise SystemExit('Hata Bildir butonunda gorunur metin bulunuyor; yalnizca ikon olmali.')
 
+          navigation = ET.parse(data / 'admin_navigation.xml').getroot()
+          entries = {e.attrib.get('navigation_id'): e for e in navigation.findall('admin_navigation_entry')}
+          root = entries.get('wrxtHataSystem')
+          if root is None or root.attrib.get('parent_navigation_id'):
+              raise SystemExit('Hata Bildirim Sistemi ACP icinde bagimsiz ust seviye bolum olmali.')
+          for child in ('wrxtHataReports', 'wrxtHataAnalytics', 'wrxtHataSettings'):
+              if child not in entries or entries[child].attrib.get('parent_navigation_id') != 'wrxtHataSystem':
+                  raise SystemExit(f'ACP alt navigasyonu eksik veya yanlis: {child}')
+
+          options = ET.parse(data / 'options.xml').getroot()
+          option_ids = {o.attrib.get('option_id') for o in options.findall('option')}
+          required_options = {
+              'wrxtHataAutoInvestigatingOnAssign',
+              'wrxtHataNotifyStatus',
+              'wrxtHataNotifyStaffReply'
+          }
+          missing_options = required_options - option_ids
+          if missing_options:
+              raise SystemExit('Eksik hata bildirim ayari: ' + ', '.join(sorted(missing_options)))
+
           print(f'{len(files)} XML dosyasi ve XenForo veri/template sinirlari dogrulandi.')
           PY
       - name: Controller relation sanity
@@ -93,6 +113,13 @@ jobs:
           grep -q "applyMissingGroupPermissions(2, \['submit', 'viewOwn', 'attach'\])" upload/src/addons/Warext/HataBildirimi/Setup.php
           grep -q "applyMissingGroupPermissions(3, \['submit', 'viewOwn', 'attach', 'manage'\])" upload/src/addons/Warext/HataBildirimi/Setup.php
           grep -q "wrxtHataManage" upload/src/addons/Warext/HataBildirimi/Setup.php
+      - name: Workflow notification sanity
+        run: |
+          grep -q 'wrxtHataAutoInvestigatingOnAssign' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
+          grep -q "changeStatus(\$actor, \$report, 'investigating')" upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
+          grep -q 'wrxtHataNotifyStatus' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
+          grep -q 'wrxtHataNotifyStaffReply' upload/src/addons/Warext/HataBildirimi/Service/ReportManager.php
+          grep -q "link('hata-bildirimlerim/view'" upload/src/addons/Warext/HataBildirimi/_data/templates.xml
       - name: Admin layout sanity
         run: |
           grep -q 'wrxtHata-techGrid' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
@@ -109,25 +136,25 @@ jobs:
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
           (
             cd .release
-            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip upload README.md
+            zip -q -r ../.ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip upload README.md
           )
-          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip
-          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
-          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
-          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
+          test -s .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip
+          test "$(unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -c '^upload/src/addons/.*/addon.json$')" -eq 1
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/addon.json'
+          unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -qx 'upload/js/warext/hata-bildirimi/diagnostics.js'
+          if unzip -Z1 .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip | grep -qx 'upload/src/addons/Warext/HataBildirimi/hashes.json'; then
             exit 1
           fi
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.0.8
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip
+          name: xenforo-addon-1.0.9
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.8.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.0.9.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -136,5 +163,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.0.8'
+          git commit -m '1.0.9'
           git push

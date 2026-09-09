@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <phrases>
   <phrase title="admin_navigation.wrxtHataReports" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildirimleri]]></phrase>
+  <phrase title="admin_navigation.wrxtHataSystem" version_id="1000170" version_string="1.0.9"><![CDATA[Hata Bildirim Sistemi]]></phrase>
+  <phrase title="admin_navigation.wrxtHataAnalytics" version_id="1000170" version_string="1.0.9"><![CDATA[İstatistikler]]></phrase>
+  <phrase title="admin_navigation.wrxtHataSettings" version_id="1000170" version_string="1.0.9"><![CDATA[Ayarlar]]></phrase>
   <phrase title="admin_permission.wrxtHataManage" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirim sistemini yönet]]></phrase>
   <phrase title="permission_group_wrxtHata" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildirim Sistemi]]></phrase>
   <phrase title="permission_wrxtHata_submit" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimi oluşturabilir]]></phrase>
@@ -19,6 +22,12 @@
   <phrase title="option_wrxtHataEnabled_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Kullanıcıların yeni hata bildirimi oluşturabilmesini kontrol eder.]]></phrase>
   <phrase title="option_wrxtHataButtonPosition" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildir butonunun konumu]]></phrase>
   <phrase title="option_wrxtHataButtonPosition_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildir butonunu sağ altta sabit veya footer alanında gösterebilirsiniz.]]></phrase>
+  <phrase title="option_wrxtHataAutoInvestigatingOnAssign" version_id="1000170" version_string="1.0.9"><![CDATA[İlk personel atamasında incelemeye al]]></phrase>
+  <phrase title="option_wrxtHataAutoInvestigatingOnAssign_explain" version_id="1000170" version_string="1.0.9"><![CDATA[Yeni durumundaki bir hata bildirimi ilk kez yetkili personele atandığında durumu otomatik olarak İnceleniyor yapar. Durum bildirimleri açıksa kullanıcı da bilgilendirilir.]]></phrase>
+  <phrase title="option_wrxtHataNotifyStatus" version_id="1000170" version_string="1.0.9"><![CDATA[Durum değişikliklerinde kullanıcıyı bilgilendir]]></phrase>
+  <phrase title="option_wrxtHataNotifyStatus_explain" version_id="1000170" version_string="1.0.9"><![CDATA[Yetkili ekip hata bildirimini incelemeye aldığında veya durumunu değiştirdiğinde kullanıcıya XenForo bildirimi gönderir. Kullanıcının kendi bildirim tercihi ayrıca korunur.]]></phrase>
+  <phrase title="option_wrxtHataNotifyStaffReply" version_id="1000170" version_string="1.0.9"><![CDATA[Yetkili cevaplarında kullanıcıyı bilgilendir]]></phrase>
+  <phrase title="option_wrxtHataNotifyStaffReply_explain" version_id="1000170" version_string="1.0.9"><![CDATA[Yetkili ekip hata raporuna kullanıcıya açık cevap yazdığında XenForo bildirimi gönderir. Kullanıcının kendi bildirim tercihi ayrıca korunur.]]></phrase>
   <phrase title="option_wrxtHataMaxReports10Min" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[10 dakikadaki maksimum bildirim]]></phrase>
   <phrase title="option_wrxtHataMaxReports10Min_explain" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Bir kullanıcının 10 dakika içinde oluşturabileceği maksimum hata bildirimi sayısı.]]></phrase>
   <phrase title="option_wrxtHataMaxReportsIp10Min" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[IP başına 10 dakikadaki maksimum bildirim]]></phrase>

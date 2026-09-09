@@ -104,6 +104,20 @@ class ReportManager extends AbstractService
         $report->save();
 
         $this->log($report, $actor, 'assignee', (string)$oldUserId, (string)$assigneeUserId);
+
+        $options = \XF::options();
+        $autoInvestigating = !isset($options->wrxtHataAutoInvestigatingOnAssign)
+            || (bool)$options->wrxtHataAutoInvestigatingOnAssign;
+
+        if (
+            $autoInvestigating
+            && $assigneeUserId > 0
+            && $oldUserId === 0
+            && $report->status === 'new'
+        )
+        {
+            $this->changeStatus($actor, $report, 'investigating');
+        }
     }
 
     public function markDuplicate(User $actor, Report $report, int $masterReportId): Report
@@ -231,6 +245,16 @@ class ReportManager extends AbstractService
 
     protected function alertOwner(Report $report, User $actor, string $action, array $extra = []): void
     {
+        $options = \XF::options();
+        if ($action === 'status' && isset($options->wrxtHataNotifyStatus) && !$options->wrxtHataNotifyStatus)
+        {
+            return;
+        }
+        if ($action === 'staff_reply' && isset($options->wrxtHataNotifyStaffReply) && !$options->wrxtHataNotifyStaffReply)
+        {
+            return;
+        }
+
         $owner = $report->User ?: $this->app->em()->find('XF:User', (int)$report->user_id);
         if (!$owner || !(int)$owner->user_id || (int)$owner->user_id === (int)$actor->user_id)
         {
