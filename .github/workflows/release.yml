@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build 1.1.1 release package
+      - name: Build 1.1.2 release package
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip'
           rm -rf .release
           mkdir -p .release
           cp -a upload .release/upload
@@ -27,17 +27,17 @@ jobs:
           )
           test -s "$PACKAGE"
 
-      - name: Publish 1.1.1 release
+      - name: Publish 1.1.2 release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG='v1.1.1'
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip'
+          TAG='v1.1.2'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip'
 
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$PACKAGE" --clobber
           else
             gh release create "$TAG" "$PACKAGE" \
-              --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.1' \
-              --notes '1.1.1; hazır cevap kategori ekranında tema uyumlu Düzenle/Sil butonları ve daha belirgin kategori-cevap ayrımı ekler. Hazır cevap seçimi artık Editöre yükle butonu gerektirmeden otomatik olarak cevap editörüne aktarılır. Yetkili cevapları ile durum, atama ve çözüm işlemlerinin XenForo bildirim akışı düzeltilmiş; rapor sahibi ile işlemi yapan yetkili aynı hesap olsa dahi bildirim oluşturulması sağlanmıştır.'
+              --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.2' \
+              --notes '1.1.2; XenForo 2.3 option group veri biçimini düzelterek Ayarlar sayfasındaki 404 sorununu giderir. Hata listesine Yeni etiketi ile Türkçe kategori/durum etiketleri ekler. Hazır cevap seçicisini kullanıcı cevap formunun altına taşır ve şablonları sayfa yenilemeden doğrudan WYSIWYG/BBCode editörüne aktarır.'
           fi
