@@ -2,6 +2,7 @@
 <phrases>
   <phrase title="admin_navigation.wrxtHataReports" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata Bildirimleri]]></phrase>
   <phrase title="admin_navigation.wrxtHataSystem" version_id="1000170" version_string="1.0.9"><![CDATA[Hata Bildirim Sistemi]]></phrase>
+  <phrase title="admin_navigation.wrxtHataPreparedReplies" version_id="1000180" version_string="1.0.10"><![CDATA[Hazır Cevaplar]]></phrase>
   <phrase title="admin_navigation.wrxtHataAnalytics" version_id="1000170" version_string="1.0.9"><![CDATA[İstatistikler]]></phrase>
   <phrase title="admin_navigation.wrxtHataSettings" version_id="1000170" version_string="1.0.9"><![CDATA[Ayarlar]]></phrase>
   <phrase title="admin_permission.wrxtHataManage" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirim sistemini yönet]]></phrase>
