@@ -14,36 +14,21 @@ class PreparedReply extends AbstractController
 
     public function actionIndex()
     {
-        $replies = $this->finder('Warext\\HataBildirimi:PreparedReply')
-            ->order('display_order')
-            ->order('title')
-            ->fetch();
-
-        return $this->view('Warext\\HataBildirimi:PreparedReplyList', 'wrxt_hata_prepared_reply_list', [
-            'replies' => $replies
-        ]);
+        return $this->redirect($this->buildLink('wrxt-hata-bildirimleri', null, ['prepared_replies' => 1]));
     }
 
     public function actionAdd()
     {
-        $reply = $this->em()->create('Warext\\HataBildirimi:PreparedReply');
-        $reply->active = true;
-        $reply->display_order = 10;
-
-        return $this->replyEdit($reply);
+        return $this->redirect($this->buildLink('wrxt-hata-bildirimleri', null, ['prepared_replies' => 1, 'prepared_reply_edit_id' => 0]));
     }
 
     public function actionEdit()
     {
         $reply = $this->assertPreparedReplyExists();
-        return $this->replyEdit($reply);
-    }
-
-    protected function replyEdit(\Warext\HataBildirimi\Entity\PreparedReply $reply)
-    {
-        return $this->view('Warext\\HataBildirimi:PreparedReplyEdit', 'wrxt_hata_prepared_reply_edit', [
-            'reply' => $reply
-        ]);
+        return $this->redirect($this->buildLink('wrxt-hata-bildirimleri', null, [
+            'prepared_replies' => 1,
+            'prepared_reply_edit_id' => $reply->prepared_reply_id
+        ]));
     }
 
     public function actionSave()
@@ -82,23 +67,16 @@ class PreparedReply extends AbstractController
         $reply->updated_date = \XF::$time;
         $reply->save();
 
-        return $this->redirect($this->buildLink('wrxt-hata-hazir-cevaplar'));
+        return $this->redirect($this->buildLink('wrxt-hata-bildirimleri', null, ['prepared_replies' => 1]));
     }
 
     public function actionDelete()
     {
+        $this->assertPostOnly();
         $reply = $this->assertPreparedReplyExists();
+        $reply->delete();
 
-        if ($this->isPost())
-        {
-            $reply->delete();
-            return $this->redirect($this->buildLink('wrxt-hata-hazir-cevaplar'));
-        }
-
-        return $this->view('Warext\\HataBildirimi:PreparedReplyDelete', 'public:delete_confirm', [
-            'title' => $reply->title,
-            'formAction' => $this->buildLink('wrxt-hata-hazir-cevaplar/delete', null, ['prepared_reply_id' => $reply->prepared_reply_id])
-        ]);
+        return $this->redirect($this->buildLink('wrxt-hata-bildirimleri', null, ['prepared_replies' => 1]));
     }
 
     protected function assertPreparedReplyExists(): \Warext\HataBildirimi\Entity\PreparedReply
