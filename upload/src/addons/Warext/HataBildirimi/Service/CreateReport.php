@@ -39,7 +39,22 @@ class CreateReport extends AbstractService
         $userAgent = mb_substr(trim((string)($input['user_agent'] ?? '')), 0, 512);
         $client = ClientInfo::parse($userAgent);
         $category = (string)($input['category'] ?? 'other');
-        if (!in_array($category, ['page', 'visual', 'feature', 'mobile', 'performance', 'permission', 'other'], true))
+        $allowedCategories = [
+            'page',
+            'visual',
+            'feature',
+            'mobile',
+            'performance',
+            'permission',
+            'account',
+            'content',
+            'notification',
+            'upload',
+            'search',
+            'navigation',
+            'other'
+        ];
+        if (!in_array($category, $allowedCategories, true))
         {
             $category = 'other';
         }

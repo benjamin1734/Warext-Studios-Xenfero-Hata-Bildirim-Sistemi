@@ -21,7 +21,7 @@ jobs:
         run: find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: JSON syntax and version
         run: |
-          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010020 || ($d["version_string"] ?? "") !== "1.1.2") { fwrite(STDERR, "Beklenen surum 1.1.2 degil.\n"); exit(1); }'
+          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010030 || ($d["version_string"] ?? "") !== "1.1.3") { fwrite(STDERR, "Beklenen surum 1.1.3 degil.\n"); exit(1); }'
       - name: XML and XenForo data constraints
         run: |
           python3 - <<'PY'
@@ -90,6 +90,8 @@ jobs:
               'wrxt_hata_report_list_new_flag',
               'wrxt_hata_report_list_category',
               'wrxt_hata_report_list_status',
+              'wrxt_hata_report_categories',
+              'wrxt_hata_report_filter_categories',
               'js-wrxtPreparedReplyComposer',
               'js-wrxtPreparedReplySelect',
               'warext/hata-bildirimi/prepared-replies.js',
@@ -97,7 +99,11 @@ jobs:
           )
           for required in required_mods:
               if required not in mods:
-                  raise SystemExit('1.1.2 template baglantisi eksik: ' + required)
+                  raise SystemExit('1.1.3 template baglantisi eksik: ' + required)
+
+          for category in ('account', 'content', 'notification', 'upload', 'search', 'navigation'):
+              if f'value="{category}"' not in mods:
+                  raise SystemExit('Yeni sorun turu template/ACP filtresinde eksik: ' + category)
 
           for forbidden in ('data-wrxt-prepared-reply-form="1"', 'form.submit()'):
               if forbidden in mods:
@@ -130,6 +136,16 @@ jobs:
           if missing_options:
               raise SystemExit('Eksik hata bildirim ayari: ' + ', '.join(sorted(missing_options)))
 
+          phrases = ET.parse(data / 'phrases.xml').getroot()
+          phrase_map = {p.attrib.get('title'): p for p in phrases.findall('phrase')}
+          required_phrase = phrase_map.get('option_group_wrxtHataSettings_description')
+          if required_phrase is None or required_phrase.attrib.get('version_string') != '1.1.3':
+              raise SystemExit('Ayar sayfasi aciklamalari 1.1.3 icin yenilenmemis.')
+          for option_id in option_ids:
+              title = f'option_{option_id}_explain'
+              if title not in phrase_map:
+                  raise SystemExit('Ayar aciklamasi eksik: ' + title)
+
           print(f'{len(files)} XML dosyasi ve XenForo veri/template sinirlari dogrulandi.')
           PY
       - name: Controller relation sanity
@@ -151,6 +167,12 @@ jobs:
                       raise SystemExit(f'TO_MANY relation eager-load/join kullanimi bulundu: {file} -> {relation}')
           print('Controller TO_MANY relation kontrolleri basarili.')
           PY
+      - name: Report category sanity
+        run: |
+          SERVICE='upload/src/addons/Warext/HataBildirimi/Service/CreateReport.php'
+          for CATEGORY in account content notification upload search navigation; do
+            grep -q "'$CATEGORY'" "$SERVICE"
+          done
       - name: Default permission sanity
         run: |
           grep -q "applyMissingGroupPermissions(2, \['submit', 'viewOwn', 'attach'\])" upload/src/addons/Warext/HataBildirimi/Setup.php
@@ -187,8 +209,10 @@ jobs:
           grep -q "PreparedReplyCategory'" upload/src/addons/Warext/HataBildirimi/Admin/Controller/Report.php
           grep -q "with('Actor')" upload/src/addons/Warext/HataBildirimi/Admin/Controller/Report.php
           grep -q "'Actor'" upload/src/addons/Warext/HataBildirimi/Entity/ReportLog.php
-          grep -q "getHandler(textarea, 'editor')" upload/js/warext/hata-bildirimi/prepared-replies.js
+          grep -q 'data-original-name="message"' upload/js/warext/hata-bildirimi/prepared-replies.js
+          grep -q "getHandler?.(textarea, 'editor')" upload/js/warext/hata-bildirimi/prepared-replies.js
           grep -q 'replaceContent(html, bbCode)' upload/js/warext/hata-bildirimi/prepared-replies.js
+          grep -q 'data-bb-code="message"' upload/js/warext/hata-bildirimi/prepared-replies.js
       - name: Admin layout sanity
         run: |
           grep -q 'wrxtHata-techGrid' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
@@ -200,7 +224,7 @@ jobs:
           node --check upload/js/warext/hata-bildirimi/prepared-replies.js
       - name: Validate XenForo archive layout
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip'
           rm -rf .release .ci-dist
           mkdir -p .release .ci-dist
           cp -a upload .release/upload
@@ -224,13 +248,13 @@ jobs:
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.1.2
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip
+          name: xenforo-addon-1.1.3
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.2.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -239,5 +263,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.1.2'
+          git commit -m '1.1.3'
           git push

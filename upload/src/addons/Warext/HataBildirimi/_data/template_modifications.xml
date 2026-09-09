@@ -48,6 +48,32 @@ $0]]></replace>
     <replace><![CDATA[$0
         set('referrer_url', document.referrer || '')]]></replace>
   </modification>
+  <modification type="public" template="wrxt_hata_report_form" modification_key="wrxt_hata_report_categories" description="Hata bildirim formundaki sorun türlerini genişletir" execution_order="25" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:selectrow name="category" value="other" label="Sorun türü">
+                <xf:option value="page">Sayfa çalışmıyor</xf:option>
+                <xf:option value="visual">Görsel / tasarım hatası</xf:option>
+                <xf:option value="feature">Buton / özellik çalışmıyor</xf:option>
+                <xf:option value="mobile">Mobil uyumluluk</xf:option>
+                <xf:option value="performance">Performans problemi</xf:option>
+                <xf:option value="permission">Yetki problemi</xf:option>
+                <xf:option value="other">Diğer</xf:option>
+            </xf:selectrow>]]></find>
+    <replace><![CDATA[<xf:selectrow name="category" value="other" label="Sorun türü" explain="Soruna en yakın kategoriyi seçmeniz, bildirimin doğru alanda daha hızlı incelenmesini sağlar.">
+                <xf:option value="page">Sayfa açılmıyor / hata veriyor</xf:option>
+                <xf:option value="visual">Görsel / tasarım hatası</xf:option>
+                <xf:option value="feature">Buton / özellik çalışmıyor</xf:option>
+                <xf:option value="mobile">Mobil uyumluluk</xf:option>
+                <xf:option value="performance">Performans / yavaşlık</xf:option>
+                <xf:option value="permission">Yetki / erişim problemi</xf:option>
+                <xf:option value="account">Hesap / giriş / profil</xf:option>
+                <xf:option value="content">Konu / mesaj / editör</xf:option>
+                <xf:option value="notification">Bildirim / e-posta</xf:option>
+                <xf:option value="upload">Dosya / görsel yükleme</xf:option>
+                <xf:option value="search">Arama / filtreleme</xf:option>
+                <xf:option value="navigation">Bağlantı / yönlendirme</xf:option>
+                <xf:option value="other">Diğer</xf:option>
+            </xf:selectrow>]]></replace>
+  </modification>
   <modification type="public" template="wrxt_hata_report_view" modification_key="wrxt_hata_resolution_info" description="Çözüm sürümü ve notunu kullanıcı raporunda gösterir" execution_order="10" enabled="1" action="str_replace">
     <find><![CDATA[<dt>Tanılama</dt><dd>{$report.js_error_count} JavaScript · {$report.network_error_count} ağ hatası</dd>]]></find>
     <replace><![CDATA[$0
@@ -96,18 +122,22 @@ $0]]></replace>
   </modification>
   <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_list_category" description="Hata kategorilerini Türkçe etiketlerle ayrıştırır" execution_order="13" enabled="1" action="str_replace">
     <find><![CDATA[<td><xf:if is="$report.content_type">{$report.content_type} #{$report.content_id}<xf:else />{$report.category}</xf:if></td>]]></find>
-    <replace><![CDATA[<td class="wrxtHata-categoryCell"><xf:if is="$report.category == 'page'"><span class="label label--blue">Sayfa</span><xf:elseif is="$report.category == 'visual'" /><span class="label label--purple">Görsel / tasarım</span><xf:elseif is="$report.category == 'feature'" /><span class="label label--green">Özellik</span><xf:elseif is="$report.category == 'mobile'" /><span class="label label--blue">Mobil</span><xf:elseif is="$report.category == 'performance'" /><span class="label label--orange">Performans</span><xf:elseif is="$report.category == 'permission'" /><span class="label label--red">Yetki</span><xf:else /><span class="label">Diğer</span></xf:if><xf:if is="$report.content_type"><div class="u-muted wrxtHata-reportContext">{$report.content_type} #{$report.content_id}</div></xf:if></td>]]></replace>
+    <replace><![CDATA[<td class="wrxtHata-categoryCell"><xf:if is="$report.category == 'page'"><span class="label label--blue">Sayfa</span><xf:elseif is="$report.category == 'visual'" /><span class="label label--purple">Görsel / tasarım</span><xf:elseif is="$report.category == 'feature'" /><span class="label label--green">Özellik</span><xf:elseif is="$report.category == 'mobile'" /><span class="label label--blue">Mobil</span><xf:elseif is="$report.category == 'performance'" /><span class="label label--orange">Performans</span><xf:elseif is="$report.category == 'permission'" /><span class="label label--red">Yetki / erişim</span><xf:elseif is="$report.category == 'account'" /><span class="label label--purple">Hesap / giriş</span><xf:elseif is="$report.category == 'content'" /><span class="label label--green">Konu / mesaj</span><xf:elseif is="$report.category == 'notification'" /><span class="label label--blue">Bildirim</span><xf:elseif is="$report.category == 'upload'" /><span class="label label--orange">Dosya yükleme</span><xf:elseif is="$report.category == 'search'" /><span class="label label--purple">Arama / filtre</span><xf:elseif is="$report.category == 'navigation'" /><span class="label label--blue">Yönlendirme</span><xf:else /><span class="label">Diğer</span></xf:if><xf:if is="$report.content_type"><div class="u-muted wrxtHata-reportContext">{$report.content_type} #{$report.content_id}</div></xf:if></td>]]></replace>
   </modification>
   <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_list_status" description="Hata durumlarını Türkçe tema etiketleriyle gösterir" execution_order="14" enabled="1" action="str_replace">
     <find><![CDATA[<td>{$report.status}</td>]]></find>
     <replace><![CDATA[<td><xf:if is="$report.status == 'new'"><span class="label label--orange">Yeni</span><xf:elseif is="$report.status == 'investigating'" /><span class="label label--blue">İnceleniyor</span><xf:elseif is="$report.status == 'confirmed'" /><span class="label label--green">Onaylandı</span><xf:elseif is="$report.status == 'in_progress'" /><span class="label label--blue">Çözülüyor</span><xf:elseif is="$report.status == 'resolved'" /><span class="label label--green">Çözüldü</span><xf:elseif is="$report.status == 'cannot_reproduce'" /><span class="label">Tekrar üretilemedi</span><xf:elseif is="$report.status == 'invalid'" /><span class="label label--red">Geçersiz</span><xf:elseif is="$report.status == 'duplicate'" /><span class="label label--orange">Yinelenen</span><xf:else /><span class="label">Arşivlendi</span></xf:if></td>]]></replace>
   </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_filter_categories" description="ACP hata filtresine genişletilmiş sorun türlerini ekler" execution_order="15" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:selectrow name="category" value="{$category}" label="Sorun türü"><xf:option value="">Tümü</xf:option><xf:option value="page">Sayfa çalışmıyor</xf:option><xf:option value="visual">Görsel / tasarım</xf:option><xf:option value="feature">Buton / özellik</xf:option><xf:option value="mobile">Mobil uyumluluk</xf:option><xf:option value="performance">Performans</xf:option><xf:option value="permission">Yetki</xf:option><xf:option value="other">Diğer</xf:option></xf:selectrow>]]></find>
+    <replace><![CDATA[<xf:selectrow name="category" value="{$category}" label="Sorun türü"><xf:option value="">Tümü</xf:option><xf:option value="page">Sayfa açılmıyor / hata veriyor</xf:option><xf:option value="visual">Görsel / tasarım</xf:option><xf:option value="feature">Buton / özellik</xf:option><xf:option value="mobile">Mobil uyumluluk</xf:option><xf:option value="performance">Performans / yavaşlık</xf:option><xf:option value="permission">Yetki / erişim</xf:option><xf:option value="account">Hesap / giriş / profil</xf:option><xf:option value="content">Konu / mesaj / editör</xf:option><xf:option value="notification">Bildirim / e-posta</xf:option><xf:option value="upload">Dosya / görsel yükleme</xf:option><xf:option value="search">Arama / filtreleme</xf:option><xf:option value="navigation">Bağlantı / yönlendirme</xf:option><xf:option value="other">Diğer</xf:option></xf:selectrow>]]></replace>
+  </modification>
   <modification type="admin" template="wrxt_hata_admin.less" modification_key="wrxt_hata_report_list_styles" description="Rapor listesi ve hazır cevap seçicisi için tema uyumlu düzen" execution_order="10" enabled="1" action="str_replace">
     <find><![CDATA[/* Warext Studios - ACP hata bildirim arayuzu */]]></find>
     <replace><![CDATA[$0
 .wrxtHata-reportFlag { width: 72px; text-align: center; white-space: nowrap; }
-.wrxtHata-categoryCell { min-width: 130px; }
-.wrxtHata-categoryCell .label { display: inline-block; min-width: 72px; text-align: center; }
+.wrxtHata-categoryCell { min-width: 150px; }
+.wrxtHata-categoryCell .label { display: inline-block; min-width: 82px; text-align: center; }
 .wrxtHata-reportContext { margin-top: 4px; }
 .wrxtHata-preparedReplyPicker { padding: @xf-paddingMedium; border-top: 1px solid @xf-borderColorLight; }
 .wrxtHata-preparedReplyPicker .inputGroup { max-width: 720px; }
