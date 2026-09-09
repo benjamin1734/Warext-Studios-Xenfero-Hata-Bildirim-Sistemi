@@ -13,9 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build 1.1.0 release package
+      - name: Build 1.1.1 release package
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip'
           rm -rf .release
           mkdir -p .release
           cp -a upload .release/upload
@@ -27,17 +27,17 @@ jobs:
           )
           test -s "$PACKAGE"
 
-      - name: Publish 1.1.0 release
+      - name: Publish 1.1.1 release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG='v1.1.0'
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.0.zip'
+          TAG='v1.1.1'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.1.zip'
 
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "$PACKAGE" --clobber
           else
             gh release create "$TAG" "$PACKAGE" \
-              --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.0' \
-              --notes '1.1.0; XenForo editor girdisinin doğru işlenmesiyle hazır cevap kayıt hatasını giderir. Hazır cevap kategorileri, kategori ve cevap sıralaması, kategorisiz cevap desteği, kategori bazlı seçim listesi ve kategori yönetim arayüzü ekler.'
+              --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.1' \
+              --notes '1.1.1; hazır cevap kategori ekranında tema uyumlu Düzenle/Sil butonları ve daha belirgin kategori-cevap ayrımı ekler. Hazır cevap seçimi artık Editöre yükle butonu gerektirmeden otomatik olarak cevap editörüne aktarılır. Yetkili cevapları ile durum, atama ve çözüm işlemlerinin XenForo bildirim akışı düzeltilmiş; rapor sahibi ile işlemi yapan yetkili aynı hesap olsa dahi bildirim oluşturulması sağlanmıştır.'
           fi
