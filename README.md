@@ -4,23 +4,29 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.1.3 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.3/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.3.zip)
+[XenForo'ya doğrudan yüklenebilir 1.1.4 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.4/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
 ## Kullanım
 
-Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimlerini görebilir ve dosya ekleyebilir. Forum sayfalarının sağ alt köşesinde böcek ikonlu **Hata Bildir** düğmesi görünür. Düğme ACP ayarlarından footer içinde gösterilecek şekilde de değiştirilebilir.
+Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimlerini görebilir ve dosya ekleyebilir. Forum sayfalarında böcek ikonlu **Hata Bildir** düğmesi görünür. Düğmenin konumu ACP > Hata Bildirim Sistemi > Ayarlar bölümünden değiştirilebilir.
 
 ACP tarafında bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **Hazır Cevaplar**, **İstatistikler** ve **Ayarlar** alanları yer alır.
+
+### 1.1.4 değişiklikleri
+
+**Ayar sayfasındaki ham phrase anahtarları düzeltildi.** XenForo 2.3 seçenek ekranı başlık ve açıklamalar için `option.<id>`, `option_explain.<id>`, `option_group.<id>` ve `option_group_description.<id>` biçimindeki phrase adlarını bekler. Önceki sürümde alt çizgili anahtarlar kullanıldığı için bazı kurulumlarda `option.wrxtHataEnabled` gibi teknik anahtarlar doğrudan ekranda görünüyordu. 1.1.4 tüm ayar phrase'lerini XenForo'nun doğru adlandırma biçimine geçirir.
+
+**Hata Bildir butonuna dokuz konum seçeneği eklendi.** Sağ alt sabit, sol alt sabit, sağ üst sabit, sol üst sabit, sağ orta sabit, sol orta sabit, footer ortası, footer solu ve footer sağı seçenekleri kullanılabilir. Önceki `floating` değeri geriye uyumlu biçimde sağ alt sabit olarak çalışmaya devam eder.
+
+Ayar açıklamaları yöneticinin yaptığı ayarın sonucunu açıkça anlatacak şekilde korunmuştur; ham teknik phrase anahtarları artık görünmemelidir.
 
 ### 1.1.3 değişiklikleri
 
 **Hazır cevap otomatik yükleme düzeltildi.** XenForo 2.3 WYSIWYG editörü açıkken gerçek textarea alanının `name` değeri değiştiği için önceki sürüm editörü her zaman bulamıyordu. 1.1.3, XenForo'nun `data-original-name="message"` yapısını kullanır; ayrıca editor handler, Froala instance ve BBCode alanı için yedek yollar içerir. Hazır cevap seçildiği anda sayfa yenilenmeden mevcut editöre aktarılır.
 
 **Sorun türleri genişletildi.** Kullanıcı formunda ve ACP filtresinde şu kategoriler bulunur: Sayfa, Görsel / tasarım, Buton / özellik, Mobil, Performans, Yetki / erişim, Hesap / giriş / profil, Konu / mesaj / editör, Bildirim / e-posta, Dosya / görsel yükleme, Arama / filtreleme, Bağlantı / yönlendirme ve Diğer. Yeni kategoriler backend doğrulamasında da kabul edilir ve ACP listesindeki Türkçe etiketlerle eşleşir.
-
-**Ayar açıklamaları yeniden yazıldı.** ACP Ayarlar sayfasındaki teknik ve gereksiz uzun açıklamalar yerine her seçeneğin neyi değiştirdiğini doğrudan anlatan daha kısa Türkçe açıklamalar kullanılır. Güvenlik ve tanılama davranışı değiştirilmemiştir.
 
 ### Önceki önemli değişiklikler
 
@@ -39,11 +45,13 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 ## Özellikler
 
 - XenForo uyumlu **Hata Bildir** arayüzü ve benzersiz `BUG-XXXXXXXX` takip numarası
+- Hata Bildir düğmesi için dokuz farklı yerleşim seçeneği
 - Genişletilmiş sorun türü seçimi ve ACP kategori filtresi
 - Kullanıcının kendi hata bildirimlerini ve yetkili cevaplarını takip edebilmesi
 - ACP'de bağımsız Hata Bildirim Sistemi yönetim bölümü
 - XenForo 2.3 option group tabanlı Ayarlar sayfası
-- Açık ve anlaşılır Türkçe ayar açıklamaları
+- XenForo standardına uygun option / option_explain phrase anahtarları
+- Açık ve anlaşılır Türkçe ayar başlıkları ve açıklamaları
 - Hata listesinde en solda **Yeni** etiketi ve Türkçe kategori/durum etiketleri
 - Özelleştirilebilir, kategorili ve sıralanabilir hazır cevap sistemi
 - Tema uyumlu hazır cevap kategori/cevap kartları ve Düzenle / Sil butonları
@@ -81,4 +89,4 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 
 ## Sürüm
 
-`1.1.3`
+`1.1.4`

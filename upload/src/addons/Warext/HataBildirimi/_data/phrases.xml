@@ -18,51 +18,51 @@
   <phrase title="alert_opt_out.wrxt_bug_report_staff_reply" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimlerime verilen yetkili cevaplarını al]]></phrase>
   <phrase title="alert_opt_out.wrxt_bug_report_status" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Hata bildirimlerimdeki durum değişikliklerini al]]></phrase>
 
-  <phrase title="option_group_wrxtHataSettings" version_id="1010030" version_string="1.1.3"><![CDATA[Warext Hata Bildirim Sistemi]]></phrase>
-  <phrase title="option_group_wrxtHataSettings_description" version_id="1010030" version_string="1.1.3"><![CDATA[Hata bildirim formunu, kullanıcı bildirimlerini, teknik tanılamayı, benzer hata tespitini ve veri saklama davranışını buradan yönetebilirsiniz.]]></phrase>
+  <phrase title="option_group.wrxtHataSettings" version_id="1010040" version_string="1.1.4"><![CDATA[Warext Hata Bildirim Sistemi]]></phrase>
+  <phrase title="option_group_description.wrxtHataSettings" version_id="1010040" version_string="1.1.4"><![CDATA[Hata bildirim sisteminin görünümünü, bildirim davranışını, güvenlik limitlerini ve teknik tanılama özelliklerini buradan yönetebilirsiniz.]]></phrase>
 
-  <phrase title="option_wrxtHataEnabled" version_id="1010030" version_string="1.1.3"><![CDATA[Hata bildirim sistemini etkinleştir]]></phrase>
-  <phrase title="option_wrxtHataEnabled_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Kapalı olduğunda kullanıcılar yeni hata bildirimi oluşturamaz. Daha önce gönderilmiş raporlar yönetim panelinde korunur.]]></phrase>
+  <phrase title="option.wrxtHataEnabled" version_id="1010040" version_string="1.1.4"><![CDATA[Hata bildirim sistemini etkinleştir]]></phrase>
+  <phrase title="option_explain.wrxtHataEnabled" version_id="1010040" version_string="1.1.4"><![CDATA[Kapalı olduğunda kullanıcılar yeni hata bildirimi gönderemez. Daha önce oluşturulmuş raporlar ve geçmiş kayıtları korunur.]]></phrase>
 
-  <phrase title="option_wrxtHataButtonPosition" version_id="1010030" version_string="1.1.3"><![CDATA[Hata Bildir butonunun konumu]]></phrase>
-  <phrase title="option_wrxtHataButtonPosition_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Kullanıcıların Hata Bildir düğmesini sayfanın sağ altında sabit olarak mı, yoksa footer içinde mi göreceğini belirler.]]></phrase>
+  <phrase title="option.wrxtHataButtonPosition" version_id="1010040" version_string="1.1.4"><![CDATA[Hata Bildir butonunun konumu]]></phrase>
+  <phrase title="option_explain.wrxtHataButtonPosition" version_id="1010040" version_string="1.1.4"><![CDATA[Hata Bildir düğmesinin forum sayfalarında nerede gösterileceğini belirler. Sabit ekran konumları ile footer sol, orta ve sağ seçeneklerinden birini kullanabilirsiniz.]]></phrase>
 
-  <phrase title="option_wrxtHataAutoInvestigatingOnAssign" version_id="1010030" version_string="1.1.3"><![CDATA[İlk yetkili atamasında incelemeye al]]></phrase>
-  <phrase title="option_wrxtHataAutoInvestigatingOnAssign_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Yeni bir rapor ilk kez bir yetkiliye atandığında durumunu otomatik olarak İnceleniyor yapar.]]></phrase>
+  <phrase title="option.wrxtHataAutoInvestigatingOnAssign" version_id="1010040" version_string="1.1.4"><![CDATA[İlk yetkili atamasında incelemeye al]]></phrase>
+  <phrase title="option_explain.wrxtHataAutoInvestigatingOnAssign" version_id="1010040" version_string="1.1.4"><![CDATA[Yeni durumundaki bir rapor ilk kez bir yetkiliye atandığında durumunu otomatik olarak İnceleniyor yapar.]]></phrase>
 
-  <phrase title="option_wrxtHataNotifyStatus" version_id="1010030" version_string="1.1.3"><![CDATA[Yönetim işlemlerinde kullanıcıyı bilgilendir]]></phrase>
-  <phrase title="option_wrxtHataNotifyStatus_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Raporun durumu, atanan yetkili veya çözüm bilgileri değiştiğinde rapor sahibine XenForo bildirimi gönderir.]]></phrase>
+  <phrase title="option.wrxtHataNotifyStatus" version_id="1010040" version_string="1.1.4"><![CDATA[Rapor işlemlerinde kullanıcıya bildirim gönder]]></phrase>
+  <phrase title="option_explain.wrxtHataNotifyStatus" version_id="1010040" version_string="1.1.4"><![CDATA[Raporun durumu, atanan yetkili veya çözüm bilgileri değiştirildiğinde rapor sahibine XenForo bildirimi gönderir.]]></phrase>
 
-  <phrase title="option_wrxtHataNotifyStaffReply" version_id="1010030" version_string="1.1.3"><![CDATA[Yetkili cevaplarında kullanıcıyı bilgilendir]]></phrase>
-  <phrase title="option_wrxtHataNotifyStaffReply_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Yetkili rapora kullanıcıya açık bir cevap gönderdiğinde rapor sahibine XenForo bildirimi gönderir. İç notlar bu bildirime dahil değildir.]]></phrase>
+  <phrase title="option.wrxtHataNotifyStaffReply" version_id="1010040" version_string="1.1.4"><![CDATA[Yetkili cevaplarında kullanıcıya bildirim gönder]]></phrase>
+  <phrase title="option_explain.wrxtHataNotifyStaffReply" version_id="1010040" version_string="1.1.4"><![CDATA[Yetkili kullanıcıya açık bir cevap gönderdiğinde rapor sahibine XenForo bildirimi oluşturur. Yalnızca ekip tarafından görülen iç notlar bildirim oluşturmaz.]]></phrase>
 
-  <phrase title="option_wrxtHataMaxReports10Min" version_id="1010030" version_string="1.1.3"><![CDATA[Kullanıcı başına 10 dakikalık bildirim limiti]]></phrase>
-  <phrase title="option_wrxtHataMaxReports10Min_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Bir kullanıcının 10 dakika içinde en fazla kaç hata bildirimi gönderebileceğini belirler.]]></phrase>
+  <phrase title="option.wrxtHataMaxReports10Min" version_id="1010040" version_string="1.1.4"><![CDATA[Kullanıcı başına 10 dakikalık rapor limiti]]></phrase>
+  <phrase title="option_explain.wrxtHataMaxReports10Min" version_id="1010040" version_string="1.1.4"><![CDATA[Bir kullanıcının 10 dakika içinde en fazla kaç hata bildirimi gönderebileceğini belirler. Spam ve tekrarlı bildirimleri sınırlandırmak için kullanılır.]]></phrase>
 
-  <phrase title="option_wrxtHataMaxReportsIp10Min" version_id="1010030" version_string="1.1.3"><![CDATA[Bağlantı başına 10 dakikalık bildirim limiti]]></phrase>
-  <phrase title="option_wrxtHataMaxReportsIp10Min_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Aynı internet bağlantısından 10 dakika içinde gönderilebilecek toplam rapor sayısını sınırlar. 0 değeri bu ek limiti kapatır. Ham IP adresi saklanmaz.]]></phrase>
+  <phrase title="option.wrxtHataMaxReportsIp10Min" version_id="1010040" version_string="1.1.4"><![CDATA[Bağlantı başına 10 dakikalık rapor limiti]]></phrase>
+  <phrase title="option_explain.wrxtHataMaxReportsIp10Min" version_id="1010040" version_string="1.1.4"><![CDATA[Aynı internet bağlantısından 10 dakika içinde gönderilebilecek toplam rapor sayısını sınırlar. 0 girilirse bu ek limit devre dışı kalır. Ham IP adresi saklanmaz.]]></phrase>
 
-  <phrase title="option_wrxtHataClientDiagnostics" version_id="1010030" version_string="1.1.3"><![CDATA[Tarayıcı teknik tanılamasını ekle]]></phrase>
-  <phrase title="option_wrxtHataClientDiagnostics_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Yakın zamanda oluşan JavaScript hataları ve başarısız ağ isteklerinin teknik özetini rapora ekler. Form, mesaj ve şifre içerikleri kaydedilmez.]]></phrase>
+  <phrase title="option.wrxtHataClientDiagnostics" version_id="1010040" version_string="1.1.4"><![CDATA[Tarayıcı teknik tanılamasını kaydet]]></phrase>
+  <phrase title="option_explain.wrxtHataClientDiagnostics" version_id="1010040" version_string="1.1.4"><![CDATA[JavaScript hataları ve başarısız ağ istekleri gibi sınırlı teknik bilgileri rapora ekler. Mesaj, form ve şifre içerikleri bu kayıtların içine alınmaz.]]></phrase>
 
-  <phrase title="option_wrxtHataServerCorrelation" version_id="1010030" version_string="1.1.3"><![CDATA[XenForo sunucu hatalarıyla eşleştir]]></phrase>
-  <phrase title="option_wrxtHataServerCorrelation_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Rapor gönderildiği sırada oluşmuş olabilecek XenForo sunucu hata kayıtlarını arar ve uygun bir kayıt bulursa rapora teknik eşleşme olarak ekler.]]></phrase>
+  <phrase title="option.wrxtHataServerCorrelation" version_id="1010040" version_string="1.1.4"><![CDATA[XenForo sunucu hatalarıyla eşleştir]]></phrase>
+  <phrase title="option_explain.wrxtHataServerCorrelation" version_id="1010040" version_string="1.1.4"><![CDATA[Hata bildiriminin oluşturulduğu zamana yakın XenForo sunucu hata kayıtlarını kontrol eder ve uygun bir eşleşme bulunursa raporda gösterir.]]></phrase>
 
-  <phrase title="option_wrxtHataServerWindow" version_id="1010030" version_string="1.1.3"><![CDATA[Sunucu hata eşleştirme süresi]]></phrase>
-  <phrase title="option_wrxtHataServerWindow_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Bir rapor gönderildiğinde, sunucu hata günlüğünde geriye doğru kaç saniyelik kayıtların eşleşme için kontrol edileceğini belirler.]]></phrase>
+  <phrase title="option.wrxtHataServerWindow" version_id="1010040" version_string="1.1.4"><![CDATA[Sunucu hata eşleştirme aralığı (saniye)]]></phrase>
+  <phrase title="option_explain.wrxtHataServerWindow" version_id="1010040" version_string="1.1.4"><![CDATA[Rapor gönderildiğinde sunucu hata günlüğünde geriye doğru kaç saniyelik kayıtların eşleşme için kontrol edileceğini belirler.]]></phrase>
 
-  <phrase title="option_wrxtHataDuplicateDetection" version_id="1010030" version_string="1.1.3"><![CDATA[Benzer hata raporlarını tespit et]]></phrase>
-  <phrase title="option_wrxtHataDuplicateDetection_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Benzer sayfa, sorun türü ve açıklamaya sahip raporları yetkiliye olası yinelenen rapor olarak gösterir. Raporlar otomatik olarak birleştirilmez.]]></phrase>
+  <phrase title="option.wrxtHataDuplicateDetection" version_id="1010040" version_string="1.1.4"><![CDATA[Benzer hata raporlarını tespit et]]></phrase>
+  <phrase title="option_explain.wrxtHataDuplicateDetection" version_id="1010040" version_string="1.1.4"><![CDATA[Benzer sayfa, sorun türü ve açıklamaya sahip raporları olası yinelenen hata olarak işaretler. Sistem raporları kendiliğinden birleştirmez; son karar yetkilidedir.]]></phrase>
 
-  <phrase title="option_wrxtHataHotspotMin" version_id="1010030" version_string="1.1.3"><![CDATA[Yoğun hata uyarısı eşiği]]></phrase>
-  <phrase title="option_wrxtHataHotspotMin_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Aynı sayfadan son 30 dakika içinde kaç rapor gelirse o sayfanın yoğun hata alanı olarak yönetim panelinde gösterileceğini belirler.]]></phrase>
+  <phrase title="option.wrxtHataHotspotMin" version_id="1010040" version_string="1.1.4"><![CDATA[Yoğun hata uyarısı eşiği]]></phrase>
+  <phrase title="option_explain.wrxtHataHotspotMin" version_id="1010040" version_string="1.1.4"><![CDATA[Aynı sayfadan son 30 dakika içinde bu sayıya ulaşan raporları yönetim panelinde yoğun hata sinyali olarak öne çıkarır.]]></phrase>
 
-  <phrase title="option_wrxtHataAttachments" version_id="1010030" version_string="1.1.3"><![CDATA[Ekran görüntüsü ve dosya eklemeye izin ver]]></phrase>
-  <phrase title="option_wrxtHataAttachments_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Hata bildirim formunda XenForo'nun dosya yükleme alanını gösterir ve kullanıcıların rapora ekran görüntüsü veya desteklenen dosyaları eklemesini sağlar.]]></phrase>
+  <phrase title="option.wrxtHataAttachments" version_id="1010040" version_string="1.1.4"><![CDATA[Hata bildirimlerine dosya eklemeye izin ver]]></phrase>
+  <phrase title="option_explain.wrxtHataAttachments" version_id="1010040" version_string="1.1.4"><![CDATA[Kullanıcıların hata bildirimine XenForo dosya yükleme sistemi üzerinden ekran görüntüsü veya desteklenen başka dosyalar ekleyebilmesini sağlar.]]></phrase>
 
-  <phrase title="option_wrxtHataBoardUrlsOnly" version_id="1010030" version_string="1.1.3"><![CDATA[Yalnızca forum sayfalarını kabul et]]></phrase>
-  <phrase title="option_wrxtHataBoardUrlsOnly_explain" version_id="1010030" version_string="1.1.3"><![CDATA[Raporun teknik sayfa adresinin yalnızca bu forumun alan adından kabul edilmesini sağlar. Güvenlik için açık tutulması önerilir.]]></phrase>
+  <phrase title="option.wrxtHataBoardUrlsOnly" version_id="1010040" version_string="1.1.4"><![CDATA[Yalnızca forum adreslerini kabul et]]></phrase>
+  <phrase title="option_explain.wrxtHataBoardUrlsOnly" version_id="1010040" version_string="1.1.4"><![CDATA[Raporun teknik sayfa adresinin yalnızca bu forumun alan adından kabul edilmesini sağlar. Güvenlik için açık tutulması önerilir.]]></phrase>
 
-  <phrase title="option_wrxtHataDiagnosticRetentionDays" version_id="1010030" version_string="1.1.3"><![CDATA[Teknik tanılama verilerini saklama süresi]]></phrase>
-  <phrase title="option_wrxtHataDiagnosticRetentionDays_explain" version_id="1010030" version_string="1.1.3"><![CDATA[JavaScript, ağ ve sunucu hata özetlerinin kaç gün sonra otomatik temizleneceğini belirler. 0 değeri otomatik temizliği kapatır; rapor açıklamaları ve işlem geçmişi silinmez.]]></phrase>
+  <phrase title="option.wrxtHataDiagnosticRetentionDays" version_id="1010040" version_string="1.1.4"><![CDATA[Teknik tanılama verilerini saklama süresi (gün)]]></phrase>
+  <phrase title="option_explain.wrxtHataDiagnosticRetentionDays" version_id="1010040" version_string="1.1.4"><![CDATA[JavaScript, ağ ve sunucu hata özetlerinin kaç gün sonra otomatik temizleneceğini belirler. 0 girilirse otomatik temizlik kapatılır; rapor açıklaması ve işlem geçmişi silinmez.]]></phrase>
 </phrases>

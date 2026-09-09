@@ -2,7 +2,14 @@
 <options>
   <option option_id="wrxtHataEnabled" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="10"/></option>
   <option option_id="wrxtHataButtonPosition" edit_format="select" data_type="string" advanced="0"><default_value>floating</default_value><edit_format_params>floating=Sağ alt sabit
-footer=Footer içinde</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="15"/></option>
+bottom_left=Sol alt sabit
+top_right=Sağ üst sabit
+top_left=Sol üst sabit
+middle_right=Sağ orta sabit
+middle_left=Sol orta sabit
+footer=Footer ortası
+footer_left=Footer solu
+footer_right=Footer sağı</edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="15"/></option>
   <option option_id="wrxtHataAutoInvestigatingOnAssign" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="16"/></option>
   <option option_id="wrxtHataNotifyStatus" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="17"/></option>
   <option option_id="wrxtHataNotifyStaffReply" edit_format="onoff" data_type="boolean" advanced="0"><default_value>1</default_value><edit_format_params></edit_format_params><sub_options></sub_options><relation group_id="wrxtHataSettings" display_order="18"/></option>
