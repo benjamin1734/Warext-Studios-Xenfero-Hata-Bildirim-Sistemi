@@ -20,7 +20,10 @@ class Report extends AbstractController
         $search = trim($this->filter('q', 'str'));
         $assigneeUserId = $this->filter('assignee_user_id', 'uint');
         $showPreparedReplies = (bool)$this->filter('prepared_replies', 'bool');
+        $preparedReplyCreate = (bool)$this->filter('prepared_reply_create', 'bool');
         $preparedReplyEditId = $this->filter('prepared_reply_edit_id', 'uint');
+        $preparedCategoryCreate = (bool)$this->filter('prepared_category_create', 'bool');
+        $preparedCategoryEditId = $this->filter('prepared_category_edit_id', 'uint');
         $perPage = 30;
 
         $finder = $this->finder('Warext\\HataBildirimi:Report')
@@ -53,25 +56,54 @@ class Report extends AbstractController
         $this->assertValidPage($page, $perPage, $total, 'wrxt-hata-bildirimleri');
         $reports = $finder->limitByPage($page, $perPage)->fetch();
 
-        $stats = $this->app->db()->fetchPairs('SELECT status, COUNT(*) FROM xf_wrxt_bug_report GROUP BY status');
+        $stats = \XF::db()->fetchPairs('SELECT status, COUNT(*) FROM xf_wrxt_bug_report GROUP BY status');
         $options = \XF::options();
         $hotspotMin = isset($options->wrxtHataHotspotMin) ? (int)$options->wrxtHataHotspotMin : 3;
         $hotspotMin = max(2, min(25, $hotspotMin));
 
-        $preparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+        $preparedReplyCategories = $this->finder('Warext\\HataBildirimi:PreparedReplyCategory')
             ->order('display_order')
             ->order('title')
             ->fetch();
+        $preparedReplyGroups = [];
+        foreach ($preparedReplyCategories as $preparedReplyCategory)
+        {
+            $preparedReplyGroups[] = [
+                'category' => $preparedReplyCategory,
+                'replies' => $this->finder('Warext\\HataBildirimi:PreparedReply')
+                    ->where('prepared_reply_category_id', $preparedReplyCategory->prepared_reply_category_id)
+                    ->order('display_order')
+                    ->order('title')
+                    ->fetch()
+            ];
+        }
+        $uncategorizedPreparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+            ->where('prepared_reply_category_id', 0)
+            ->order('display_order')
+            ->order('title')
+            ->fetch();
+
         $preparedReplyEdit = null;
         if ($preparedReplyEditId)
         {
             $preparedReplyEdit = $this->em()->find('Warext\\HataBildirimi:PreparedReply', $preparedReplyEditId);
         }
-        if (!$preparedReplyEdit)
+        elseif ($preparedReplyCreate)
         {
             $preparedReplyEdit = $this->em()->create('Warext\\HataBildirimi:PreparedReply');
             $preparedReplyEdit->active = true;
             $preparedReplyEdit->display_order = 10;
+        }
+
+        $preparedReplyCategoryEdit = null;
+        if ($preparedCategoryEditId)
+        {
+            $preparedReplyCategoryEdit = $this->em()->find('Warext\\HataBildirimi:PreparedReplyCategory', $preparedCategoryEditId);
+        }
+        elseif ($preparedCategoryCreate)
+        {
+            $preparedReplyCategoryEdit = $this->em()->create('Warext\\HataBildirimi:PreparedReplyCategory');
+            $preparedReplyCategoryEdit->display_order = 10;
         }
 
         return $this->view('Warext\\HataBildirimi:ReportList', 'wrxt_hata_admin_list', [
@@ -79,8 +111,11 @@ class Report extends AbstractController
             'stats' => $stats,
             'hotspots' => $this->repository('Warext\\HataBildirimi:Report')->getHotspots(\XF::$time - 1800, $hotspotMin, 10),
             'staff' => $this->getAssignableStaff(),
-            'preparedReplies' => $preparedReplies,
+            'preparedReplyCategories' => $preparedReplyCategories,
+            'preparedReplyGroups' => $preparedReplyGroups,
+            'uncategorizedPreparedReplies' => $uncategorizedPreparedReplies,
             'preparedReplyEdit' => $preparedReplyEdit,
+            'preparedReplyCategoryEdit' => $preparedReplyCategoryEdit,
             'showPreparedReplies' => $showPreparedReplies,
             'page' => $page,
             'perPage' => $perPage,
@@ -112,19 +147,46 @@ class Report extends AbstractController
         $styleParent = $style && $style->parent_id ? $this->em()->find('XF:Style', (int)$style->parent_id) : null;
         $language = $report->language_id ? $this->em()->find('XF:Language', (int)$report->language_id) : null;
 
-        $preparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+        $preparedReplyCategories = $this->finder('Warext\\HataBildirimi:PreparedReplyCategory')
+            ->order('display_order')
+            ->order('title')
+            ->fetch();
+        $preparedReplyGroups = [];
+        foreach ($preparedReplyCategories as $preparedReplyCategory)
+        {
+            $replies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+                ->where('prepared_reply_category_id', $preparedReplyCategory->prepared_reply_category_id)
+                ->where('active', 1)
+                ->order('display_order')
+                ->order('title')
+                ->fetch();
+            if ($replies->count())
+            {
+                $preparedReplyGroups[] = [
+                    'category' => $preparedReplyCategory,
+                    'replies' => $replies
+                ];
+            }
+        }
+        $uncategorizedPreparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+            ->where('prepared_reply_category_id', 0)
             ->where('active', 1)
             ->order('display_order')
             ->order('title')
             ->fetch();
+
         $preparedReplyId = $this->filter('prepared_reply_id', 'uint');
         $preparedReplyMessage = '';
         if ($preparedReplyId)
         {
-            $preparedReply = $preparedReplies[$preparedReplyId] ?? null;
-            if ($preparedReply)
+            $preparedReply = $this->em()->find('Warext\\HataBildirimi:PreparedReply', $preparedReplyId);
+            if ($preparedReply && $preparedReply->active)
             {
                 $preparedReplyMessage = (string)$preparedReply->message;
+            }
+            else
+            {
+                $preparedReplyId = 0;
             }
         }
 
@@ -133,7 +195,8 @@ class Report extends AbstractController
             'messages' => $messages,
             'logs' => $logs,
             'staff' => $this->getAssignableStaff(),
-            'preparedReplies' => $preparedReplies,
+            'preparedReplyGroups' => $preparedReplyGroups,
+            'uncategorizedPreparedReplies' => $uncategorizedPreparedReplies,
             'preparedReplyId' => $preparedReplyId,
             'preparedReplyMessage' => $preparedReplyMessage,
             'duplicateChildren' => $this->repository('Warext\\HataBildirimi:Report')->getDuplicateChildren((int)$report->report_id),
@@ -263,9 +326,11 @@ class Report extends AbstractController
     {
         $this->assertPostOnly();
         $report = $this->assertReportExists();
+        $message = $this->plugin('XF:Editor')->fromInput('message');
+
         try
         {
-            $this->service('Warext\\HataBildirimi:ReportManager')->addMessage(\XF::visitor(), $report, $this->filter('message', 'str'), 'staff');
+            $this->service('Warext\\HataBildirimi:ReportManager')->addMessage(\XF::visitor(), $report, $message, 'staff');
         }
         catch (\InvalidArgumentException $e)
         {
