@@ -19,6 +19,8 @@ class Report extends AbstractController
         $category = trim($this->filter('category', 'str'));
         $search = trim($this->filter('q', 'str'));
         $assigneeUserId = $this->filter('assignee_user_id', 'uint');
+        $showPreparedReplies = (bool)$this->filter('prepared_replies', 'bool');
+        $preparedReplyEditId = $this->filter('prepared_reply_edit_id', 'uint');
         $perPage = 30;
 
         $finder = $this->finder('Warext\\HataBildirimi:Report')
@@ -56,11 +58,30 @@ class Report extends AbstractController
         $hotspotMin = isset($options->wrxtHataHotspotMin) ? (int)$options->wrxtHataHotspotMin : 3;
         $hotspotMin = max(2, min(25, $hotspotMin));
 
+        $preparedReplies = $this->finder('Warext\\HataBildirimi:PreparedReply')
+            ->order('display_order')
+            ->order('title')
+            ->fetch();
+        $preparedReplyEdit = null;
+        if ($preparedReplyEditId)
+        {
+            $preparedReplyEdit = $this->em()->find('Warext\\HataBildirimi:PreparedReply', $preparedReplyEditId);
+        }
+        if (!$preparedReplyEdit)
+        {
+            $preparedReplyEdit = $this->em()->create('Warext\\HataBildirimi:PreparedReply');
+            $preparedReplyEdit->active = true;
+            $preparedReplyEdit->display_order = 10;
+        }
+
         return $this->view('Warext\\HataBildirimi:ReportList', 'wrxt_hata_admin_list', [
             'reports' => $reports,
             'stats' => $stats,
             'hotspots' => $this->repository('Warext\\HataBildirimi:Report')->getHotspots(\XF::$time - 1800, $hotspotMin, 10),
             'staff' => $this->getAssignableStaff(),
+            'preparedReplies' => $preparedReplies,
+            'preparedReplyEdit' => $preparedReplyEdit,
+            'showPreparedReplies' => $showPreparedReplies,
             'page' => $page,
             'perPage' => $perPage,
             'total' => $total,
