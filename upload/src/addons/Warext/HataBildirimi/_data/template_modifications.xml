@@ -7,20 +7,44 @@
     <xf:js src="warext/hata-bildirimi/diagnostics.js" />
 </xf:if>]]></replace>
   </modification>
-  <modification type="public" template="PAGE_CONTAINER" modification_key="wrxt_hata_footer_button" description="Hata Bildir ikonunu sayfalara ekler" execution_order="10" enabled="1" action="str_replace">
+  <modification type="public" template="PAGE_CONTAINER" modification_key="wrxt_hata_footer_button" description="Hata Bildir ikonunu seçilen konuma ekler" execution_order="10" enabled="1" action="str_replace">
     <find><![CDATA[</body>]]></find>
     <replace><![CDATA[<xf:if is="$xf.options.wrxtHataEnabled AND $xf.visitor.user_id AND $xf.visitor.hasPermission('wrxtHata', 'submit')">
-    <xf:if is="$xf.options.wrxtHataButtonPosition == 'footer'">
-        <div class="wrxtHata-footerButton">
-            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir">
-                <xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span>
-            </a>
+    <xf:if is="$xf.options.wrxtHataButtonPosition == 'footer_left'">
+        <div class="wrxtHata-footerButton" style="text-align: left;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'footer_right'" />
+        <div class="wrxtHata-footerButton" style="text-align: right;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'footer'" />
+        <div class="wrxtHata-footerButton" style="text-align: center;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'bottom_left'" />
+        <div class="wrxtHata-floatingButton" style="left: clamp(12px, 1.5vw, 22px); right: auto; bottom: clamp(12px, 1.5vw, 22px); top: auto; transform: none;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'top_right'" />
+        <div class="wrxtHata-floatingButton" style="right: clamp(12px, 1.5vw, 22px); left: auto; top: clamp(72px, 8vh, 100px); bottom: auto; transform: none;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'top_left'" />
+        <div class="wrxtHata-floatingButton" style="left: clamp(12px, 1.5vw, 22px); right: auto; top: clamp(72px, 8vh, 100px); bottom: auto; transform: none;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'middle_right'" />
+        <div class="wrxtHata-floatingButton" style="right: clamp(12px, 1.5vw, 22px); left: auto; top: 50%; bottom: auto; transform: translateY(-50%);">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
+        </div>
+    <xf:elseif is="$xf.options.wrxtHataButtonPosition == 'middle_left'" />
+        <div class="wrxtHata-floatingButton" style="left: clamp(12px, 1.5vw, 22px); right: auto; top: 50%; bottom: auto; transform: translateY(-50%);">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
         </div>
     <xf:else />
-        <div class="wrxtHata-floatingButton" style="left: clamp(12px, 1.5vw, 22px); right: auto;">
-            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir">
-                <xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span>
-            </a>
+        <div class="wrxtHata-floatingButton" style="right: clamp(12px, 1.5vw, 22px); left: auto; bottom: clamp(12px, 1.5vw, 22px); top: auto; transform: none;">
+            <a href="{{ link('hata-bildir') }}" class="button button--cta wrxtHata-reportButton" data-xf-click="overlay" title="Hata bildir" aria-label="Hata bildir"><xf:fa icon="fa-bug" style="margin-right: 0;" /><span class="u-srOnly">Hata Bildir</span></a>
         </div>
     </xf:if>
 </xf:if>
