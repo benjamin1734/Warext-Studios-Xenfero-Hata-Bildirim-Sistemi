@@ -90,3 +90,82 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 ## Sürüm
 
 `1.1.4`
+
+---
+
+# English
+
+Warext Studios Bug Reporting System is a XenForo 2.3 add-on that lets users submit bug reports directly from the page they are viewing, automatically collects technical context, and manages reports with unique tracking numbers.
+
+## Ready-to-install ZIP
+
+[Download the XenForo-ready 1.1.4 ZIP package](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.4/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip)
+
+Do not extract the ZIP. Upload it directly from XenForo Admin CP through **Add-ons > Install/upgrade from archive**. Do not use GitHub's **Code > Download ZIP** source archive as the installation package.
+
+## Usage
+
+Registered users can report bugs, view their own reports, and attach files by default. A bug-icon **Report Bug** button is shown on forum pages, and its position can be configured from ACP > Bug Reporting System > Settings.
+
+ACP contains a dedicated **Bug Reporting System** section with **Bug Reports**, **Prepared Replies**, **Statistics**, and **Settings** areas.
+
+## Notable release changes
+
+### 1.1.4
+
+XenForo 2.3-compatible option phrase naming was corrected so raw technical phrase keys no longer appear on settings screens. The Report Bug button also gained nine placement options: fixed bottom-right, bottom-left, top-right, top-left, middle-right, middle-left, footer center, footer left, and footer right. The old `floating` value remains backward-compatible as fixed bottom-right.
+
+### 1.1.3
+
+Prepared replies are now inserted into the active XenForo WYSIWYG/BBCode editor without reloading the page. The implementation supports XenForo's `data-original-name="message"` structure, editor handler, Froala instance, and BBCode fallbacks.
+
+Issue categories were expanded for both the public form and ACP filters, including page, visual/design, button/feature, mobile, performance, permission/access, account/login/profile, thread/message/editor, notification/email, file/image upload, search/filtering, link/redirect, and other.
+
+## Features
+
+- XenForo-native **Report Bug** UI with unique `BUG-XXXXXXXX` tracking numbers
+- Nine configurable Report Bug button positions
+- Expanded issue-category selection and ACP category filtering
+- Users can follow their own reports and staff replies
+- Dedicated Bug Reporting System section in ACP
+- XenForo 2.3 option-group-based settings page
+- XenForo-standard option and option-explain phrase keys
+- Clear administrator-facing setting titles and descriptions
+- **New** label plus readable category/status labels in report lists
+- Unlimited customizable, categorized, sortable prepared replies
+- Theme-compatible prepared-reply cards with edit/delete controls
+- Prepared-reply picker integrated into the reply form
+- Prepared replies inserted into the current XenForo editor **without page reload**
+- XenForo 2.3 `data-original-name` editor targeting
+- Prepared replies editable in both WYSIWYG and BBCode modes
+- Correct `XF:Editor` input handling to prevent empty-content errors
+- BBCode rendering for user and staff replies
+- Staff usernames displayed instead of raw user IDs in assignment/history views
+- Optional automatic **In Progress** transition on first staff assignment
+- XenForo alerts for staff replies, status changes, assignment changes, and resolution updates
+- Internal notes excluded from user notifications
+- Automatic capture of URL, referrer, browser, OS, device, screen, viewport, style/theme, and language information
+- Safe JavaScript diagnostics and failed network-request logging
+- Confidence-scored correlation with XenForo server error logs
+- Context detection for threads, forums, users, XFRM, and XFMG content
+- Screenshots and file attachments through XenForo's attachment system
+- ACP filtering, assignment, status, internal notes, and bulk management
+- Duplicate-bug candidate detection with staff-approved merging
+- High-volume bug-signal detection with 7/30/90-day statistics
+- Connection-based flood protection without storing users' raw IP addresses
+- Automatic retention cleanup for diagnostic data
+- PHP 8.4-compatible XenForo 2.3 handler signatures
+- PHP, XML, JSON, JavaScript, and installation-ZIP validation on every push
+
+## Requirements
+
+- XenForo 2.3.0+
+- PHP 8.0+
+
+## Alternative manual installation
+
+Upload the contents of the `upload` directory to the XenForo installation directory and install the `Warext/HataBildirimi` add-on from Admin CP.
+
+## Version
+
+`1.1.4`
