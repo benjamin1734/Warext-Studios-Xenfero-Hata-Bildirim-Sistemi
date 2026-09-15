@@ -33,11 +33,21 @@ jobs:
         run: |
           TAG='v1.1.4'
           PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip'
+          cat > /tmp/release-notes.md <<'EOF'
+1.1.4; ACP Ayarlar sayfasındaki ham option anahtarlarını düzelterek XenForo 2.3 phrase adlandırmasını `option.*`, `option_explain.*`, `option_group.*` ve `option_group_description.*` biçimine geçirir. Hata Bildir butonu için sağ/sol alt, sağ/sol üst, sağ/sol orta ve footer sol/orta/sağ olmak üzere dokuz konum seçeneği ekler.
+
+---
+
+## English
+
+Version 1.1.4 fixes raw option keys on the ACP Settings page by migrating XenForo 2.3 phrase naming to the `option.*`, `option_explain.*`, `option_group.*` and `option_group_description.*` formats. It also adds nine placement options for the Report Bug button: bottom-left/right, top-left/right, middle-left/right, and footer-left/center/right.
+EOF
 
           if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release edit "$TAG" --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.4' --notes-file /tmp/release-notes.md
             gh release upload "$TAG" "$PACKAGE" --clobber
           else
             gh release create "$TAG" "$PACKAGE" \
               --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.4' \
-              --notes '1.1.4; ACP Ayarlar sayfasındaki ham option anahtarlarını düzelterek XenForo 2.3 phrase adlandırmasını option.*, option_explain.*, option_group.* ve option_group_description.* biçimine geçirir. Hata Bildir butonu için sağ/sol alt, sağ/sol üst, sağ/sol orta ve footer sol/orta/sağ olmak üzere dokuz konum seçeneği ekler.'
+              --notes-file /tmp/release-notes.md
           fi
