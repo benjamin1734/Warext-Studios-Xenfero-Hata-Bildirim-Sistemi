@@ -219,4 +219,109 @@ $0]]></replace>
     <find><![CDATA[<xf:if is="$log.actor_user_id">#{$log.actor_user_id}<xf:else />Sistem</xf:if>]]></find>
     <replace><![CDATA[<xf:if is="$log.Actor">{$log.Actor.username}<xf:elseif is="$log.actor_user_id" />Silinmiş kullanıcı<xf:else />Sistem</xf:if>]]></replace>
   </modification>
+  <modification type="admin" template="wrxt_hata_admin_list" modification_key="wrxt_hata_report_mobile_class" description="Hata raporları formunu mobil kart düzeni için işaretler" execution_order="40" enabled="1" action="str_replace">
+    <find><![CDATA[<xf:form action="{{ link('wrxt-hata-bildirimleri/bulk') }}" class="block">]]></find>
+    <replace><![CDATA[<xf:form action="{{ link('wrxt-hata-bildirimleri/bulk') }}" class="block wrxtHata-reportList">]]></replace>
+  </modification>
+  <modification type="admin" template="wrxt_hata_admin.less" modification_key="wrxt_hata_report_mobile_cards" description="ACP hata raporlarını mobilde okunabilir kartlara dönüştürür" execution_order="40" enabled="1" action="str_replace">
+    <find><![CDATA[/* Warext Studios - ACP hata bildirim arayuzu */]]></find>
+    <replace><![CDATA[$0
+@media (max-width: @xf-responsiveMedium) {
+    .wrxtHata-reportList .dataList-table,
+    .wrxtHata-reportList .dataList-table tbody {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+    .wrxtHata-reportList .dataList-table thead {
+        display: none;
+    }
+    .wrxtHata-reportList .dataList-table tbody {
+        padding: @xf-paddingMedium;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        margin: 0 0 @xf-paddingMedium;
+        border: 1px solid @xf-borderColorLight;
+        border-radius: 6px;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow:last-child {
+        margin-bottom: 0;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td {
+        display: block;
+        width: auto !important;
+        min-width: 0 !important;
+        max-width: none !important;
+        padding: 9px 11px;
+        border: 0;
+        border-bottom: 1px solid @xf-borderColorLight;
+        box-sizing: border-box;
+        white-space: normal !important;
+        overflow-wrap: anywhere;
+        word-break: normal;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td::before {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 11px;
+        line-height: 1.2;
+        font-weight: 700;
+        opacity: .65;
+        text-transform: uppercase;
+        letter-spacing: .02em;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(1)::before { content: 'Takip'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(2)::before { content: 'Seç'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(3)::before { content: 'Rapor'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(4)::before { content: 'Kullanıcı'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(5)::before { content: 'Kategori / Bağlam'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(6)::before { content: 'Durum'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(7)::before { content: 'Tanılama'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(8)::before { content: 'Atanan'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(9)::before { content: 'Tarih'; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(3) {
+        grid-column: 1 / -1;
+        order: -10;
+        padding-top: 12px;
+        padding-bottom: 12px;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(1) { order: -9; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(2) { order: -8; }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(8),
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(9) {
+        border-bottom: 0;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(3) .u-muted {
+        margin-top: 5px;
+        line-height: 1.45;
+        overflow-wrap: anywhere;
+    }
+    .wrxtHata-reportList .wrxtHata-categoryCell,
+    .wrxtHata-reportList .wrxtHata-reportFlag {
+        width: auto;
+        min-width: 0;
+        text-align: left;
+    }
+    .wrxtHata-reportList .wrxtHata-categoryCell .label {
+        min-width: 0;
+    }
+}
+@media (max-width: 340px) {
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow {
+        grid-template-columns: 1fr;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(3) {
+        grid-column: 1;
+    }
+    .wrxtHata-reportList .dataList-table .wrxtHata-reportRow > td:nth-child(8) {
+        border-bottom: 1px solid @xf-borderColorLight;
+    }
+}]]></replace>
+  </modification>
 </template_modifications>

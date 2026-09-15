@@ -4,7 +4,7 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.1.4 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.4/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip)
+[XenForo'ya doğrudan yüklenebilir 1.1.5 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.5/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
@@ -14,13 +14,17 @@ Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimler
 
 ACP tarafında bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **Hazır Cevaplar**, **İstatistikler** ve **Ayarlar** alanları yer alır.
 
+### 1.1.5 değişiklikleri
+
+**ACP hata raporları listesi mobil için yeniden düzenlendi.** Masaüstündeki tablo yapısı korunurken telefon ve dar ekranlarda her rapor ayrı bir kart görünümüne geçer. Rapor numarası ve açıklama tam genişlikte gösterilir; kullanıcı/kategori, durum/tanılama ve atanan/tarih bilgileri iki sütunlu kompakt kart düzeninde sunulur.
+
+Uzun hata açıklamalarının mobilde birkaç karakter genişliğindeki sütunlara sıkışıp dikey olarak yüzlerce satıra bölünmesi engellendi. **Yeni** etiketi, kategori ve durum etiketleri, tanılama bilgileri ve toplu seçim kutusu mobil kart görünümünde de kullanılabilir.
+
 ### 1.1.4 değişiklikleri
 
 **Ayar sayfasındaki ham phrase anahtarları düzeltildi.** XenForo 2.3 seçenek ekranı başlık ve açıklamalar için `option.<id>`, `option_explain.<id>`, `option_group.<id>` ve `option_group_description.<id>` biçimindeki phrase adlarını bekler. Önceki sürümde alt çizgili anahtarlar kullanıldığı için bazı kurulumlarda `option.wrxtHataEnabled` gibi teknik anahtarlar doğrudan ekranda görünüyordu. 1.1.4 tüm ayar phrase'lerini XenForo'nun doğru adlandırma biçimine geçirir.
 
 **Hata Bildir butonuna dokuz konum seçeneği eklendi.** Sağ alt sabit, sol alt sabit, sağ üst sabit, sol üst sabit, sağ orta sabit, sol orta sabit, footer ortası, footer solu ve footer sağı seçenekleri kullanılabilir. Önceki `floating` değeri geriye uyumlu biçimde sağ alt sabit olarak çalışmaya devam eder.
-
-Ayar açıklamaları yöneticinin yaptığı ayarın sonucunu açıkça anlatacak şekilde korunmuştur; ham teknik phrase anahtarları artık görünmemelidir.
 
 ### 1.1.3 değişiklikleri
 
@@ -46,6 +50,7 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 
 - XenForo uyumlu **Hata Bildir** arayüzü ve benzersiz `BUG-XXXXXXXX` takip numarası
 - Hata Bildir düğmesi için dokuz farklı yerleşim seçeneği
+- ACP hata raporu listesinde masaüstü tablo + mobil kart görünümü
 - Genişletilmiş sorun türü seçimi ve ACP kategori filtresi
 - Kullanıcının kendi hata bildirimlerini ve yetkili cevaplarını takip edebilmesi
 - ACP'de bağımsız Hata Bildirim Sistemi yönetim bölümü
@@ -89,7 +94,7 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 
 ## Sürüm
 
-`1.1.4`
+`1.1.5`
 
 ---
 
@@ -99,7 +104,7 @@ Warext Studios Bug Reporting System is a XenForo 2.3 add-on that lets users subm
 
 ## Ready-to-install ZIP
 
-[Download the XenForo-ready 1.1.4 ZIP package](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.4/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip)
+[Download the XenForo-ready 1.1.5 ZIP package](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.5/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip)
 
 Do not extract the ZIP. Upload it directly from XenForo Admin CP through **Add-ons > Install/upgrade from archive**. Do not use GitHub's **Code > Download ZIP** source archive as the installation package.
 
@@ -110,6 +115,10 @@ Registered users can report bugs, view their own reports, and attach files by de
 ACP contains a dedicated **Bug Reporting System** section with **Bug Reports**, **Prepared Replies**, **Statistics**, and **Settings** areas.
 
 ## Notable release changes
+
+### 1.1.5
+
+The ACP bug-report list now uses a responsive card layout on phones and narrow screens while preserving the desktop table. Report IDs and descriptions receive the full card width, with user/category, status/diagnostics, and assignee/date metadata arranged compactly below. Long report descriptions no longer collapse into extremely narrow columns and create excessively tall pages. Bulk-selection controls and existing labels remain available on mobile.
 
 ### 1.1.4
 
@@ -125,6 +134,7 @@ Issue categories were expanded for both the public form and ACP filters, includi
 
 - XenForo-native **Report Bug** UI with unique `BUG-XXXXXXXX` tracking numbers
 - Nine configurable Report Bug button positions
+- Desktop table plus responsive mobile-card layout for ACP report lists
 - Expanded issue-category selection and ACP category filtering
 - Users can follow their own reports and staff replies
 - Dedicated Bug Reporting System section in ACP
@@ -168,4 +178,4 @@ Upload the contents of the `upload` directory to the XenForo installation direct
 
 ## Version
 
-`1.1.4`
+`1.1.5`
