@@ -21,7 +21,7 @@ jobs:
         run: find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: JSON syntax and version
         run: |
-          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010040 || ($d["version_string"] ?? "") !== "1.1.4") { fwrite(STDERR, "Beklenen surum 1.1.4 degil.\n"); exit(1); }'
+          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (($d["version_id"] ?? 0) !== 1010050 || ($d["version_string"] ?? "") !== "1.1.5") { fwrite(STDERR, "Beklenen surum 1.1.5 degil.\n"); exit(1); }'
       - name: XML and XenForo data constraints
         run: |
           python3 - <<'PY'
@@ -95,11 +95,22 @@ jobs:
               'js-wrxtPreparedReplyComposer',
               'js-wrxtPreparedReplySelect',
               'warext/hata-bildirimi/prepared-replies.js',
-              'wrxtHata-preparedReplyPicker'
+              'wrxtHata-preparedReplyPicker',
+              'wrxt_hata_report_mobile_class',
+              'wrxt_hata_report_mobile_cards',
+              'wrxtHata-reportList',
+              'wrxtHata-reportRow'
           )
           for required in required_mods:
               if required not in mods:
-                  raise SystemExit('1.1.4 template baglantisi eksik: ' + required)
+                  raise SystemExit('1.1.5 template baglantisi eksik: ' + required)
+
+          mobile_labels = ('Takip', 'Seç', 'Rapor', 'Kullanıcı', 'Kategori / Bağlam', 'Durum', 'Tanılama', 'Atanan', 'Tarih')
+          for label in mobile_labels:
+              if f"content: '{label}'" not in mods:
+                  raise SystemExit('Mobil rapor karti etiketi eksik: ' + label)
+          if '@media (max-width: @xf-responsiveMedium)' not in mods or 'grid-template-columns: repeat(2, minmax(0, 1fr))' not in mods:
+              raise SystemExit('Mobil ACP rapor karti responsive CSS baglantisi eksik.')
 
           for category in ('account', 'content', 'notification', 'upload', 'search', 'navigation'):
               if f'value="{category}"' not in mods:
@@ -245,13 +256,16 @@ jobs:
           grep -q 'wrxtHata-techGrid' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
           grep -q 'wrxtHata-tableScroll' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
           grep -q 'wrxtHata-code' upload/src/addons/Warext/HataBildirimi/_data/templates.xml
+          grep -q 'wrxt_hata_report_mobile_class' upload/src/addons/Warext/HataBildirimi/_data/template_modifications.xml
+          grep -q 'wrxt_hata_report_mobile_cards' upload/src/addons/Warext/HataBildirimi/_data/template_modifications.xml
+          grep -q 'grid-template-columns: repeat(2, minmax(0, 1fr))' upload/src/addons/Warext/HataBildirimi/_data/template_modifications.xml
       - name: JavaScript syntax
         run: |
           node --check upload/js/warext/hata-bildirimi/diagnostics.js
           node --check upload/js/warext/hata-bildirimi/prepared-replies.js
       - name: Validate XenForo archive layout
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip'
           rm -rf .release .ci-dist
           mkdir -p .release .ci-dist
           cp -a upload .release/upload
@@ -275,13 +289,13 @@ jobs:
       - name: Upload validated package
         uses: actions/upload-artifact@v4
         with:
-          name: xenforo-addon-1.1.4
-          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip
+          name: xenforo-addon-1.1.5
+          path: .ci-dist/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip
           if-no-files-found: error
       - name: Sync validated package to repository
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip'
+          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip'
           cp ".ci-dist/$PACKAGE" "$PACKAGE"
           if git diff --quiet -- "$PACKAGE"; then
             echo 'Repository package is already current.'
@@ -290,5 +304,5 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add "$PACKAGE"
-          git commit -m '1.1.4'
+          git commit -m '1.1.5'
           git push
