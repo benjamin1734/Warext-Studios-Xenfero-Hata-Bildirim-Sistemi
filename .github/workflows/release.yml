@@ -21,10 +21,7 @@ jobs:
           cp -a upload .release/upload
           cp README.md .release/README.md
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
-          (
-            cd .release
-            zip -q -r "../$PACKAGE" upload README.md
-          )
+          (cd .release && zip -q -r "../$PACKAGE" upload README.md)
           test -s "$PACKAGE"
 
       - name: Publish 1.1.4 release
@@ -33,21 +30,10 @@ jobs:
         run: |
           TAG='v1.1.4'
           PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.4.zip'
-          cat > /tmp/release-notes.md <<'EOF'
-1.1.4; ACP Ayarlar sayfasındaki ham option anahtarlarını düzelterek XenForo 2.3 phrase adlandırmasını `option.*`, `option_explain.*`, `option_group.*` ve `option_group_description.*` biçimine geçirir. Hata Bildir butonu için sağ/sol alt, sağ/sol üst, sağ/sol orta ve footer sol/orta/sağ olmak üzere dokuz konum seçeneği ekler.
-
----
-
-## English
-
-Version 1.1.4 fixes raw option keys on the ACP Settings page by migrating XenForo 2.3 phrase naming to the `option.*`, `option_explain.*`, `option_group.*` and `option_group_description.*` formats. It also adds nine placement options for the Report Bug button: bottom-left/right, top-left/right, middle-left/right, and footer-left/center/right.
-EOF
-
+          echo 'MS4xLjQ7IEFDUCBB eWFybGFyIHNheWZhc8SxbmRha2kgaGFtIG9wdGlvbiBhbmFodGFybGFyxLFuxLEgZMO8emVsdGVyZWsgWGVuRm9ybyAyLjMgcGhyYXNlIGFkbGFuZMSxcm1hc8SxbsSxIGBvcHRpb24uKmAsIGBvcHRpb25fZXhwbGFpbi4qYCwgYG9wdGlvbl9ncm91cC4qYCB2ZSBgb3B0aW9uX2dyb3VwX2Rlc2NyaXB0aW9uLipgIGJpw6dpbWluZSBnZcOnaXJpci4gSGF0YSBCaWxkaXIgYnV0b251IGnDp2luIHNhxJ8vc29sIGFsdCwgc2HEny9zb2wgw7xzdCwgc2HEny9zb2wgb3J0YSB2ZSBmb290ZXIgc29sL29ydGEvc2HEnyBvbG1hayDDvHplcmUgZG9rdXoga29udW0gc2XDp2VuZcSfaSBla2xlci4KCi0tLQoKIyMgRW5nbGlzaAoKVmVyc2lvbiAxLjEuNCBmaXhlcyByYXcgb3B0aW9uIGtleXMgb24gdGhlIEFDUCBTZXR0aW5ncyBwYWdlIGJ5IG1pZ3JhdGluZyBYZW5Gb3JvIDIuMyBwaHJhc2UgbmFtaW5nIHRvIHRoZSBgb3B0aW9uLipgLCBgb3B0aW9uX2V4cGxhaW4uKmAsIGBvcHRpb25fZ3JvdXAuKmAgYW5kIGBvcHRpb25fZ3JvdXBfZGVzY3JpcHRpb24uKmAgZm9ybWF0cy4gSXQgYWxzbyBhZGRzIG5pbmUgcGxhY2VtZW50IG9wdGlvbnMgZm9yIHRoZSBSZXBvcnQgQnVnIGJ1dHRvbjogYm90dG9tLWxlZnQvcmlnaHQsIHRvcC1sZWZ0L3JpZ2h0LCBtaWRkbGUtbGVmdC9yaWdodCwgYW5kIGZvb3Rlci1sZWZ0L2NlbnRlci9yaWdodC4K' | tr -d ' ' | base64 --decode > /tmp/release-notes.md
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release edit "$TAG" --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.4' --notes-file /tmp/release-notes.md
             gh release upload "$TAG" "$PACKAGE" --clobber
           else
-            gh release create "$TAG" "$PACKAGE" \
-              --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.4' \
-              --notes-file /tmp/release-notes.md
+            gh release create "$TAG" "$PACKAGE" --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.4' --notes-file /tmp/release-notes.md
           fi
