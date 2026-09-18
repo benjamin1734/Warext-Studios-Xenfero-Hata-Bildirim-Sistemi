@@ -1,4 +1,6 @@
-# Warext Studios | Xenfero Hata Bildirim Sistemi
+# Warext Studios | XenForo Bug Reporting System
+
+## Türkçe
 
 XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönderebildiği, teknik bilgileri otomatik toplayan ve raporları takip numarasıyla yöneten hata bildirim ve takip eklentisi.
 
@@ -96,9 +98,15 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 
 `1.1.5`
 
+## Destek
+
+Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo eklentileriyle ilgili yardım için destek Discord sunucumuza katılabilirsiniz:
+
+**Discord:** https://discord.gg/tgsV5XMcFS
+
 ---
 
-# English
+## English
 
 Warext Studios Bug Reporting System is a XenForo 2.3 add-on that lets users submit bug reports directly from the page they are viewing, automatically collects technical context, and manages reports with unique tracking numbers.
 
@@ -179,3 +187,9 @@ Upload the contents of the `upload` directory to the XenForo installation direct
 ## Version
 
 `1.1.5`
+
+## Support
+
+For questions, bug reports, installation support, and help with Warext Studios XenForo add-ons, you can join our support Discord server:
+
+**Discord:** https://discord.gg/tgsV5XMcFS
