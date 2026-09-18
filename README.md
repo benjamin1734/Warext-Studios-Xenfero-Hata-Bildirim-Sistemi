@@ -32,6 +32,20 @@ Prepared replies are now inserted into the active XenForo WYSIWYG/BBCode editor 
 
 Issue categories were expanded for both the public form and ACP filters, including page, visual/design, button/feature, mobile, performance, permission/access, account/login/profile, thread/message/editor, notification/email, file/image upload, search/filtering, link/redirect, and other.
 
+### Previous notable changes
+
+Version 1.1.2 corrected the XenForo option-group data format that could cause the Settings page to return 404 on some installations. `_data/option_groups.xml` now uses the `<group>` structure expected by XenForo 2.3.
+
+Reports in the `new` state display a **New** label at the far left of the report list. Status and issue types are rendered with readable, theme-compatible labels instead of raw database values.
+
+Prepared replies can be created without a fixed limit, organized into categories, reordered, edited, and enabled or disabled from ACP. Deleting a category does not delete its replies; they are moved to **Uncategorized**.
+
+The prepared-reply picker appears directly in the **Reply to user** form on the report-detail page. A prepared reply can be edited freely in the XenForo WYSIWYG/BBCode editor before it is submitted.
+
+When a bug report is assigned to staff for the first time, an optional setting can automatically move a **New** report to **In Progress**. Staff replies, status changes, assignment changes, and resolution updates create XenForo alerts for the user, while internal notes remain excluded from user notifications.
+
+Staff assignment continues to be stored by user ID internally, but usernames are shown in ACP selection controls and action history.
+
 ## Features
 
 - XenForo-native **Report Bug** UI with unique `BUG-XXXXXXXX` tracking numbers
@@ -106,19 +120,21 @@ Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimler
 
 ACP tarafında bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **Hazır Cevaplar**, **İstatistikler** ve **Ayarlar** alanları yer alır.
 
-### 1.1.5 değişiklikleri
+## Önemli sürüm değişiklikleri
+
+### 1.1.5
 
 **ACP hata raporları listesi mobil için yeniden düzenlendi.** Masaüstündeki tablo yapısı korunurken telefon ve dar ekranlarda her rapor ayrı bir kart görünümüne geçer. Rapor numarası ve açıklama tam genişlikte gösterilir; kullanıcı/kategori, durum/tanılama ve atanan/tarih bilgileri iki sütunlu kompakt kart düzeninde sunulur.
 
 Uzun hata açıklamalarının mobilde birkaç karakter genişliğindeki sütunlara sıkışıp dikey olarak yüzlerce satıra bölünmesi engellendi. **Yeni** etiketi, kategori ve durum etiketleri, tanılama bilgileri ve toplu seçim kutusu mobil kart görünümünde de kullanılabilir.
 
-### 1.1.4 değişiklikleri
+### 1.1.4
 
 **Ayar sayfasındaki ham phrase anahtarları düzeltildi.** XenForo 2.3 seçenek ekranı başlık ve açıklamalar için `option.<id>`, `option_explain.<id>`, `option_group.<id>` ve `option_group_description.<id>` biçimindeki phrase adlarını bekler. Önceki sürümde alt çizgili anahtarlar kullanıldığı için bazı kurulumlarda `option.wrxtHataEnabled` gibi teknik anahtarlar doğrudan ekranda görünüyordu. 1.1.4 tüm ayar phrase'lerini XenForo'nun doğru adlandırma biçimine geçirir.
 
 **Hata Bildir butonuna dokuz konum seçeneği eklendi.** Sağ alt sabit, sol alt sabit, sağ üst sabit, sol üst sabit, sağ orta sabit, sol orta sabit, footer ortası, footer solu ve footer sağı seçenekleri kullanılabilir. Önceki `floating` değeri geriye uyumlu biçimde sağ alt sabit olarak çalışmaya devam eder.
 
-### 1.1.3 değişiklikleri
+### 1.1.3
 
 **Hazır cevap otomatik yükleme düzeltildi.** XenForo 2.3 WYSIWYG editörü açıkken gerçek textarea alanının `name` değeri değiştiği için önceki sürüm editörü her zaman bulamıyordu. 1.1.3, XenForo'nun `data-original-name="message"` yapısını kullanır; ayrıca editor handler, Froala instance ve BBCode alanı için yedek yollar içerir. Hazır cevap seçildiği anda sayfa yenilenmeden mevcut editöre aktarılır.
 
