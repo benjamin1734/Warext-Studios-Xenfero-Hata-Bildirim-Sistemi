@@ -209,3 +209,8 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo eklentileriyle ilgili yardım için destek Discord sunucumuza katılabilirsiniz:
 
 **Discord:** https://discord.gg/tgsV5XMcFS
+
+
+## Language support / Dil desteği
+
+Version 1.2.0 adds native Turkish/English XenForo language packs under `languages/` and phrase-backed interface text. See `LANGUAGE.md`.
