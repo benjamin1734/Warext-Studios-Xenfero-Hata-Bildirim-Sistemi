@@ -65,4 +65,145 @@
 
   <phrase title="option.wrxtHataDiagnosticRetentionDays" version_id="1010040" version_string="1.1.4"><![CDATA[Teknik tanılama verilerini saklama süresi (gün)]]></phrase>
   <phrase title="option_explain.wrxtHataDiagnosticRetentionDays" version_id="1010040" version_string="1.1.4"><![CDATA[JavaScript, ağ ve sunucu hata özetlerinin kaç gün sonra otomatik temizleneceğini belirler. 0 girilirse otomatik temizlik kapatılır; rapor açıklaması ve işlem geçmişi silinmez.]]></phrase>
+  <phrase title="wrxt_hata_i18n_issue_type" version_id="1020000" version_string="1.2.0"><![CDATA[Sorun türü]]></phrase>
+  <phrase title="wrxt_hata_i18n_describe_the_issue" version_id="1020000" version_string="1.2.0"><![CDATA[Sorunu açıklayın]]></phrase>
+  <phrase title="wrxt_hata_i18n_briefly_describe_when_the_issue_occurred_and_what_ac" version_id="1020000" version_string="1.2.0"><![CDATA[Sorunun ne zaman ve hangi işlem sırasında oluştuğunu kısaca anlatın.]]></phrase>
+  <phrase title="wrxt_hata_i18n_screenshot_file" version_id="1020000" version_string="1.2.0"><![CDATA[Ekran görüntüsü / dosya]]></phrase>
+  <phrase title="wrxt_hata_i18n_you_can_attach_a_screenshot_or_supported_file_that_h" version_id="1020000" version_string="1.2.0"><![CDATA[Sorunu göstermeye yardımcı olacak ekran görüntüsü veya desteklenen bir dosya ekleyebilirsiniz.]]></phrase>
+  <phrase title="wrxt_hata_i18n_submit_bug_report" version_id="1020000" version_string="1.2.0"><![CDATA[Hata Bildirimini Gönder]]></phrase>
+  <phrase title="wrxt_hata_i18n_your_message" version_id="1020000" version_string="1.2.0"><![CDATA[Mesajınız]]></phrase>
+  <phrase title="wrxt_hata_i18n_send_reply" version_id="1020000" version_string="1.2.0"><![CDATA[Cevabı gönder]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_or_user" version_id="1020000" version_string="1.2.0"><![CDATA[Rapor veya kullanıcı]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_a1b2c3d4_report_id_or_username" version_id="1020000" version_string="1.2.0"><![CDATA[BUG-A1B2C3D4, rapor ID veya kullanıcı adı]]></phrase>
+  <phrase title="wrxt_hata_i18n_status" version_id="1020000" version_string="1.2.0"><![CDATA[Durum]]></phrase>
+  <phrase title="wrxt_hata_i18n_assigned_staff" version_id="1020000" version_string="1.2.0"><![CDATA[Atanan personel]]></phrase>
+  <phrase title="wrxt_hata_i18n_filter" version_id="1020000" version_string="1.2.0"><![CDATA[Filtrele]]></phrase>
+  <phrase title="wrxt_hata_i18n_bulk_action" version_id="1020000" version_string="1.2.0"><![CDATA[Toplu işlem]]></phrase>
+  <phrase title="wrxt_hata_i18n_new_status" version_id="1020000" version_string="1.2.0"><![CDATA[Yeni durum]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_to_assign" version_id="1020000" version_string="1.2.0"><![CDATA[Atanacak personel]]></phrase>
+  <phrase title="wrxt_hata_i18n_fixed_version" version_id="1020000" version_string="1.2.0"><![CDATA[Çözülen sürüm]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolution_note" version_id="1020000" version_string="1.2.0"><![CDATA[Çözüm notu]]></phrase>
+  <phrase title="wrxt_hata_i18n_apply_to_selected_reports" version_id="1020000" version_string="1.2.0"><![CDATA[Seçili raporlara uygula]]></phrase>
+  <phrase title="wrxt_hata_i18n_save" version_id="1020000" version_string="1.2.0"><![CDATA[Kaydet]]></phrase>
+  <phrase title="wrxt_hata_i18n_primary_report_id" version_id="1020000" version_string="1.2.0"><![CDATA[Ana rapor ID]]></phrase>
+  <phrase title="wrxt_hata_i18n_merge_as_duplicate" version_id="1020000" version_string="1.2.0"><![CDATA[Yinelenen olarak birleştir]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply" version_id="1020000" version_string="1.2.0"><![CDATA[Cevap]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_note" version_id="1020000" version_string="1.2.0"><![CDATA[Personel notu]]></phrase>
+  <phrase title="wrxt_hata_i18n_save_internal_note" version_id="1020000" version_string="1.2.0"><![CDATA[İç notu kaydet]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_bug" version_id="1020000" version_string="1.2.0"><![CDATA[Hata Bildir]]></phrase>
+  <phrase title="wrxt_hata_i18n_page_not_working" version_id="1020000" version_string="1.2.0"><![CDATA[Sayfa çalışmıyor]]></phrase>
+  <phrase title="wrxt_hata_i18n_visual_design_issue" version_id="1020000" version_string="1.2.0"><![CDATA[Görsel / tasarım hatası]]></phrase>
+  <phrase title="wrxt_hata_i18n_button_feature_not_working" version_id="1020000" version_string="1.2.0"><![CDATA[Buton / özellik çalışmıyor]]></phrase>
+  <phrase title="wrxt_hata_i18n_mobile_compatibility" version_id="1020000" version_string="1.2.0"><![CDATA[Mobil uyumluluk]]></phrase>
+  <phrase title="wrxt_hata_i18n_performance_issue" version_id="1020000" version_string="1.2.0"><![CDATA[Performans problemi]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission_issue" version_id="1020000" version_string="1.2.0"><![CDATA[Yetki problemi]]></phrase>
+  <phrase title="wrxt_hata_i18n_other" version_id="1020000" version_string="1.2.0"><![CDATA[Diğer]]></phrase>
+  <phrase title="wrxt_hata_i18n_automatic_technical_information" version_id="1020000" version_string="1.2.0"><![CDATA[Otomatik teknik bilgiler]]></phrase>
+  <phrase title="wrxt_hata_i18n_your_current_url_browser_device_screen_theme_and_con" version_id="1020000" version_string="1.2.0"><![CDATA[Bulunduğunuz URL, tarayıcı, cihaz, ekran, tema ve içerik bağlamı otomatik eklenir. Form içerikleri, şifreler ve yetkilendirme verileri kaydedilmez.]]></phrase>
+  <phrase title="wrxt_hata_i18n_my_bug_reports" version_id="1020000" version_string="1.2.0"><![CDATA[Hata Bildirimlerim]]></phrase>
+  <phrase title="wrxt_hata_i18n_new" version_id="1020000" version_string="1.2.0"><![CDATA[Yeni]]></phrase>
+  <phrase title="wrxt_hata_i18n_investigating" version_id="1020000" version_string="1.2.0"><![CDATA[İnceleniyor]]></phrase>
+  <phrase title="wrxt_hata_i18n_confirmed" version_id="1020000" version_string="1.2.0"><![CDATA[Onaylandı]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolving" version_id="1020000" version_string="1.2.0"><![CDATA[Çözülüyor]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolved" version_id="1020000" version_string="1.2.0"><![CDATA[Çözüldü]]></phrase>
+  <phrase title="wrxt_hata_i18n_could_not_reproduce" version_id="1020000" version_string="1.2.0"><![CDATA[Tekrar üretilemedi]]></phrase>
+  <phrase title="wrxt_hata_i18n_invalid" version_id="1020000" version_string="1.2.0"><![CDATA[Geçersiz]]></phrase>
+  <phrase title="wrxt_hata_i18n_duplicate" version_id="1020000" version_string="1.2.0"><![CDATA[Yinelenen]]></phrase>
+  <phrase title="wrxt_hata_i18n_archived" version_id="1020000" version_string="1.2.0"><![CDATA[Arşivlendi]]></phrase>
+  <phrase title="wrxt_hata_i18n_you_do_not_have_any_bug_reports_yet" version_id="1020000" version_string="1.2.0"><![CDATA[Henüz hata bildiriminiz bulunmuyor.]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_time" version_id="1020000" version_string="1.2.0"><![CDATA[Bildirim zamanı]]></phrase>
+  <phrase title="wrxt_hata_i18n_page" version_id="1020000" version_string="1.2.0"><![CDATA[Sayfa]]></phrase>
+  <phrase title="wrxt_hata_i18n_browser" version_id="1020000" version_string="1.2.0"><![CDATA[Tarayıcı]]></phrase>
+  <phrase title="wrxt_hata_i18n_operating_system" version_id="1020000" version_string="1.2.0"><![CDATA[İşletim sistemi]]></phrase>
+  <phrase title="wrxt_hata_i18n_device" version_id="1020000" version_string="1.2.0"><![CDATA[Cihaz]]></phrase>
+  <phrase title="wrxt_hata_i18n_screen" version_id="1020000" version_string="1.2.0"><![CDATA[Ekran]]></phrase>
+  <phrase title="wrxt_hata_i18n_viewport" version_id="1020000" version_string="1.2.0"><![CDATA[Görüntü alanı]]></phrase>
+  <phrase title="wrxt_hata_i18n_content_context" version_id="1020000" version_string="1.2.0"><![CDATA[İçerik bağlamı]]></phrase>
+  <phrase title="wrxt_hata_i18n_diagnostics" version_id="1020000" version_string="1.2.0"><![CDATA[Tanılama]]></phrase>
+  <phrase title="wrxt_hata_i18n_description" version_id="1020000" version_string="1.2.0"><![CDATA[Açıklama]]></phrase>
+  <phrase title="wrxt_hata_i18n_attachments" version_id="1020000" version_string="1.2.0"><![CDATA[Ek dosyalar]]></phrase>
+  <phrase title="wrxt_hata_i18n_conversation" version_id="1020000" version_string="1.2.0"><![CDATA[Görüşme]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff" version_id="1020000" version_string="1.2.0"><![CDATA[Yetkili]]></phrase>
+  <phrase title="wrxt_hata_i18n_there_are_no_additional_messages_yet" version_id="1020000" version_string="1.2.0"><![CDATA[Henüz ek mesaj bulunmuyor.]]></phrase>
+  <phrase title="wrxt_hata_i18n_write_a_reply" version_id="1020000" version_string="1.2.0"><![CDATA[Cevap yaz]]></phrase>
+  <phrase title="wrxt_hata_i18n_overview" version_id="1020000" version_string="1.2.0"><![CDATA[Genel durum]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_hotspot_signals_last_30_minutes" version_id="1020000" version_string="1.2.0"><![CDATA[Yoğun hata sinyalleri · Son 30 dakika]]></phrase>
+  <phrase title="wrxt_hata_i18n_report" version_id="1020000" version_string="1.2.0"><![CDATA[Bildirim]]></phrase>
+  <phrase title="wrxt_hata_i18n_user" version_id="1020000" version_string="1.2.0"><![CDATA[Kullanıcı]]></phrase>
+  <phrase title="wrxt_hata_i18n_last_report" version_id="1020000" version_string="1.2.0"><![CDATA[Son bildirim]]></phrase>
+  <phrase title="wrxt_hata_i18n_all" version_id="1020000" version_string="1.2.0"><![CDATA[Tümü]]></phrase>
+  <phrase title="wrxt_hata_i18n_visual_design" version_id="1020000" version_string="1.2.0"><![CDATA[Görsel / tasarım]]></phrase>
+  <phrase title="wrxt_hata_i18n_button_feature" version_id="1020000" version_string="1.2.0"><![CDATA[Buton / özellik]]></phrase>
+  <phrase title="wrxt_hata_i18n_performance" version_id="1020000" version_string="1.2.0"><![CDATA[Performans]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission" version_id="1020000" version_string="1.2.0"><![CDATA[Yetki]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_reports" version_id="1020000" version_string="1.2.0"><![CDATA[Hata raporları]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_1" version_id="1020000" version_string="1.2.0"><![CDATA[Rapor]]></phrase>
+  <phrase title="wrxt_hata_i18n_context" version_id="1020000" version_string="1.2.0"><![CDATA[Bağlam]]></phrase>
+  <phrase title="wrxt_hata_i18n_assigned" version_id="1020000" version_string="1.2.0"><![CDATA[Atanan]]></phrase>
+  <phrase title="wrxt_hata_i18n_date" version_id="1020000" version_string="1.2.0"><![CDATA[Tarih]]></phrase>
+  <phrase title="wrxt_hata_i18n_none" version_id="1020000" version_string="1.2.0"><![CDATA[Yok]]></phrase>
+  <phrase title="wrxt_hata_i18n_unassigned" version_id="1020000" version_string="1.2.0"><![CDATA[Atanmamış]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_bug_reports_found" version_id="1020000" version_string="1.2.0"><![CDATA[Henüz hata bildirimi bulunmuyor.]]></phrase>
+  <phrase title="wrxt_hata_i18n_change_status" version_id="1020000" version_string="1.2.0"><![CDATA[Durum değiştir]]></phrase>
+  <phrase title="wrxt_hata_i18n_assign_to_staff" version_id="1020000" version_string="1.2.0"><![CDATA[Personele ata]]></phrase>
+  <phrase title="wrxt_hata_i18n_mark_as_resolved" version_id="1020000" version_string="1.2.0"><![CDATA[Çözüldü olarak işaretle]]></phrase>
+  <phrase title="wrxt_hata_i18n_archive" version_id="1020000" version_string="1.2.0"><![CDATA[Arşivle]]></phrase>
+  <phrase title="wrxt_hata_i18n_remove_assignment" version_id="1020000" version_string="1.2.0"><![CDATA[Atamayı kaldır]]></phrase>
+  <phrase title="wrxt_hata_i18n_back_to_bug_list" version_id="1020000" version_string="1.2.0"><![CDATA[Hata listesine dön]]></phrase>
+  <phrase title="wrxt_hata_i18n_merging_is_performed_only_with_staff_approval" version_id="1020000" version_string="1.2.0"><![CDATA[Birleştirme yalnızca yetkili onayıyla yapılır.]]></phrase>
+  <phrase title="wrxt_hata_i18n_user_description" version_id="1020000" version_string="1.2.0"><![CDATA[Kullanıcı açıklaması]]></phrase>
+  <phrase title="wrxt_hata_i18n_technical_information" version_id="1020000" version_string="1.2.0"><![CDATA[Teknik bilgiler]]></phrase>
+  <phrase title="wrxt_hata_i18n_referrer" version_id="1020000" version_string="1.2.0"><![CDATA[Yönlendiren]]></phrase>
+  <phrase title="wrxt_hata_i18n_route" version_id="1020000" version_string="1.2.0"><![CDATA[Rota]]></phrase>
+  <phrase title="wrxt_hata_i18n_not_detected" version_id="1020000" version_string="1.2.0"><![CDATA[Algılanamadı]]></phrase>
+  <phrase title="wrxt_hata_i18n_content" version_id="1020000" version_string="1.2.0"><![CDATA[İçerik]]></phrase>
+  <phrase title="wrxt_hata_i18n_style" version_id="1020000" version_string="1.2.0"><![CDATA[Tema]]></phrase>
+  <phrase title="wrxt_hata_i18n_language" version_id="1020000" version_string="1.2.0"><![CDATA[Dil]]></phrase>
+  <phrase title="wrxt_hata_i18n_javascript_error" version_id="1020000" version_string="1.2.0"><![CDATA[JavaScript hatası]]></phrase>
+  <phrase title="wrxt_hata_i18n_network_error" version_id="1020000" version_string="1.2.0"><![CDATA[Ağ hatası]]></phrase>
+  <phrase title="wrxt_hata_i18n_server_match" version_id="1020000" version_string="1.2.0"><![CDATA[Sunucu eşleşmesi]]></phrase>
+  <phrase title="wrxt_hata_i18n_not_specified" version_id="1020000" version_string="1.2.0"><![CDATA[Belirtilmedi]]></phrase>
+  <phrase title="wrxt_hata_i18n_xenforo_server_error_correlation" version_id="1020000" version_string="1.2.0"><![CDATA[XenForo sunucu hata korelasyonu]]></phrase>
+  <phrase title="wrxt_hata_i18n_this_is_the_technical_record_correlated_with_the_xen" version_id="1020000" version_string="1.2.0"><![CDATA[Bu kayıt, hata bildirimi oluşturulduğu sırada XenForo hata günlüğü ile eşleştirilen teknik kayıttır.]]></phrase>
+  <phrase title="wrxt_hata_i18n_automatic_technical_diagnostics" version_id="1020000" version_string="1.2.0"><![CDATA[Otomatik teknik tanılama]]></phrase>
+  <phrase title="wrxt_hata_i18n_js" version_id="1020000" version_string="1.2.0"><![CDATA[JS]]></phrase>
+  <phrase title="wrxt_hata_i18n_http" version_id="1020000" version_string="1.2.0"><![CDATA[HTTP]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_management" version_id="1020000" version_string="1.2.0"><![CDATA[Rapor yönetimi]]></phrase>
+  <phrase title="wrxt_hata_i18n_duplicate_report" version_id="1020000" version_string="1.2.0"><![CDATA[Yinelenen rapor]]></phrase>
+  <phrase title="wrxt_hata_i18n_conversation_and_staff_notes" version_id="1020000" version_string="1.2.0"><![CDATA[Yazışmalar ve ekip notları]]></phrase>
+  <phrase title="wrxt_hata_i18n_internal_note" version_id="1020000" version_string="1.2.0"><![CDATA[İç not]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_reply" version_id="1020000" version_string="1.2.0"><![CDATA[Yetkili cevabı]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_messages_yet" version_id="1020000" version_string="1.2.0"><![CDATA[Henüz mesaj bulunmuyor.]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply_to_user" version_id="1020000" version_string="1.2.0"><![CDATA[Kullanıcıya cevap yaz]]></phrase>
+  <phrase title="wrxt_hata_i18n_add_internal_note" version_id="1020000" version_string="1.2.0"><![CDATA[İç not ekle]]></phrase>
+  <phrase title="wrxt_hata_i18n_action_history" version_id="1020000" version_string="1.2.0"><![CDATA[İşlem geçmişi]]></phrase>
+  <phrase title="wrxt_hata_i18n_action" version_id="1020000" version_string="1.2.0"><![CDATA[İşlem]]></phrase>
+  <phrase title="wrxt_hata_i18n_previous" version_id="1020000" version_string="1.2.0"><![CDATA[Eski]]></phrase>
+  <phrase title="wrxt_hata_i18n_status_change" version_id="1020000" version_string="1.2.0"><![CDATA[Durum değişikliği]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_assignment" version_id="1020000" version_string="1.2.0"><![CDATA[Personel ataması]]></phrase>
+  <phrase title="wrxt_hata_i18n_message" version_id="1020000" version_string="1.2.0"><![CDATA[Mesaj]]></phrase>
+  <phrase title="wrxt_hata_i18n_server_error_correlated" version_id="1020000" version_string="1.2.0"><![CDATA[Sunucu hatası eşleştirildi]]></phrase>
+  <phrase title="wrxt_hata_i18n_system" version_id="1020000" version_string="1.2.0"><![CDATA[Sistem]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_action_history_yet" version_id="1020000" version_string="1.2.0"><![CDATA[Henüz işlem geçmişi oluşmadı.]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_report_statistics" version_id="1020000" version_string="1.2.0"><![CDATA[Hata Bildirim İstatistikleri]]></phrase>
+  <phrase title="wrxt_hata_i18n_back_to_bug_reports" version_id="1020000" version_string="1.2.0"><![CDATA[Hata bildirimlerine dön]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_range" version_id="1020000" version_string="1.2.0"><![CDATA[Rapor aralığı]]></phrase>
+  <phrase title="wrxt_hata_i18n_7_days" version_id="1020000" version_string="1.2.0"><![CDATA[7 gün]]></phrase>
+  <phrase title="wrxt_hata_i18n_30_days" version_id="1020000" version_string="1.2.0"><![CDATA[30 gün]]></phrase>
+  <phrase title="wrxt_hata_i18n_90_days" version_id="1020000" version_string="1.2.0"><![CDATA[90 gün]]></phrase>
+  <phrase title="wrxt_hata_i18n_total_reports" version_id="1020000" version_string="1.2.0"><![CDATA[Toplam rapor]]></phrase>
+  <phrase title="wrxt_hata_i18n_open_reports" version_id="1020000" version_string="1.2.0"><![CDATA[Açık rapor]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolved_2" version_id="1020000" version_string="1.2.0"><![CDATA[Çözülen]]></phrase>
+  <phrase title="wrxt_hata_i18n_js_error_records" version_id="1020000" version_string="1.2.0"><![CDATA[JS hata kaydı]]></phrase>
+  <phrase title="wrxt_hata_i18n_network_error_records" version_id="1020000" version_string="1.2.0"><![CDATA[Ağ hata kaydı]]></phrase>
+  <phrase title="wrxt_hata_i18n_daily_activity" version_id="1020000" version_string="1.2.0"><![CDATA[Günlük hareket]]></phrase>
+  <phrase title="wrxt_hata_i18n_day" version_id="1020000" version_string="1.2.0"><![CDATA[Gün]]></phrase>
+  <phrase title="wrxt_hata_i18n_network" version_id="1020000" version_string="1.2.0"><![CDATA[Ağ]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_reports_in_this_range" version_id="1020000" version_string="1.2.0"><![CDATA[Bu aralıkta rapor yok.]]></phrase>
+  <phrase title="wrxt_hata_i18n_pages_with_most_bug_reports" version_id="1020000" version_string="1.2.0"><![CDATA[En çok hata bildirilen sayfalar]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_page_statistics" version_id="1020000" version_string="1.2.0"><![CDATA[Sayfa istatistiği yok.]]></phrase>
+  <phrase title="wrxt_hata_i18n_browsers" version_id="1020000" version_string="1.2.0"><![CDATA[Tarayıcılar]]></phrase>
+  <phrase title="wrxt_hata_i18n_unknown" version_id="1020000" version_string="1.2.0"><![CDATA[Bilinmiyor]]></phrase>
+  <phrase title="wrxt_hata_i18n_device_types" version_id="1020000" version_string="1.2.0"><![CDATA[Cihaz türleri]]></phrase>
+  <phrase title="wrxt_hata_i18n_issue_types" version_id="1020000" version_string="1.2.0"><![CDATA[Sorun türleri]]></phrase>
 </phrases>
