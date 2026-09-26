@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language title="Warext Bug Reporting English (US)" date_format="M j, Y" time_format="g:i A" decimal_point="." thousands_separator="," language_code="en-US" text_direction="LTR">
+  <phrase title="admin_navigation.wrxtHataReports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Bug Reports]]></phrase>
+  <phrase title="admin_navigation.wrxtHataSystem" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000170" version_string="1.0.9"><![CDATA[Bug Reporting System]]></phrase>
+  <phrase title="admin_navigation.wrxtHataPreparedReplies" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000180" version_string="1.0.10"><![CDATA[Prepared Replies]]></phrase>
+  <phrase title="admin_navigation.wrxtHataAnalytics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000170" version_string="1.0.9"><![CDATA[Statistics]]></phrase>
+  <phrase title="admin_navigation.wrxtHataSettings" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000170" version_string="1.0.9"><![CDATA[Settings]]></phrase>
+  <phrase title="admin_permission.wrxtHataManage" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Manage the bug reporting system]]></phrase>
+  <phrase title="permission_group_wrxtHata" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Bug Reporting System]]></phrase>
+  <phrase title="permission_wrxtHata_submit" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Can create bug reports]]></phrase>
+  <phrase title="permission_wrxtHata_viewOwn" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Can view own bug reports]]></phrase>
+  <phrase title="permission_wrxtHata_attach" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Can attach files to bug reports]]></phrase>
+  <phrase title="permission_wrxtHata_manage" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Can manage bug reports]]></phrase>
+  <phrase title="wrxt_hata_no_permission" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[You do not have permission to create a bug report.]]></phrase>
+  <phrase title="wrxt_hata_rate_limit" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[You submitted too many bug reports in a short time. Please try again later.]]></phrase>
+  <phrase title="wrxt_hata_description_short" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[The bug description must be at least 10 characters.]]></phrase>
+  <phrase title="wrxt_hata_report_created" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Your bug report has been created. Tracking number: {key}]]></phrase>
+  <phrase title="alert_opt_out.wrxt_bug_report_staff_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Receive staff replies to my bug reports]]></phrase>
+  <phrase title="alert_opt_out.wrxt_bug_report_status" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1000070" version_string="1.0.0 RC 2"><![CDATA[Receive status changes for my bug reports]]></phrase>
+  <phrase title="option_group.wrxtHataSettings" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Warext Bug Reporting System]]></phrase>
+  <phrase title="option_group_description.wrxtHataSettings" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Manage the bug reporting system appearance, notification behavior, security limits and technical diagnostics here.]]></phrase>
+  <phrase title="option.wrxtHataEnabled" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Enable bug reporting system]]></phrase>
+  <phrase title="option_explain.wrxtHataEnabled" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[When disabled, users cannot submit new bug reports. Existing reports and history are preserved.]]></phrase>
+  <phrase title="option.wrxtHataButtonPosition" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Bug Report button position]]></phrase>
+  <phrase title="option_explain.wrxtHataButtonPosition" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Determines where the Bug Report button appears on forum pages. You can use fixed screen positions or left, center and right footer positions.]]></phrase>
+  <phrase title="option.wrxtHataAutoInvestigatingOnAssign" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Set to investigating on first staff assignment]]></phrase>
+  <phrase title="option_explain.wrxtHataAutoInvestigatingOnAssign" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Automatically changes a New report to Investigating when it is first assigned to a staff member.]]></phrase>
+  <phrase title="option.wrxtHataNotifyStatus" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Notify user about report actions]]></phrase>
+  <phrase title="option_explain.wrxtHataNotifyStatus" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Sends a XenForo alert to the report owner when status, assigned staff or resolution information changes.]]></phrase>
+  <phrase title="option.wrxtHataNotifyStaffReply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Notify user about staff replies]]></phrase>
+  <phrase title="option_explain.wrxtHataNotifyStaffReply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Creates a XenForo alert for the report owner when staff sends a public reply. Internal notes visible only to staff do not create alerts.]]></phrase>
+  <phrase title="option.wrxtHataMaxReports10Min" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[10-minute report limit per user]]></phrase>
+  <phrase title="option_explain.wrxtHataMaxReports10Min" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Sets the maximum number of bug reports a user can submit within 10 minutes. Used to limit spam and repeated reports.]]></phrase>
+  <phrase title="option.wrxtHataMaxReportsIp10Min" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[10-minute report limit per connection]]></phrase>
+  <phrase title="option_explain.wrxtHataMaxReportsIp10Min" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Limits the total reports that can be submitted from the same internet connection within 10 minutes. Enter 0 to disable this additional limit. Raw IP addresses are not stored.]]></phrase>
+  <phrase title="option.wrxtHataClientDiagnostics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Record browser diagnostics]]></phrase>
+  <phrase title="option_explain.wrxtHataClientDiagnostics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Adds limited technical data such as JavaScript errors and failed network requests to the report. Message, form and password contents are not included.]]></phrase>
+  <phrase title="option.wrxtHataServerCorrelation" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Correlate with XenForo server errors]]></phrase>
+  <phrase title="option_explain.wrxtHataServerCorrelation" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Checks XenForo server error logs near the time the bug report was created and shows a suitable match in the report when found.]]></phrase>
+  <phrase title="option.wrxtHataServerWindow" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Server error correlation window (seconds)]]></phrase>
+  <phrase title="option_explain.wrxtHataServerWindow" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Determines how many seconds back in the server error log are checked for a match when a report is submitted.]]></phrase>
+  <phrase title="option.wrxtHataDuplicateDetection" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Detect similar bug reports]]></phrase>
+  <phrase title="option_explain.wrxtHataDuplicateDetection" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Flags reports with similar pages, issue types and descriptions as possible duplicates. The system does not merge reports automatically; staff makes the final decision.]]></phrase>
+  <phrase title="option.wrxtHataHotspotMin" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Bug hotspot warning threshold]]></phrase>
+  <phrase title="option_explain.wrxtHataHotspotMin" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Highlights reports from the same page reaching this count within the last 30 minutes as a bug hotspot signal in the admin panel.]]></phrase>
+  <phrase title="option.wrxtHataAttachments" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Allow file attachments on bug reports]]></phrase>
+  <phrase title="option_explain.wrxtHataAttachments" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Allows users to attach screenshots or other supported files to bug reports through XenForo's file upload system.]]></phrase>
+  <phrase title="option.wrxtHataBoardUrlsOnly" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Accept forum URLs only]]></phrase>
+  <phrase title="option_explain.wrxtHataBoardUrlsOnly" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Ensures the report's technical page URL is accepted only from this forum's domain. Recommended for security.]]></phrase>
+  <phrase title="option.wrxtHataDiagnosticRetentionDays" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Technical diagnostics retention period (days)]]></phrase>
+  <phrase title="option_explain.wrxtHataDiagnosticRetentionDays" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1010040" version_string="1.1.4"><![CDATA[Determines how many days JavaScript, network and server error summaries are retained before automatic cleanup. Enter 0 to disable cleanup; the report description and action history are not deleted.]]></phrase>
+  <phrase title="wrxt_hata_i18n_issue_type" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Issue type]]></phrase>
+  <phrase title="wrxt_hata_i18n_describe_the_issue" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Describe the issue]]></phrase>
+  <phrase title="wrxt_hata_i18n_briefly_describe_when_the_issue_occurred_and_what_ac" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Briefly describe when the issue occurred and what action you were performing.]]></phrase>
+  <phrase title="wrxt_hata_i18n_screenshot_file" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Screenshot / file]]></phrase>
+  <phrase title="wrxt_hata_i18n_you_can_attach_a_screenshot_or_supported_file_that_h" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[You can attach a screenshot or supported file that helps demonstrate the issue.]]></phrase>
+  <phrase title="wrxt_hata_i18n_submit_bug_report" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Submit Bug Report]]></phrase>
+  <phrase title="wrxt_hata_i18n_your_message" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Your message]]></phrase>
+  <phrase title="wrxt_hata_i18n_send_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Send reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_or_user" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report or user]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_a1b2c3d4_report_id_or_username" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[BUG-A1B2C3D4, report ID or username]]></phrase>
+  <phrase title="wrxt_hata_i18n_status" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Status]]></phrase>
+  <phrase title="wrxt_hata_i18n_assigned_staff" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Assigned staff]]></phrase>
+  <phrase title="wrxt_hata_i18n_filter" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Filter]]></phrase>
+  <phrase title="wrxt_hata_i18n_bulk_action" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Bulk action]]></phrase>
+  <phrase title="wrxt_hata_i18n_new_status" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[New status]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_to_assign" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Staff to assign]]></phrase>
+  <phrase title="wrxt_hata_i18n_fixed_version" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Fixed version]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolution_note" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Resolution note]]></phrase>
+  <phrase title="wrxt_hata_i18n_apply_to_selected_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Apply to selected reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_save" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Save]]></phrase>
+  <phrase title="wrxt_hata_i18n_primary_report_id" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Primary report ID]]></phrase>
+  <phrase title="wrxt_hata_i18n_merge_as_duplicate" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Merge as duplicate]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_note" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Staff note]]></phrase>
+  <phrase title="wrxt_hata_i18n_save_internal_note" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Save internal note]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_bug" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report Bug]]></phrase>
+  <phrase title="wrxt_hata_i18n_page_not_working" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Page not working]]></phrase>
+  <phrase title="wrxt_hata_i18n_visual_design_issue" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Visual / design issue]]></phrase>
+  <phrase title="wrxt_hata_i18n_button_feature_not_working" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Button / feature not working]]></phrase>
+  <phrase title="wrxt_hata_i18n_mobile_compatibility" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Mobile compatibility]]></phrase>
+  <phrase title="wrxt_hata_i18n_performance_issue" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Performance issue]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission_issue" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Permission issue]]></phrase>
+  <phrase title="wrxt_hata_i18n_other" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Other]]></phrase>
+  <phrase title="wrxt_hata_i18n_automatic_technical_information" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Automatic technical information]]></phrase>
+  <phrase title="wrxt_hata_i18n_your_current_url_browser_device_screen_theme_and_con" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Your current URL, browser, device, screen, theme and content context are added automatically. Form contents, passwords and authentication data are not recorded.]]></phrase>
+  <phrase title="wrxt_hata_i18n_my_bug_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[My Bug Reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_new" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[New]]></phrase>
+  <phrase title="wrxt_hata_i18n_investigating" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Investigating]]></phrase>
+  <phrase title="wrxt_hata_i18n_confirmed" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Confirmed]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolving" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Resolving]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolved" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Resolved]]></phrase>
+  <phrase title="wrxt_hata_i18n_could_not_reproduce" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Could not reproduce]]></phrase>
+  <phrase title="wrxt_hata_i18n_invalid" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Invalid]]></phrase>
+  <phrase title="wrxt_hata_i18n_duplicate" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Duplicate]]></phrase>
+  <phrase title="wrxt_hata_i18n_archived" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Archived]]></phrase>
+  <phrase title="wrxt_hata_i18n_you_do_not_have_any_bug_reports_yet" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[You do not have any bug reports yet.]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_time" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report time]]></phrase>
+  <phrase title="wrxt_hata_i18n_page" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Page]]></phrase>
+  <phrase title="wrxt_hata_i18n_browser" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Browser]]></phrase>
+  <phrase title="wrxt_hata_i18n_operating_system" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Operating system]]></phrase>
+  <phrase title="wrxt_hata_i18n_device" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Device]]></phrase>
+  <phrase title="wrxt_hata_i18n_screen" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Screen]]></phrase>
+  <phrase title="wrxt_hata_i18n_viewport" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Viewport]]></phrase>
+  <phrase title="wrxt_hata_i18n_content_context" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Content context]]></phrase>
+  <phrase title="wrxt_hata_i18n_diagnostics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Diagnostics]]></phrase>
+  <phrase title="wrxt_hata_i18n_description" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Description]]></phrase>
+  <phrase title="wrxt_hata_i18n_attachments" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Attachments]]></phrase>
+  <phrase title="wrxt_hata_i18n_conversation" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Conversation]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Staff]]></phrase>
+  <phrase title="wrxt_hata_i18n_there_are_no_additional_messages_yet" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[There are no additional messages yet.]]></phrase>
+  <phrase title="wrxt_hata_i18n_write_a_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Write a reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_overview" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Overview]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_hotspot_signals_last_30_minutes" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Bug hotspot signals · Last 30 minutes]]></phrase>
+  <phrase title="wrxt_hata_i18n_report" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report]]></phrase>
+  <phrase title="wrxt_hata_i18n_user" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[User]]></phrase>
+  <phrase title="wrxt_hata_i18n_last_report" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Last report]]></phrase>
+  <phrase title="wrxt_hata_i18n_all" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[All]]></phrase>
+  <phrase title="wrxt_hata_i18n_visual_design" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Visual / design]]></phrase>
+  <phrase title="wrxt_hata_i18n_button_feature" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Button / feature]]></phrase>
+  <phrase title="wrxt_hata_i18n_performance" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Performance]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Permission]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Bug reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_1" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report]]></phrase>
+  <phrase title="wrxt_hata_i18n_context" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Context]]></phrase>
+  <phrase title="wrxt_hata_i18n_assigned" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Assigned]]></phrase>
+  <phrase title="wrxt_hata_i18n_date" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Date]]></phrase>
+  <phrase title="wrxt_hata_i18n_none" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[None]]></phrase>
+  <phrase title="wrxt_hata_i18n_unassigned" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Unassigned]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_bug_reports_found" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[No bug reports found.]]></phrase>
+  <phrase title="wrxt_hata_i18n_change_status" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Change status]]></phrase>
+  <phrase title="wrxt_hata_i18n_assign_to_staff" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Assign to staff]]></phrase>
+  <phrase title="wrxt_hata_i18n_mark_as_resolved" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Mark as resolved]]></phrase>
+  <phrase title="wrxt_hata_i18n_archive" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Archive]]></phrase>
+  <phrase title="wrxt_hata_i18n_remove_assignment" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Remove assignment]]></phrase>
+  <phrase title="wrxt_hata_i18n_back_to_bug_list" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Back to bug list]]></phrase>
+  <phrase title="wrxt_hata_i18n_merging_is_performed_only_with_staff_approval" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Merging is performed only with staff approval.]]></phrase>
+  <phrase title="wrxt_hata_i18n_user_description" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[User description]]></phrase>
+  <phrase title="wrxt_hata_i18n_technical_information" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Technical information]]></phrase>
+  <phrase title="wrxt_hata_i18n_referrer" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Referrer]]></phrase>
+  <phrase title="wrxt_hata_i18n_route" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Route]]></phrase>
+  <phrase title="wrxt_hata_i18n_not_detected" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Not detected]]></phrase>
+  <phrase title="wrxt_hata_i18n_content" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Content]]></phrase>
+  <phrase title="wrxt_hata_i18n_style" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Style]]></phrase>
+  <phrase title="wrxt_hata_i18n_language" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Language]]></phrase>
+  <phrase title="wrxt_hata_i18n_javascript_error" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[JavaScript error]]></phrase>
+  <phrase title="wrxt_hata_i18n_network_error" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Network error]]></phrase>
+  <phrase title="wrxt_hata_i18n_server_match" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Server match]]></phrase>
+  <phrase title="wrxt_hata_i18n_not_specified" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Not specified]]></phrase>
+  <phrase title="wrxt_hata_i18n_xenforo_server_error_correlation" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[XenForo server error correlation]]></phrase>
+  <phrase title="wrxt_hata_i18n_this_is_the_technical_record_correlated_with_the_xen" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[This is the technical record correlated with the XenForo error log when the bug report was created.]]></phrase>
+  <phrase title="wrxt_hata_i18n_automatic_technical_diagnostics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Automatic technical diagnostics]]></phrase>
+  <phrase title="wrxt_hata_i18n_js" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[JS]]></phrase>
+  <phrase title="wrxt_hata_i18n_http" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[HTTP]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_management" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report management]]></phrase>
+  <phrase title="wrxt_hata_i18n_duplicate_report" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Duplicate report]]></phrase>
+  <phrase title="wrxt_hata_i18n_conversation_and_staff_notes" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Conversation and staff notes]]></phrase>
+  <phrase title="wrxt_hata_i18n_internal_note" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Internal note]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Staff reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_messages_yet" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[No messages yet.]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply_to_user" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Reply to user]]></phrase>
+  <phrase title="wrxt_hata_i18n_add_internal_note" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Add internal note]]></phrase>
+  <phrase title="wrxt_hata_i18n_action_history" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Action history]]></phrase>
+  <phrase title="wrxt_hata_i18n_action" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Action]]></phrase>
+  <phrase title="wrxt_hata_i18n_previous" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Previous]]></phrase>
+  <phrase title="wrxt_hata_i18n_status_change" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Status change]]></phrase>
+  <phrase title="wrxt_hata_i18n_staff_assignment" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Staff assignment]]></phrase>
+  <phrase title="wrxt_hata_i18n_message" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Message]]></phrase>
+  <phrase title="wrxt_hata_i18n_server_error_correlated" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Server error correlated]]></phrase>
+  <phrase title="wrxt_hata_i18n_system" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[System]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_action_history_yet" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[No action history yet.]]></phrase>
+  <phrase title="wrxt_hata_i18n_bug_report_statistics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Bug Report Statistics]]></phrase>
+  <phrase title="wrxt_hata_i18n_back_to_bug_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Back to bug reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_report_range" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Report range]]></phrase>
+  <phrase title="wrxt_hata_i18n_7_days" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[7 days]]></phrase>
+  <phrase title="wrxt_hata_i18n_30_days" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[30 days]]></phrase>
+  <phrase title="wrxt_hata_i18n_90_days" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[90 days]]></phrase>
+  <phrase title="wrxt_hata_i18n_total_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Total reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_open_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Open reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_resolved_2" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Resolved]]></phrase>
+  <phrase title="wrxt_hata_i18n_js_error_records" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[JS error records]]></phrase>
+  <phrase title="wrxt_hata_i18n_network_error_records" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Network error records]]></phrase>
+  <phrase title="wrxt_hata_i18n_daily_activity" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Daily activity]]></phrase>
+  <phrase title="wrxt_hata_i18n_day" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Day]]></phrase>
+  <phrase title="wrxt_hata_i18n_network" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Network]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_reports_in_this_range" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[No reports in this range.]]></phrase>
+  <phrase title="wrxt_hata_i18n_pages_with_most_bug_reports" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Pages with most bug reports]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_page_statistics" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[No page statistics.]]></phrase>
+  <phrase title="wrxt_hata_i18n_browsers" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Browsers]]></phrase>
+  <phrase title="wrxt_hata_i18n_unknown" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Unknown]]></phrase>
+  <phrase title="wrxt_hata_i18n_device_types" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Device types]]></phrase>
+  <phrase title="wrxt_hata_i18n_issue_types" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Issue types]]></phrase>
+</language>
