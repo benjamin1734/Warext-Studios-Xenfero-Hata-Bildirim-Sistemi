@@ -21,7 +21,16 @@ jobs:
         run: find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
       - name: JSON syntax and version
         run: |
-          php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true, 512, JSON_THROW_ON_ERROR); if (!preg_match('/^\\d+\\.\\d+\\.\\d+$/', (string)($d["version_string"] ?? ""))) { fwrite(STDERR, "Gecersiz surum bicimi.\n"); exit(1); }'
+          php <<'PHP'
+          <?php
+          $d = json_decode(file_get_contents('upload/src/addons/Warext/HataBildirimi/addon.json'), true, 512, JSON_THROW_ON_ERROR);
+          if (!preg_match('/^\\d+\\.\\d+\\.\\d+$/', (string)($d['version_string'] ?? '')))
+          {
+              fwrite(STDERR, "Gecersiz surum bicimi.\n");
+              exit(1);
+          }
+          echo "Version {$d['version_string']} OK\n";
+          PHP
       - name: XML and XenForo data constraints
         run: |
           python3 - <<'PY'
