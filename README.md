@@ -6,7 +6,7 @@ Warext Studios Bug Reporting System is a XenForo 2.3 add-on that lets users subm
 
 ## Ready-to-install ZIP
 
-[Download the XenForo-ready 1.1.5 ZIP package](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.5/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip)
+[Download the latest XenForo-ready package](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases)
 
 Do not extract the ZIP. Upload it directly from XenForo Admin CP through **Add-ons > Install/upgrade from archive**. Do not use GitHub's **Code > Download ZIP** source archive as the installation package.
 
@@ -15,36 +15,6 @@ Do not extract the ZIP. Upload it directly from XenForo Admin CP through **Add-o
 Registered users can report bugs, view their own reports, and attach files by default. A bug-icon **Report Bug** button is shown on forum pages, and its position can be configured from ACP > Bug Reporting System > Settings.
 
 ACP contains a dedicated **Bug Reporting System** section with **Bug Reports**, **Prepared Replies**, **Statistics**, and **Settings** areas.
-
-## Notable release changes
-
-### 1.1.5
-
-The ACP bug-report list now uses a responsive card layout on phones and narrow screens while preserving the desktop table. Report IDs and descriptions receive the full card width, with user/category, status/diagnostics, and assignee/date metadata arranged compactly below. Long report descriptions no longer collapse into extremely narrow columns and create excessively tall pages. Bulk-selection controls and existing labels remain available on mobile.
-
-### 1.1.4
-
-XenForo 2.3-compatible option phrase naming was corrected so raw technical phrase keys no longer appear on settings screens. The Report Bug button also gained nine placement options: fixed bottom-right, bottom-left, top-right, top-left, middle-right, middle-left, footer center, footer left, and footer right. The old `floating` value remains backward-compatible as fixed bottom-right.
-
-### 1.1.3
-
-Prepared replies are now inserted into the active XenForo WYSIWYG/BBCode editor without reloading the page. The implementation supports XenForo's `data-original-name="message"` structure, editor handler, Froala instance, and BBCode fallbacks.
-
-Issue categories were expanded for both the public form and ACP filters, including page, visual/design, button/feature, mobile, performance, permission/access, account/login/profile, thread/message/editor, notification/email, file/image upload, search/filtering, link/redirect, and other.
-
-### Previous notable changes
-
-Version 1.1.2 corrected the XenForo option-group data format that could cause the Settings page to return 404 on some installations. `_data/option_groups.xml` now uses the `<group>` structure expected by XenForo 2.3.
-
-Reports in the `new` state display a **New** label at the far left of the report list. Status and issue types are rendered with readable, theme-compatible labels instead of raw database values.
-
-Prepared replies can be created without a fixed limit, organized into categories, reordered, edited, and enabled or disabled from ACP. Deleting a category does not delete its replies; they are moved to **Uncategorized**.
-
-The prepared-reply picker appears directly in the **Reply to user** form on the report-detail page. A prepared reply can be edited freely in the XenForo WYSIWYG/BBCode editor before it is submitted.
-
-When a bug report is assigned to staff for the first time, an optional setting can automatically move a **New** report to **In Progress**. Staff replies, status changes, assignment changes, and resolution updates create XenForo alerts for the user, while internal notes remain excluded from user notifications.
-
-Staff assignment continues to be stored by user ID internally, but usernames are shown in ACP selection controls and action history.
 
 ## Features
 
@@ -92,10 +62,6 @@ Staff assignment continues to be stored by user ID internally, but usernames are
 
 Upload the contents of the `upload` directory to the XenForo installation directory and install the `Warext/HataBildirimi` add-on from Admin CP.
 
-## Version
-
-`1.1.5`
-
 ## Support
 
 For questions, bug reports, installation support, and help with Warext Studios XenForo add-ons, you can join our support Discord server:
@@ -110,7 +76,7 @@ XenForo 2.3 için kullanıcıların bulundukları sayfadan hata bildirimi gönde
 
 ## Hazır Kurulum ZIP
 
-[XenForo'ya doğrudan yüklenebilir 1.1.5 ZIP paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases/download/v1.1.5/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip)
+[En güncel XenForo kurulum paketini indir](https://github.com/benjamin1734/Warext-Studios-Xenfero-Hata-Bildirim-Sistemi/releases)
 
 Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/upgrade from archive** alanına ZIP dosyasını doğrudan yükleyin. **Code > Download ZIP** seçeneğiyle indirilen GitHub kaynak kod arşivini kullanmayın.
 
@@ -119,40 +85,6 @@ Bu ZIP dosyasını açmayın. XenForo Admin CP içerisinde **Add-ons > Install/u
 Kayıtlı kullanıcılar varsayılan olarak hata bildirebilir, kendi bildirimlerini görebilir ve dosya ekleyebilir. Forum sayfalarında böcek ikonlu **Hata Bildir** düğmesi görünür. Düğmenin konumu ACP > Hata Bildirim Sistemi > Ayarlar bölümünden değiştirilebilir.
 
 ACP tarafında bağımsız **Hata Bildirim Sistemi** bölümü bulunur. Bu bölüm altında **Hata Bildirimleri**, **Hazır Cevaplar**, **İstatistikler** ve **Ayarlar** alanları yer alır.
-
-## Önemli sürüm değişiklikleri
-
-### 1.1.5
-
-**ACP hata raporları listesi mobil için yeniden düzenlendi.** Masaüstündeki tablo yapısı korunurken telefon ve dar ekranlarda her rapor ayrı bir kart görünümüne geçer. Rapor numarası ve açıklama tam genişlikte gösterilir; kullanıcı/kategori, durum/tanılama ve atanan/tarih bilgileri iki sütunlu kompakt kart düzeninde sunulur.
-
-Uzun hata açıklamalarının mobilde birkaç karakter genişliğindeki sütunlara sıkışıp dikey olarak yüzlerce satıra bölünmesi engellendi. **Yeni** etiketi, kategori ve durum etiketleri, tanılama bilgileri ve toplu seçim kutusu mobil kart görünümünde de kullanılabilir.
-
-### 1.1.4
-
-**Ayar sayfasındaki ham phrase anahtarları düzeltildi.** XenForo 2.3 seçenek ekranı başlık ve açıklamalar için `option.<id>`, `option_explain.<id>`, `option_group.<id>` ve `option_group_description.<id>` biçimindeki phrase adlarını bekler. Önceki sürümde alt çizgili anahtarlar kullanıldığı için bazı kurulumlarda `option.wrxtHataEnabled` gibi teknik anahtarlar doğrudan ekranda görünüyordu. 1.1.4 tüm ayar phrase'lerini XenForo'nun doğru adlandırma biçimine geçirir.
-
-**Hata Bildir butonuna dokuz konum seçeneği eklendi.** Sağ alt sabit, sol alt sabit, sağ üst sabit, sol üst sabit, sağ orta sabit, sol orta sabit, footer ortası, footer solu ve footer sağı seçenekleri kullanılabilir. Önceki `floating` değeri geriye uyumlu biçimde sağ alt sabit olarak çalışmaya devam eder.
-
-### 1.1.3
-
-**Hazır cevap otomatik yükleme düzeltildi.** XenForo 2.3 WYSIWYG editörü açıkken gerçek textarea alanının `name` değeri değiştiği için önceki sürüm editörü her zaman bulamıyordu. 1.1.3, XenForo'nun `data-original-name="message"` yapısını kullanır; ayrıca editor handler, Froala instance ve BBCode alanı için yedek yollar içerir. Hazır cevap seçildiği anda sayfa yenilenmeden mevcut editöre aktarılır.
-
-**Sorun türleri genişletildi.** Kullanıcı formunda ve ACP filtresinde şu kategoriler bulunur: Sayfa, Görsel / tasarım, Buton / özellik, Mobil, Performans, Yetki / erişim, Hesap / giriş / profil, Konu / mesaj / editör, Bildirim / e-posta, Dosya / görsel yükleme, Arama / filtreleme, Bağlantı / yönlendirme ve Diğer. Yeni kategoriler backend doğrulamasında da kabul edilir ve ACP listesindeki Türkçe etiketlerle eşleşir.
-
-### Önceki önemli değişiklikler
-
-1.1.2 ile Ayarlar sayfasının bazı kurulumlarda 404 vermesine neden olan XenForo option group veri biçimi düzeltildi. `_data/option_groups.xml` XenForo 2.3'ün beklediği `<group>` yapısını kullanır.
-
-Hata raporları listesinde `new` durumundaki raporların en solunda **Yeni** etiketi gösterilir. Durum ve sorun türleri ham veritabanı değerleri yerine tema uyumlu Türkçe etiketlerle görüntülenir.
-
-Hazır cevaplar ACP üzerinden sınırsız şekilde oluşturulabilir, kategorilere ayrılabilir, sıralanabilir, düzenlenebilir ve aktif/pasif yapılabilir. Kategori silindiğinde içindeki cevaplar kaybolmaz, **Kategorisiz** bölümüne taşınır.
-
-Rapor detayında hazır cevap seçicisi doğrudan **Kullanıcıya cevap yaz** formunda yer alır. Hazır cevap gönderilmeden önce XenForo WYSIWYG/BBCode editöründe serbestçe değiştirilebilir.
-
-Bir hata bildirimi ilk kez yetkili personele atanırsa, ayar açık olduğu sürece `Yeni` durumundaki rapor otomatik olarak `İnceleniyor` durumuna alınır. Yetkili cevapları, durum değişiklikleri, atama değişiklikleri ve çözüm bilgisi güncellemeleri kullanıcıya XenForo bildirimi oluşturur; iç notlar kullanıcıya bildirilmez.
-
-Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya devam eder ancak ACP arayüzünde ID yerine kullanıcı adları gösterilir. İşlem geçmişindeki yetkili alanı da kullanıcı adıyla gösterilir.
 
 ## Özellikler
 
@@ -200,24 +132,11 @@ Yetkili atama seçimlerinde kayıt işlemi kullanıcı ID'si ile yapılmaya deva
 
 `upload` klasörünün içeriğini XenForo kurulum dizinine yükleyin ve Admin CP üzerinden `Warext/HataBildirimi` eklentisini kurun.
 
-## Sürüm
-
-`1.1.5`
-
 ## Destek
 
 Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo eklentileriyle ilgili yardım için destek Discord sunucumuza katılabilirsiniz:
 
 **Discord:** https://discord.gg/tgsV5XMcFS
 
-
 ## Language support / Dil desteği
 
-Version 1.2.0 adds native Turkish/English XenForo language packs under `languages/` and phrase-backed interface text. See `LANGUAGE.md`.
-
-
-## 1.2.1 language completion
-
-- Prepared replies, extended report categories, alerts, push notifications and mobile ACP card labels now use XenForo phrases.
-- Validation/release workflows no longer depend on the old 1.1.5 package metadata.
-- Turkish and English XML packs are published as release assets.
