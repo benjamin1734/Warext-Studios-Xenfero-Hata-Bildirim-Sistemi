@@ -1,8 +1,8 @@
 {
     "title": "Warext Studios | XenForo Hata Bildirim Sistemi",
     "description": "XenForo forumlarında kullanıcıların teknik verilerle birlikte hata bildirimleri oluşturmasını ve yönetim ekibinin bu bildirimleri takip etmesini sağlar.",
-    "version_id": 1020000,
-    "version_string": "1.2.0",
+    "version_id": 1020010,
+    "version_string": "1.2.1",
     "dev": "Warext Studios | Support Discord Server",
     "dev_url": "https://discord.gg/tgsV5XMcFS",
     "require": {
