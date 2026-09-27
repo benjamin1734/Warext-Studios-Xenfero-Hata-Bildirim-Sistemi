@@ -206,4 +206,55 @@
   <phrase title="wrxt_hata_i18n_unknown" version_id="1020000" version_string="1.2.0"><![CDATA[Bilinmiyor]]></phrase>
   <phrase title="wrxt_hata_i18n_device_types" version_id="1020000" version_string="1.2.0"><![CDATA[Cihaz türleri]]></phrase>
   <phrase title="wrxt_hata_i18n_issue_types" version_id="1020000" version_string="1.2.0"><![CDATA[Sorun türleri]]></phrase>
+  <phrase title="wrxt_hata_i18n_issue_hint" version_id="1020010" version_string="1.2.1"><![CDATA[Soruna en yakın kategoriyi seçmeniz, bildirimin doğru alanda daha hızlı incelenmesini sağlar.]]></phrase>
+  <phrase title="wrxt_hata_i18n_page_error" version_id="1020010" version_string="1.2.1"><![CDATA[Sayfa açılmıyor / hata veriyor]]></phrase>
+  <phrase title="wrxt_hata_i18n_performance_slow" version_id="1020010" version_string="1.2.1"><![CDATA[Performans / yavaşlık]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission_access_problem" version_id="1020010" version_string="1.2.1"><![CDATA[Yetki / erişim problemi]]></phrase>
+  <phrase title="wrxt_hata_i18n_account_login_profile" version_id="1020010" version_string="1.2.1"><![CDATA[Hesap / giriş / profil]]></phrase>
+  <phrase title="wrxt_hata_i18n_thread_message_editor" version_id="1020010" version_string="1.2.1"><![CDATA[Konu / mesaj / editör]]></phrase>
+  <phrase title="wrxt_hata_i18n_notification_email" version_id="1020010" version_string="1.2.1"><![CDATA[Bildirim / e-posta]]></phrase>
+  <phrase title="wrxt_hata_i18n_file_image_upload" version_id="1020010" version_string="1.2.1"><![CDATA[Dosya / görsel yükleme]]></phrase>
+  <phrase title="wrxt_hata_i18n_search_filtering" version_id="1020010" version_string="1.2.1"><![CDATA[Arama / filtreleme]]></phrase>
+  <phrase title="wrxt_hata_i18n_link_redirect" version_id="1020010" version_string="1.2.1"><![CDATA[Bağlantı / yönlendirme]]></phrase>
+  <phrase title="wrxt_hata_alert_assignee_updated" version_id="1020010" version_string="1.2.1"><![CDATA[hata bildiriminizin yetkili ataması güncellendi.]]></phrase>
+  <phrase title="wrxt_hata_alert_resolution_updated" version_id="1020010" version_string="1.2.1"><![CDATA[hata bildiriminizin çözüm bilgileri güncellendi.]]></phrase>
+  <phrase title="wrxt_hata_alert_status_updated" version_id="1020010" version_string="1.2.1"><![CDATA[hata bildiriminizin durumu güncellendi.]]></phrase>
+  <phrase title="wrxt_hata_alert_staff_replied" version_id="1020010" version_string="1.2.1"><![CDATA[hata bildiriminize yetkili yanıt verdi.]]></phrase>
+  <phrase title="wrxt_hata_i18n_add_prepared_reply" version_id="1020010" version_string="1.2.1"><![CDATA[Hazır cevap ekle]]></phrase>
+  <phrase title="wrxt_hata_i18n_add_category" version_id="1020010" version_string="1.2.1"><![CDATA[Kategori ekle]]></phrase>
+  <phrase title="wrxt_hata_i18n_tracking" version_id="1020010" version_string="1.2.1"><![CDATA[Takip]]></phrase>
+  <phrase title="wrxt_hata_i18n_category_context" version_id="1020010" version_string="1.2.1"><![CDATA[Kategori / Bağlam]]></phrase>
+  <phrase title="wrxt_hata_i18n_feature" version_id="1020010" version_string="1.2.1"><![CDATA[Özellik]]></phrase>
+  <phrase title="wrxt_hata_i18n_mobile" version_id="1020010" version_string="1.2.1"><![CDATA[Mobil]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission_access" version_id="1020010" version_string="1.2.1"><![CDATA[Yetki / erişim]]></phrase>
+  <phrase title="wrxt_hata_i18n_account_login" version_id="1020010" version_string="1.2.1"><![CDATA[Hesap / giriş]]></phrase>
+  <phrase title="wrxt_hata_i18n_thread_message" version_id="1020010" version_string="1.2.1"><![CDATA[Konu / mesaj]]></phrase>
+  <phrase title="wrxt_hata_i18n_file_upload" version_id="1020010" version_string="1.2.1"><![CDATA[Dosya yükleme]]></phrase>
+  <phrase title="wrxt_hata_i18n_search_filter" version_id="1020010" version_string="1.2.1"><![CDATA[Arama / filtre]]></phrase>
+  <phrase title="wrxt_hata_i18n_redirect" version_id="1020010" version_string="1.2.1"><![CDATA[Yönlendirme]]></phrase>
+  <phrase title="wrxt_hata_i18n_title" version_id="1020010" version_string="1.2.1"><![CDATA[Başlık]]></phrase>
+  <phrase title="wrxt_hata_i18n_editor_bbcode_explain" version_id="1020010" version_string="1.2.1"><![CDATA[XenForo varsayılan editörü ve BBCode kullanılabilir.]]></phrase>
+  <phrase title="wrxt_hata_i18n_category" version_id="1020010" version_string="1.2.1"><![CDATA[Kategori]]></phrase>
+  <phrase title="wrxt_hata_i18n_display_order" version_id="1020010" version_string="1.2.1"><![CDATA[Gösterim sırası]]></phrase>
+  <phrase title="wrxt_hata_i18n_category_name" version_id="1020010" version_string="1.2.1"><![CDATA[Kategori adı]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_templates" version_id="1020010" version_string="1.2.1"><![CDATA[Hazır Mesaj Şablonları]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_templates_explain" version_id="1020010" version_string="1.2.1"><![CDATA[Hazır cevapları kategoriler altında düzenleyebilir, gösterim sırasını belirleyebilir ve XenForo BBCode editörüyle içerik oluşturabilirsiniz.]]></phrase>
+  <phrase title="wrxt_hata_i18n_edit" version_id="1020010" version_string="1.2.1"><![CDATA[Düzenle]]></phrase>
+  <phrase title="wrxt_hata_i18n_delete" version_id="1020010" version_string="1.2.1"><![CDATA[Sil]]></phrase>
+  <phrase title="wrxt_hata_i18n_inactive" version_id="1020010" version_string="1.2.1"><![CDATA[Pasif]]></phrase>
+  <phrase title="wrxt_hata_i18n_active" version_id="1020010" version_string="1.2.1"><![CDATA[Aktif]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply_content" version_id="1020010" version_string="1.2.1"><![CDATA[Cevap içeriği]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_prepared_in_category" version_id="1020010" version_string="1.2.1"><![CDATA[Bu kategoride hazır cevap yok.]]></phrase>
+  <phrase title="wrxt_hata_i18n_group" version_id="1020010" version_string="1.2.1"><![CDATA[Grup]]></phrase>
+  <phrase title="wrxt_hata_i18n_uncategorized" version_id="1020010" version_string="1.2.1"><![CDATA[Kategorisiz]]></phrase>
+  <phrase title="wrxt_hata_i18n_edit_prepared_reply" version_id="1020010" version_string="1.2.1"><![CDATA[Hazır Cevabı Düzenle]]></phrase>
+  <phrase title="wrxt_hata_i18n_new_prepared_reply" version_id="1020010" version_string="1.2.1"><![CDATA[Yeni Hazır Cevap]]></phrase>
+  <phrase title="wrxt_hata_i18n_edit_category" version_id="1020010" version_string="1.2.1"><![CDATA[Kategoriyi Düzenle]]></phrase>
+  <phrase title="wrxt_hata_i18n_new_prepared_category" version_id="1020010" version_string="1.2.1"><![CDATA[Yeni Hazır Cevap Kategorisi]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply_editor_explain" version_id="1020010" version_string="1.2.1"><![CDATA[Cevabı doğrudan yazabilir veya gönder butonunun altındaki hazır cevap listesinden bir şablon seçebilirsiniz.]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_reply" version_id="1020010" version_string="1.2.1"><![CDATA[Hazır cevap]]></phrase>
+  <phrase title="wrxt_hata_i18n_use_prepared_reply" version_id="1020010" version_string="1.2.1"><![CDATA[Hazır cevap kullan...]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_reply_insert_explain" version_id="1020010" version_string="1.2.1"><![CDATA[Seçtiğiniz hazır cevap sayfa yenilenmeden mevcut editöre aktarılır; göndermeden önce değiştirebilirsiniz.]]></phrase>
+  <phrase title="wrxt_hata_i18n_deleted_user" version_id="1020010" version_string="1.2.1"><![CDATA[Silinmiş kullanıcı]]></phrase>
+  <phrase title="wrxt_hata_i18n_select" version_id="1020010" version_string="1.2.1"><![CDATA[Seç]]></phrase>
 </phrases>
