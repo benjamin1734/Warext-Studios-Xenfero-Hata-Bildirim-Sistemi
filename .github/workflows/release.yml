@@ -3,6 +3,7 @@ name: Publish XenForo Release
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -12,34 +13,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Build 1.1.5 release package
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+      - name: Read version
+        id: meta
         run: |
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip'
+          VERSION=$(php -r '$d=json_decode(file_get_contents("upload/src/addons/Warext/HataBildirimi/addon.json"), true); echo $d["version_string"];')
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "package=Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-$VERSION.zip" >> "$GITHUB_OUTPUT"
+      - name: Validate XML, JSON and PHP
+        run: |
+          find upload/src/addons/Warext/HataBildirimi -name '*.php' -print0 | xargs -0 -n1 php -l
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, xml.etree.ElementTree as ET
+          root=Path('upload/src/addons/Warext/HataBildirimi')
+          json.loads((root/'addon.json').read_text(encoding='utf-8'))
+          for p in (root/'_data').glob('*.xml'): ET.parse(p)
+          for p in Path('languages').glob('*.xml'): ET.parse(p)
+          print('Validation OK')
+          PY
+      - name: Build release package
+        run: |
+          PACKAGE='${{ steps.meta.outputs.package }}'
           rm -rf .release
           mkdir -p .release
           cp -a upload .release/upload
-          cp README.md .release/README.md
+          cp README.md LANGUAGE.md .release/
           rm -f .release/upload/src/addons/Warext/HataBildirimi/hashes.json
-          (cd .release && zip -q -r "../$PACKAGE" upload README.md)
+          (cd .release && zip -qr "../$PACKAGE" upload README.md LANGUAGE.md)
           test -s "$PACKAGE"
-
-      - name: Publish 1.1.5 release
+      - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          TAG='v1.1.5'
-          PACKAGE='Warext-Studios-Xenfero-Hata-Bildirim-Sistemi-1.1.5.zip'
-          cat > /tmp/release-notes.md <<'EOF'
-          1.1.5 mobil Admin CP hata raporu listesini yeniden düzenler. Masaüstündeki tablo korunurken telefon ve dar ekranlarda her rapor okunabilir bir karta dönüşür; rapor/açıklama tam genişlikte, kullanıcı-kategori, durum-tanılama ve atanan-tarih alanları düzenli şekilde gösterilir. Uzun açıklamaların sütunu birkaç karakter genişliğe sıkıştırıp sayfayı aşırı uzatması engellenir. Toplu seçim kutuları ve mevcut kategori/durum etiketleri mobil kartlarda çalışmaya devam eder.
-
-          ---
-
-          Version 1.1.5 redesigns the Admin CP bug-report list for mobile. The desktop table remains unchanged, while reports become readable cards on phones and narrow screens. Report text gets full width and metadata is arranged into compact pairs, preventing long descriptions from collapsing into extremely narrow columns. Bulk-selection controls and existing category/status labels remain available on mobile.
-          EOF
+          TAG='${{ steps.meta.outputs.tag }}'
+          VERSION='${{ steps.meta.outputs.version }}'
+          PACKAGE='${{ steps.meta.outputs.package }}'
+          NOTES="Turkish/English language completion, phrase-backed template modifications and dynamic release packaging."
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release edit "$TAG" --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.5' --notes-file /tmp/release-notes.md
-            gh release upload "$TAG" "$PACKAGE" --clobber
+            gh release edit "$TAG" --title "Warext Studios XenForo Hata Bildirim Sistemi $VERSION" --notes "$NOTES"
+            gh release upload "$TAG" "$PACKAGE" languages/Turkish.xml languages/English.xml --clobber
           else
-            gh release create "$TAG" "$PACKAGE" --title 'Warext Studios XenForo Hata Bildirim Sistemi 1.1.5' --notes-file /tmp/release-notes.md
+            gh release create "$TAG" "$PACKAGE" languages/Turkish.xml languages/English.xml --title "Warext Studios XenForo Hata Bildirim Sistemi $VERSION" --notes "$NOTES" --latest
           fi
