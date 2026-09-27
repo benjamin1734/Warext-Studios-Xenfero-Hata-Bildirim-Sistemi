@@ -190,4 +190,55 @@
   <phrase title="wrxt_hata_i18n_unknown" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Unknown]]></phrase>
   <phrase title="wrxt_hata_i18n_device_types" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Device types]]></phrase>
   <phrase title="wrxt_hata_i18n_issue_types" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020000" version_string="1.2.0"><![CDATA[Issue types]]></phrase>
+  <phrase title="wrxt_hata_i18n_issue_hint" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Choose the category closest to the issue so the report can be reviewed faster by the right team.]]></phrase>
+  <phrase title="wrxt_hata_i18n_page_error" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Page does not open / shows an error]]></phrase>
+  <phrase title="wrxt_hata_i18n_performance_slow" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Performance / slowness]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission_access_problem" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Permission / access problem]]></phrase>
+  <phrase title="wrxt_hata_i18n_account_login_profile" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Account / login / profile]]></phrase>
+  <phrase title="wrxt_hata_i18n_thread_message_editor" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Thread / message / editor]]></phrase>
+  <phrase title="wrxt_hata_i18n_notification_email" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Notification / email]]></phrase>
+  <phrase title="wrxt_hata_i18n_file_image_upload" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[File / image upload]]></phrase>
+  <phrase title="wrxt_hata_i18n_search_filtering" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Search / filtering]]></phrase>
+  <phrase title="wrxt_hata_i18n_link_redirect" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Link / redirect]]></phrase>
+  <phrase title="wrxt_hata_alert_assignee_updated" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[the staff assignment for your bug report was updated.]]></phrase>
+  <phrase title="wrxt_hata_alert_resolution_updated" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[the resolution information for your bug report was updated.]]></phrase>
+  <phrase title="wrxt_hata_alert_status_updated" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[the status of your bug report was updated.]]></phrase>
+  <phrase title="wrxt_hata_alert_staff_replied" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[a staff member replied to your bug report.]]></phrase>
+  <phrase title="wrxt_hata_i18n_add_prepared_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Add prepared reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_add_category" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Add category]]></phrase>
+  <phrase title="wrxt_hata_i18n_tracking" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Tracking]]></phrase>
+  <phrase title="wrxt_hata_i18n_category_context" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Category / Context]]></phrase>
+  <phrase title="wrxt_hata_i18n_feature" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Feature]]></phrase>
+  <phrase title="wrxt_hata_i18n_mobile" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Mobile]]></phrase>
+  <phrase title="wrxt_hata_i18n_permission_access" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Permission / access]]></phrase>
+  <phrase title="wrxt_hata_i18n_account_login" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Account / login]]></phrase>
+  <phrase title="wrxt_hata_i18n_thread_message" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Thread / message]]></phrase>
+  <phrase title="wrxt_hata_i18n_file_upload" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[File upload]]></phrase>
+  <phrase title="wrxt_hata_i18n_search_filter" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Search / filter]]></phrase>
+  <phrase title="wrxt_hata_i18n_redirect" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Redirect]]></phrase>
+  <phrase title="wrxt_hata_i18n_title" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Title]]></phrase>
+  <phrase title="wrxt_hata_i18n_editor_bbcode_explain" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[The default XenForo editor and BBCode can be used.]]></phrase>
+  <phrase title="wrxt_hata_i18n_category" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Category]]></phrase>
+  <phrase title="wrxt_hata_i18n_display_order" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Display order]]></phrase>
+  <phrase title="wrxt_hata_i18n_category_name" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Category name]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_templates" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Prepared Message Templates]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_templates_explain" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Organize prepared replies under categories, set their display order and create content with the XenForo BBCode editor.]]></phrase>
+  <phrase title="wrxt_hata_i18n_edit" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Edit]]></phrase>
+  <phrase title="wrxt_hata_i18n_delete" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Delete]]></phrase>
+  <phrase title="wrxt_hata_i18n_inactive" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Inactive]]></phrase>
+  <phrase title="wrxt_hata_i18n_active" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Active]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply_content" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Reply content]]></phrase>
+  <phrase title="wrxt_hata_i18n_no_prepared_in_category" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[There are no prepared replies in this category.]]></phrase>
+  <phrase title="wrxt_hata_i18n_group" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Group]]></phrase>
+  <phrase title="wrxt_hata_i18n_uncategorized" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Uncategorized]]></phrase>
+  <phrase title="wrxt_hata_i18n_edit_prepared_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Edit Prepared Reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_new_prepared_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[New Prepared Reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_edit_category" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Edit Category]]></phrase>
+  <phrase title="wrxt_hata_i18n_new_prepared_category" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[New Prepared Reply Category]]></phrase>
+  <phrase title="wrxt_hata_i18n_reply_editor_explain" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Write the reply directly or select a template from the prepared-reply list below the submit button.]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Prepared reply]]></phrase>
+  <phrase title="wrxt_hata_i18n_use_prepared_reply" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Use a prepared reply...]]></phrase>
+  <phrase title="wrxt_hata_i18n_prepared_reply_insert_explain" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[The selected prepared reply is inserted into the current editor without reloading the page; you can edit it before sending.]]></phrase>
+  <phrase title="wrxt_hata_i18n_deleted_user" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Deleted user]]></phrase>
+  <phrase title="wrxt_hata_i18n_select" addon_id="Warext/HataBildirimi" global_cache="0" version_id="1020010" version_string="1.2.1"><![CDATA[Select]]></phrase>
 </language>
