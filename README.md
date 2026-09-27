@@ -214,3 +214,10 @@ Sorularınız, hata bildirimleriniz, kurulum desteği ve Warext Studios XenForo 
 ## Language support / Dil desteği
 
 Version 1.2.0 adds native Turkish/English XenForo language packs under `languages/` and phrase-backed interface text. See `LANGUAGE.md`.
+
+
+## 1.2.1 language completion
+
+- Prepared replies, extended report categories, alerts, push notifications and mobile ACP card labels now use XenForo phrases.
+- Validation/release workflows no longer depend on the old 1.1.5 package metadata.
+- Turkish and English XML packs are published as release assets.
